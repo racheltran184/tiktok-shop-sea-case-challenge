@@ -1,0 +1,495 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Rising Stars Brand Journey</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=TikTok+Sans:wght@400;500;700&display=swap">
+<style>
+/* Layout: step rail · phone prototype with a story bar under it · "what happens" panel; one column under 1020px */
+:root{
+  --bg:#F4F5F7; --surface:#FFFFFF; --ink:#161823; --muted:#5B6170; --line:#E3E6EB;
+  --red:#FE2C55; --red-ink:#D6123F; --cyan:#25F4EE; --purple:#3E2F9E; --purple-soft:#EDE9FC;
+  --teal:#0B7F7B; --teal-soft:#E3F4F3; --amber-soft:#FFF4D6; --amber-ink:#5C4300;
+  --phone:#0E0F14;
+  --font:'TikTok Sans','Helvetica Neue',Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F1016; --surface:#191B23; --ink:#F2F3F6; --muted:#A3A8B6; --line:#2C2F3A;
+  --red-ink:#FF5C7C; --purple:#B9AEFF; --purple-soft:#2B2550; --teal:#4FD1C9; --teal-soft:#123533;
+  --amber-soft:#3A2F12; --amber-ink:#F3D27A; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#0F1016; --surface:#191B23; --ink:#F2F3F6; --muted:#A3A8B6; --line:#2C2F3A;
+  --red-ink:#FF5C7C; --purple:#B9AEFF; --purple-soft:#2B2550; --teal:#4FD1C9; --teal-soft:#123533;
+  --amber-soft:#3A2F12; --amber-ink:#F3D27A; color-scheme:dark }
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:15px;line-height:1.45}
+.wrap{max-width:1200px;margin:0 auto;padding-block:28px 40px;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));display:flex;flex-direction:column;gap:22px}
+header.top{display:flex;flex-direction:column;gap:6px}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red-ink)}
+h1{margin:0;font-size:clamp(26px,4vw,38px);line-height:1.1;text-wrap:balance}
+.lede{margin:0;color:var(--muted);max-width:68ch}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;background:var(--line);color:var(--muted);vertical-align:middle}
+.grid{display:grid;grid-template-columns:230px minmax(0,380px) minmax(0,1fr);gap:24px;align-items:start}
+@media (max-width:1020px){.grid{grid-template-columns:minmax(0,1fr)}}
+
+/* step rail */
+.rail{display:flex;flex-direction:column;gap:6px;margin:0;padding:0;list-style:none}
+@media (max-width:1020px){.rail{flex-direction:row;overflow-x:auto;padding-bottom:4px}}
+.rail button{all:unset;box-sizing:border-box;cursor:pointer;display:flex;gap:10px;align-items:center;width:100%;min-height:48px;padding:8px 12px;border-radius:12px;background:var(--surface);border:1px solid var(--line);white-space:nowrap}
+.rail button:focus-visible{outline:2px solid var(--red-ink);outline-offset:2px}
+.rail .n{flex:0 0 26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:700;background:var(--line);color:var(--ink)}
+.rail .lbl{font-weight:700;font-size:14px}
+.rail button[aria-current="step"]{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.rail button[aria-current="step"] .n{background:var(--red);color:#fff}
+.rail button.done .n{background:var(--teal);color:#fff}
+
+/* stage: phone + story bar */
+.stage{display:flex;flex-direction:column;align-items:center;gap:12px;min-width:0}
+.phone{width:100%;max-width:380px;aspect-ratio:380/800;background:var(--phone);border-radius:40px;padding:11px;box-sizing:border-box;box-shadow:0 22px 50px rgba(14,15,20,.28)}
+.story{width:100%;max-width:380px;box-sizing:border-box;display:flex;align-items:center;gap:8px;padding:8px;border-radius:16px;background:var(--surface);border:1px solid var(--line)}
+.story p{margin:0;flex:1;min-width:0;font-size:13px;color:var(--muted);padding-left:4px}
+.sbtn{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 14px;border-radius:12px;background:var(--ink);color:var(--bg);font-size:13px;font-weight:700;white-space:nowrap}
+.sbtn.icon{width:44px;padding:0;justify-content:center;background:transparent;color:var(--ink);border:1px solid var(--line)}
+.sbtn:focus-visible{outline:2px solid var(--red-ink);outline-offset:2px}
+@media (max-width:440px){.story{flex-wrap:wrap}.story p{flex-basis:100%;order:-1;padding:4px}}
+
+/* ---------- inside the phone: always a light app ---------- */
+.screen{--bg:#F4F5F7;--surface:#FFFFFF;--ink:#161823;--muted:#5B6170;--line:#E6E8EC;--red-ink:#D6123F;--purple:#3E2F9E;--purple-soft:#EDE9FC;--teal:#0B7F7B;--teal-soft:#E3F4F3;--amber-soft:#FFF4D6;--amber-ink:#5C4300;
+  color-scheme:light;position:relative;height:100%;border-radius:30px;overflow:hidden;background:var(--bg);color:var(--ink);display:flex;flex-direction:column;font-size:14px;line-height:1.4}
+.sb{flex:0 0 auto;display:flex;justify-content:space-between;align-items:center;padding:11px 24px 5px;font-size:13px;font-weight:700;font-variant-numeric:tabular-nums;background:var(--surface);color:var(--ink)}
+.sb.clear{background:transparent;color:#fff}
+.sb .ic{display:flex;gap:5px;align-items:center}
+.nav{flex:0 0 auto;display:grid;grid-template-columns:44px minmax(0,1fr) 44px;align-items:center;min-height:52px;padding:0 6px;background:var(--surface);border-bottom:1px solid var(--line)}
+.nav h2{margin:0;text-align:center;font-size:16px;font-weight:700;line-height:1.2}
+.nav small{display:block;font-size:11px;font-weight:500;color:var(--muted)}
+.ib{all:unset;box-sizing:border-box;cursor:pointer;width:44px;height:44px;display:grid;place-items:center;border-radius:12px;color:var(--ink)}
+.ib:focus-visible{outline:2px solid var(--red-ink);outline-offset:-2px}
+.ib.dim{color:var(--muted);cursor:default}
+.appmark{justify-self:center;width:32px;height:32px;border-radius:9px;background:var(--surface);border:1px solid var(--line);display:grid;place-items:center;color:var(--ink)}
+.sbody{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:10px}
+.tabs{flex:0 0 auto;display:grid;grid-template-columns:repeat(5,1fr);align-items:center;padding:7px 4px 16px;background:var(--surface);border-top:1px solid var(--line);color:var(--muted)}
+.tabs>span{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10px;font-weight:500}
+.tabs .on{color:var(--ink);font-weight:700}
+.tabs .plus{justify-self:center;width:42px;height:28px;border-radius:9px;background:var(--ink);color:var(--surface);display:grid;place-items:center}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.card h3{margin:0;font-size:14.5px}
+.rb{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.eyb{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.sub{font-size:12px;color:var(--muted)}
+.pill{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap;background:#EEF0F3;color:#4A5060}
+.pill.red{background:#FFE4EA;color:var(--red-ink)}
+.pill.star{background:var(--purple-soft);color:var(--purple)}
+.pill.ink{background:#161823;color:#fff}
+.btn{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 18px;border-radius:12px;font-weight:700;text-align:center}
+.btn:focus-visible{outline:2px solid var(--red-ink);outline-offset:2px}
+.btn:disabled{opacity:.6;cursor:default}
+.btn.primary{background:var(--red-ink);color:#fff}
+.btn.ghost{background:var(--surface);color:var(--ink);border:1px solid var(--line)}
+.btn.text{min-height:44px;color:var(--muted);font-weight:600}
+.btn.wide{width:100%}
+.big{font-size:30px;font-weight:700;line-height:1.05;font-variant-numeric:tabular-nums}
+.meter{height:8px;border-radius:4px;background:#EDEFF2;overflow:hidden}.meter i{display:block;height:100%;border-radius:4px}
+.kv{display:grid;grid-template-columns:1fr auto;gap:7px 12px;font-size:13px}.kv span{color:var(--muted)}.kv b{font-variant-numeric:tabular-nums;text-align:right}
+.who{display:flex;gap:10px;align-items:center}
+.who .nm{font-weight:700;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.av{flex:0 0 auto;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:13px;background:#E3F4F3;color:#0B4F4C}
+.empty{align-items:center;text-align:center;color:var(--muted)}
+.empty h3{color:var(--ink)}
+
+/* step 1: For You */
+.fy{position:relative;flex:1;overflow:hidden;background:linear-gradient(180deg,#FFFFFF 0%,#F2EFFB 55%,#E7F5F4 100%)}
+.fy-top{position:absolute;top:6px;left:0;right:0;display:flex;justify-content:center;gap:20px;font-size:14px;font-weight:600;color:var(--muted)}
+.fy-top b{color:var(--ink);font-weight:700;border-bottom:2px solid var(--ink);padding-bottom:3px}
+.clip{position:absolute;top:40px;left:14px;right:66px;bottom:180px;border-radius:20px;border:1px solid var(--line);display:grid;place-items:center;background:radial-gradient(80% 55% at 50% 45%,#FFFFFF 0%,rgba(255,255,255,0) 70%),repeating-linear-gradient(135deg,rgba(22,24,35,.05) 0 12px,rgba(22,24,35,.02) 12px 24px)}
+.live{position:absolute;top:10px;left:10px;font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px;background:var(--red-ink);color:#fff}
+.watch{position:absolute;top:10px;right:10px;display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:rgba(22,24,35,.84);color:#fff;font-variant-numeric:tabular-nums}
+.bottle{position:relative;width:70px;height:142px;animation:bob 2.6s ease-in-out infinite}
+.bottle i{position:absolute;left:24px;top:0;width:22px;height:22px;border-radius:6px 6px 2px 2px;background:#161823}
+.bottle b{position:absolute;left:8px;top:20px;width:54px;height:122px;border-radius:14px;background:linear-gradient(160deg,#9BE7E2,#0B7F7B)}
+.bottle em{position:absolute;left:8px;right:8px;top:66px;text-align:center;font-style:normal;font-size:10px;font-weight:700;color:#fff;line-height:1.15}
+@keyframes bob{50%{transform:translateY(-6px)}}
+.rail-r{position:absolute;right:9px;bottom:190px;display:flex;flex-direction:column;align-items:center;gap:10px;font-size:11px;font-weight:700}
+.rail-r>span{display:flex;flex-direction:column;align-items:center;gap:1px}
+.rail-r .av{width:44px;height:44px;border:2px solid #fff;box-shadow:0 2px 8px rgba(22,24,35,.14)}
+.ib.small{width:40px;height:40px;background:rgba(22,24,35,.06)}
+.meta{position:absolute;left:16px;right:70px;bottom:18px;display:flex;flex-direction:column;gap:6px;font-size:13px}
+.meta .hl{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:15px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}.chips span{font-size:11.5px;font-weight:700;padding:4px 9px;border-radius:999px;background:rgba(22,24,35,.07)}
+.prog{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(22,24,35,.1)}.prog i{display:block;height:100%;background:var(--red-ink)}
+.sheet{position:absolute;left:10px;right:10px;bottom:10px;padding:14px;border-radius:20px;background:var(--surface);box-shadow:0 12px 32px rgba(22,24,35,.2);display:flex;flex-direction:column;gap:12px;transform:translateY(130%);transition:transform .35s ease}
+.sheet.show{transform:none}
+.row2{display:grid;grid-template-columns:1fr 1.6fr;gap:8px}
+
+/* step 2: booking */
+.stepper{display:flex;align-items:center;gap:8px}.stepper output{flex:1;text-align:center;font-weight:700;font-size:22px;font-variant-numeric:tabular-nums}
+.stepper button{all:unset;box-sizing:border-box;cursor:pointer;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);display:grid;place-items:center;font-size:20px;font-weight:700;background:var(--surface)}
+.slots{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.slots button{all:unset;box-sizing:border-box;cursor:pointer;min-height:46px;padding:6px 8px;border-radius:12px;border:1px solid var(--line);text-align:center;font-size:13px;font-weight:700;background:var(--surface);line-height:1.2}
+.slots button small{display:block;font-weight:500;font-size:11px;color:var(--muted)}
+.slots button[aria-pressed="true"]{border-color:var(--teal);background:var(--teal-soft);color:var(--teal)}
+.slots button:disabled{opacity:.5;cursor:not-allowed}
+.stepper button:focus-visible,.slots button:focus-visible{outline:2px solid var(--red-ink);outline-offset:2px}
+textarea{font:inherit;font-size:13px;border:1px solid var(--line);border-radius:12px;padding:10px;background:var(--surface);color:var(--ink);min-height:64px;resize:vertical}
+textarea:focus-visible{outline:2px solid var(--red-ink);outline-offset:1px}
+.add{display:flex;gap:10px;align-items:flex-start;font-size:13px}.add svg{flex:0 0 auto;color:var(--teal);margin-top:1px}
+
+/* step 3: booked */
+.success{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;padding:14px 8px 6px;color:var(--teal)}
+.success h3{margin:4px 0 0;font-size:19px;color:var(--ink)}
+.note-teal{background:var(--teal-soft);color:#0B4F4C;border-radius:14px;padding:11px 13px;font-size:13px}
+.stat3{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.stat3>div{display:flex;flex-direction:column;gap:1px;padding:10px 8px;border-radius:12px;background:var(--bg)}
+.stat3 b{font-size:15px;font-variant-numeric:tabular-nums}.stat3 span{font-size:11px;color:var(--muted)}
+
+/* step 4: lock screen */
+.screen.lockmode{color:#fff;background:
+  linear-gradient(180deg,rgba(0,0,0,.26) 0%,rgba(0,0,0,0) 35%,rgba(0,0,0,.22) 100%),
+  radial-gradient(70% 45% at 18% 22%,#5B8CFF 0%,rgba(91,140,255,0) 70%),
+  radial-gradient(65% 40% at 85% 38%,#B05CFF 0%,rgba(176,92,255,0) 72%),
+  radial-gradient(80% 45% at 30% 78%,#FF7A59 0%,rgba(255,122,89,0) 70%),
+  radial-gradient(70% 40% at 90% 92%,#FFC15E 0%,rgba(255,193,94,0) 70%),
+  linear-gradient(160deg,#1B2A6B 0%,#3A1C6E 50%,#7A2E4E 100%)}
+.lock{flex:1;display:flex;flex-direction:column;padding:2px 10px 16px}
+.lk{align-self:center;margin-top:6px;opacity:.92}
+.clock{text-align:center;font-size:66px;font-weight:500;line-height:1;margin-top:4px;font-variant-numeric:tabular-nums;text-shadow:0 1px 10px rgba(0,0,0,.3)}
+.date{text-align:center;font-size:15px;font-weight:500;margin:6px 0 24px;color:rgba(255,255,255,.9);text-shadow:0 1px 8px rgba(0,0,0,.3)}
+.stack{display:flex;flex-direction:column;gap:8px}
+.push{all:unset;box-sizing:border-box;cursor:pointer;display:flex;gap:10px;padding:11px 12px;border-radius:20px;background:rgba(246,247,249,.82);color:#161823;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);font-size:13px;line-height:1.3;box-shadow:0 6px 18px rgba(0,0,0,.16)}
+.push:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.pic{flex:0 0 38px;height:38px;border-radius:10px;background:#fff;border:1px solid rgba(22,24,35,.1);display:grid;place-items:center;color:#161823}
+.ptx{display:flex;flex-direction:column;gap:1px;min-width:0;flex:1}
+.ph{display:flex;justify-content:space-between;gap:8px;font-size:11px;color:#5B6170}
+.ph b{font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.lhint{margin:auto 0 0;text-align:center;font-size:12px;color:rgba(255,255,255,.88)}
+
+/* step 5: mail app + newsletter */
+.mbar{flex:0 0 auto;display:flex;align-items:center;padding:0 6px;min-height:46px;background:var(--surface)}
+.mlab{font-size:15px;font-weight:600;margin-left:-6px}
+.flex{flex:1}
+.mscroll{flex:1;overflow-y:auto;background:var(--surface)}
+.mhead{padding:2px 16px 12px;display:flex;flex-direction:column;gap:10px;border-bottom:1px solid var(--line)}
+.mhead h3{margin:0;font-size:19px;line-height:1.25;text-wrap:balance}
+.from{display:flex;align-items:center;gap:10px}
+.sav{flex:0 0 36px;height:36px;border-radius:50%;background:var(--bg);border:1px solid var(--line);display:grid;place-items:center}
+.ft{flex:1;min-width:0;display:flex;flex-direction:column;font-size:12px;color:var(--muted)}.ft b{font-size:13.5px;color:var(--ink)}
+.nl{margin:14px 12px 18px;border-radius:20px;overflow:hidden;background:#FFFFFF;border:1px solid var(--line);box-shadow:0 6px 20px rgba(22,24,35,.07)}
+.nl-top{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 14px;font-size:11.5px;color:var(--muted)}
+.nl-brand{display:flex;align-items:center;gap:6px;color:var(--ink)}.nl-brand b{font-size:12.5px}
+.nl-hero{padding:22px 18px 24px;color:#fff;display:flex;flex-direction:column;align-items:flex-start;gap:6px;background:
+  radial-gradient(70% 60% at 100% 0%,rgba(254,44,85,.38),rgba(254,44,85,0) 70%),
+  radial-gradient(60% 50% at 0% 100%,rgba(37,244,238,.2),rgba(37,244,238,0) 70%),#161823}
+.nl-badge{display:inline-flex;gap:5px;align-items:center;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.12)}
+.nl-av{margin-top:8px;width:66px;height:66px;border-radius:50%;padding:3px;box-sizing:border-box;background:linear-gradient(135deg,#FE2C55,#B9AEFF)}
+.nl-av span{display:grid;place-items:center;width:100%;height:100%;border-radius:50%;background:#E3F4F3;color:#0B4F4C;font-weight:700;font-size:19px}
+.nl-name{font-weight:700;font-size:16px}
+.nl-handle{font-size:12px;color:#C9CCD6;margin-top:-4px}
+.nl-head{margin-top:10px;font-size:38px;font-weight:700;line-height:1;letter-spacing:-.02em}
+.nl-dek{font-size:14px;color:#E3E6EB}
+.nl-stats{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--line)}
+.nl-stats>div{padding:13px 4px;text-align:center;display:flex;flex-direction:column;gap:1px}
+.nl-stats>div+div{border-left:1px solid var(--line)}
+.nl-stats b{font-size:17px;font-variant-numeric:tabular-nums}.nl-stats span{font-size:11px;color:var(--muted)}
+.nl-brands{padding:14px;display:flex;flex-direction:column;gap:10px;border-bottom:1px solid var(--line)}
+.logos{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.logos>span{display:flex;align-items:center;justify-content:center;gap:6px;min-height:44px;border-radius:12px;background:#F4F5F7;color:#3F4452}
+.lg1{flex-direction:column;gap:0 !important;font-weight:700;letter-spacing:.24em;font-size:12px;line-height:1}
+.lg1 small{font-size:7.5px;letter-spacing:.34em;font-weight:500;margin-top:3px}
+.lg2{font-weight:700;font-size:17px;letter-spacing:-.05em}
+.lg3{font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:17px}
+.lg4{font-weight:700;font-size:11px;letter-spacing:.14em}.lg4 i{width:9px;height:9px;background:#3F4452;transform:rotate(45deg)}
+.nl-offer{padding:16px 14px;display:flex;flex-direction:column;align-items:flex-start;gap:7px;border-bottom:1px solid var(--line)}
+.nl-price{font-size:34px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.nl-co{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--teal);font-weight:700}
+.nl-cta{padding:16px 14px 8px;display:flex;flex-direction:column;gap:8px}
+.nl-urg{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--red-ink)}.nl-urg i{width:7px;height:7px;border-radius:50%;background:var(--red-ink)}
+.nl-foot{margin:0;padding:6px 14px 14px;font-size:10.5px;color:var(--muted);text-align:center}
+
+/* explain panel */
+.panel{display:flex;flex-direction:column;gap:12px;min-width:0}
+.panel h2{margin:0;font-size:22px;line-height:1.2;text-wrap:balance}
+.facts{display:grid;grid-template-columns:110px minmax(0,1fr);gap:9px 14px;margin:0;font-size:14px}
+.facts dt{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.facts dd{margin:0}
+.src{font-size:12px;color:var(--muted)}
+.why{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;font-size:14px}
+.key{font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px;margin:0}
+@media (prefers-reduced-motion: reduce){.bottle{animation:none}.sheet{transition:none}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <span class="eyebrow">TikTok Shop Thailand · 11.11 · Rising Stars 300</span>
+    <h1>How a stuck brand books a Rising Star</h1>
+    <p class="lede">Tap through the brand’s journey. Watch the clip for 3 seconds to unlock booking, then confirm it (step 3) or leave halfway to see the alert and the follow-up email (steps 4 and 5). <span class="tag">Concept · sample data</span></p>
+  </header>
+
+  <div class="grid">
+    <ol class="rail" id="rail" aria-label="Journey steps"></ol>
+    <div class="stage">
+      <div class="phone" aria-label="Prototype phone"><div class="screen" id="screen"></div></div>
+      <div class="story" id="story"></div>
+    </div>
+    <section class="panel" id="panel" aria-live="polite"></section>
+  </div>
+
+  <p class="key">C case data · E external source · M our design rule or assumption. Creator, brand names, results and baht values are sample data. Rising Stars are the best 300 of 900 mid creators, given the top’s terms: vouchers, 1:1 co-funding and feed priority.</p>
+</div>
+
+<script>
+(function(){
+  var S = { step:0, secs:0, timer:null, budget:20000, slot:'14:00–16:00', msg:'', paused:false, rebooked:false, focusMsg:false };
+  var steps = [
+    {id:'stuck',  n:'0', lbl:'Stuck today',       prev:null},
+    {id:'foryou', n:'1', lbl:'For You feed',      prev:0},
+    {id:'book',   n:'2', lbl:'Book in one flow',  prev:1},
+    {id:'booked', n:'3', lbl:'Booked and live',   prev:2},
+    {id:'alert',  n:'4', lbl:'Left early: alert', prev:2},
+    {id:'email',  n:'5', lbl:'Follow-up email',   prev:4}
+  ];
+  var story = {
+    stuck:  {t:'No top creator, no fallback: the brand parks its budget.', next:['That evening: open TikTok',1]},
+    foryou: {t:'Keep watching. At 3 seconds, booking unlocks.', next:['Go to booking',2]},
+    book:   {t:'Set budget, slot and message. Confirm, or leave halfway.', next:['Confirm the booking',3]},
+    booked: {t:'Booked. After 11.11: results and a 12.12 rebook.', next:['Other path: brand leaves',4]},
+    alert:  {t:'Left halfway: two nudges arrive that evening.', next:['Open the email',5]},
+    email:  {t:'One headline number, one button.', next:['Start over',0]}
+  };
+  var info = {
+    stuck:{h:'The brand wants a top creator and can’t get one', sees:'Top creator slots for 11.11 are sold out or priced beyond its budget, so it parks the money.', tool:'Seller Center · Campaign Registration Portal', money:'None. ~30% of SMB budget sits unallocated <span class="src">[C T2]</span>', kpi:'Idle seller budget: 30% → 15%', why:'~80% of SMB sellers can’t secure a top slot and have no fallback channel <span class="src">[C §02]</span>. They don’t search for mid creators, so we go to them.'},
+    foryou:{h:'A matched Rising Star appears in the brand’s own For You feed', sees:'A 15-second clip of a Rising Star selling a product like theirs, with her proof against the top.', tool:'For You feed + Affiliate Creatives for Ads', money:'None yet. The clip does the selling.', kpi:'Booking conversion (clip seen → invite sent)', why:'After 3 seconds of watching <span class="src">[M]</span>, “Book this creator” and “Message” appear. Watch time is the signal For You already ranks on.'},
+    book:{h:'Budget, slot and a message, in one booking flow', sees:'Set the deal budget, pick a slot, write to the creator, confirm.', tool:'Affiliate Center · Target Collaboration', money:'Traffic voucher on booking; TikTok matches the deal 1:1 up to ฿10,000 <span class="src">[M]</span>, paid only after the live.', kpi:'Creator utilisation · idle budget', why:'Same treatment as a top creator: the same feed priority and 1:1 co-funded deal, for a smaller commitment than a top slot.'},
+    booked:{h:'Booked. The live runs, and the brand rebooks for 12.12', sees:'A confirmation now; after 11.11, her results and a one-tap rebook.', tool:'LIVE Manager + Affiliate Center', money:'Subsidy settles only for completed lives. A standby takes a slot missed by 10 minutes.', kpi:'Campaign completion · return on promo spend · brand rating', why:'On the top’s terms, any gap that remains between Rising Stars and the top is about the creators, not the deal they were offered.'},
+    alert:{h:'Left halfway? Two nudges that evening', sees:'A Seller Center push and a mail preview on the lock screen. Either one opens the email.', tool:'Seller Center notification + email', money:'None until the brand books.', kpi:'Recovered bookings', why:'Sent once, only to brands that started a booking and stopped. It names the creator they chose, not a generic offer.'},
+    email:{h:'A short call-to-action email brings the brand back', sees:'One headline number, the brands she has sold for, her price next to a top slot, and one button back to the booking.', tool:'Seller Center email, filled from Affiliate Center and LIVE Manager data', money:'None until the brand books. TikTok’s co-funding is part of the offer.', kpi:'Recovered bookings · idle budget', why:'Proof at a glance, then one button. The creator, her results, the brands and all baht values are sample data <span class="src">[M]</span>.'}
+  };
+
+  var baht = function(n){ return '฿' + n.toLocaleString('en-US'); };
+  var esc = function(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;'); };
+  var ic = function(d, s, sw){ return '<svg width="'+(s||22)+'" height="'+(s||22)+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="'+(sw||2)+'" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+d+'</svg>'; };
+  var I = {
+    back: ic('<path d="M15 5l-7 7 7 7"/>'),
+    more: ic('<circle cx="5" cy="12" r="1.3" fill="currentColor"/><circle cx="12" cy="12" r="1.3" fill="currentColor"/><circle cx="19" cy="12" r="1.3" fill="currentColor"/>'),
+    home: ic('<path d="M4 11l8-7 8 7v9h-5v-6H9v6H4z"/>'),
+    shop: ic('<path d="M5 8h14l-1 12H6z"/><path d="M9 8a3 3 0 0 1 6 0"/>'),
+    inbox: ic('<path d="M4 5h16v11H9l-5 4z"/>'),
+    me: ic('<circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4.5-6 8-6s7 2 8 6"/>'),
+    plus: ic('<path d="M12 5v14M5 12h14"/>', 18, 3),
+    heart: ic('<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>', 26),
+    comment: ic('<path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4.2A8 8 0 1 1 20 12z"/>', 26),
+    bookmark: ic('<path d="M6 4h12v16l-6-4-6 4z"/>', 26),
+    share: ic('<path d="M14 5l7 7-7 7"/><path d="M21 12H10a6 6 0 0 0-6 6"/>', 26),
+    up: ic('<path d="M6 15l6-6 6 6"/>'),
+    eye: ic('<path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z"/><circle cx="12" cy="12" r="2.5"/>', 13),
+    bolt: ic('<path d="M13 3L5 14h6l-1 7 8-11h-6z"/>', 20),
+    tag: ic('<path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="7.5" r="1.5"/>', 20),
+    tagS: ic('<path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="7.5" r="1.5"/>', 15),
+    shield: ic('<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/>', 20),
+    check: ic('<circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-6"/>', 44, 1.8),
+    lock: ic('<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>', 18),
+    mail: ic('<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>', 20),
+    store: ic('<path d="M4 10v10h16V10"/><path d="M3 10l2-6h14l2 6"/><path d="M3 10a3 3 0 0 0 6 0a3 3 0 0 0 6 0a3 3 0 0 0 6 0"/><path d="M10 20v-5h4v5"/>', 20),
+    storeS: ic('<path d="M4 10v10h16V10"/><path d="M3 10l2-6h14l2 6"/><path d="M3 10a3 3 0 0 0 6 0a3 3 0 0 0 6 0a3 3 0 0 0 6 0"/><path d="M10 20v-5h4v5"/>', 16),
+    archive: ic('<rect x="3" y="4" width="18" height="5" rx="1"/><path d="M5 9v11h14V9"/><path d="M10 13h4"/>'),
+    trash: ic('<path d="M4 7h16"/><path d="M9 7V4h6v3"/><path d="M6 7l1 13h10l1-13"/>'),
+    star: '<svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>',
+    arrow: ic('<path d="M5 12h14"/><path d="M13 6l6 6-6 6"/>', 18),
+    searchOff: ic('<circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/><path d="M8 8l6 6"/>', 30, 1.8)
+  };
+  var SBI = '<svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor" aria-hidden="true"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg>'+
+    '<svg width="15" height="11" viewBox="0 0 15 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M1 4a9.5 9.5 0 0 1 13 0"/><path d="M3.5 6.6a6 6 0 0 1 8 0"/><circle cx="7.5" cy="9.3" r="1.1" fill="currentColor" stroke="none"/></svg>'+
+    '<svg width="25" height="12" viewBox="0 0 25 12" fill="none" aria-hidden="true"><rect x=".5" y=".5" width="21" height="11" rx="3" stroke="currentColor" opacity=".45"/><rect x="2" y="2" width="16" height="8" rx="1.8" fill="currentColor"/><rect x="22.5" y="4" width="1.8" height="4" rx=".9" fill="currentColor" opacity=".45"/></svg>';
+  function sb(time, clear){ return '<div class="sb'+(clear?' clear':'')+'" aria-hidden="true"><span>'+time+'</span><span class="ic">'+SBI+'</span></div>'; }
+  function nav(title, sub, back){
+    return '<div class="nav">'+(back!==null?'<button class="ib" type="button" data-go="'+back+'" aria-label="Back">'+I.back+'</button>':'<span></span>')+
+      '<h2>'+title+'<small>'+sub+'</small></h2><button class="ib" type="button" aria-label="More options">'+I.more+'</button></div>';
+  }
+  function tabs(on){
+    var t = function(k,l){ return '<span class="'+(on===k?'on':'')+'">'+I[k]+l+'</span>'; };
+    return '<nav class="tabs" aria-label="App tabs (mockup)">'+t('home','Home')+t('shop','Shop')+'<span class="plus" aria-hidden="true">'+I.plus+'</span>'+t('inbox','Inbox')+t('me','Profile')+'</nav>';
+  }
+  var clock = function(s){ return '0:' + (s<10?'0':'') + s; };
+
+  var views = {
+    stuck: function(){
+      return sb('18:05')+
+        '<div class="nav"><span class="appmark" aria-hidden="true">'+I.storeS+'</span><h2>Seller Center<small>Baan Herb Skincare</small></h2><button class="ib" type="button" aria-label="More options">'+I.more+'</button></div>'+
+        '<div class="sbody">'+
+          '<div class="rb"><span class="eyb">11.11 Mega Sale</span><span class="pill">11 Nov · in 17 days</span></div>'+
+          '<div class="card"><div class="rb"><h3>Top creators · beauty</h3><span class="pill red">Sold out</span></div>'+
+            '<div class="meter"><i style="width:100%;background:var(--red-ink)"></i></div>'+
+            '<span class="sub">Large brands booked these slots weeks ago.</span></div>'+
+          '<div class="card"><span class="eyb">Your 11.11 budget</span><div class="big">฿48,000</div>'+
+            '<div class="meter"><i style="width:2%;background:var(--ink)"></i></div><span class="sub">Unallocated · ฿0 committed</span></div>'+
+          '<div class="card empty">'+I.searchOff+'<h3>No creator booked</h3><span class="sub">No other match to suggest for your category.</span>'+
+            (S.paused ? '<span class="pill">Planning paused · ฿48,000 unused</span>' : '<button class="btn ghost wide" type="button" data-act="pause">Save budget for later</button>')+
+          '</div>'+
+        '</div>';
+    },
+    foryou: function(){
+      var show = S.secs >= 3, hid = show ? '' : ' tabindex="-1"';
+      return sb('20:12')+
+        '<div class="fy">'+
+          '<div class="fy-top" aria-hidden="true"><span>Following</span><b>For You</b></div>'+
+          '<div class="clip" role="img" aria-label="Replay of Fah.Herbal demonstrating a herbal serum in a live">'+
+            '<span class="live">LIVE replay</span>'+
+            '<span class="watch">'+I.eye+'<span id="watchT">'+(show?'Booking unlocked':clock(S.secs))+'</span></span>'+
+            '<div class="bottle" aria-hidden="true"><i></i><b></b><em>Herbal<br>serum</em></div>'+
+          '</div>'+
+          '<div class="rail-r"><span class="av" aria-hidden="true">FH</span>'+
+            '<span>'+I.heart+'12.4K</span><span>'+I.comment+'318</span><span>'+I.bookmark+'2.1K</span><span>'+I.share+'Share</span>'+
+            '<button class="ib small" type="button" data-act="next" aria-label="Next video">'+I.up+'</button></div>'+
+          '<div class="meta"><div class="hl"><b>@Fah.Herbal</b><span class="pill star">Rising Star</span></div>'+
+            '<span>Herbal serum demo · her best-selling moment</span>'+
+            '<div class="chips"><span>Sells 1.31× vs top 1.25×</span><span>19 of 20 lives on time</span></div>'+
+            '<span class="sub">Suggested for Baan Herb · 71% of your buyers watch herbal skincare</span></div>'+
+          '<div class="prog"><i id="prog" style="width:'+Math.min(100,S.secs/14*100)+'%"></i></div>'+
+          '<div class="sheet'+(show?' show':'')+'" id="cta"'+(show?'':' aria-hidden="true"')+'>'+
+            '<div class="who"><span class="av" aria-hidden="true">FH</span><div><div class="nm">Book or connect with Fah</div><div class="sub">4 of 12 slots open for 11.11 · Rising Star backing</div></div></div>'+
+            '<div class="row2"><button class="btn ghost" type="button" data-act="message"'+hid+'>Message</button><button class="btn primary" type="button" data-act="book"'+hid+'>Book this creator</button></div>'+
+          '</div>'+
+        '</div>'+tabs('home');
+    },
+    book: function(){
+      var co = Math.min(S.budget,10000);
+      var slots = [['10:00–12:00',false],['14:00–16:00',false],['20:00–22:00',true],['21:30–22:00',false]];
+      return sb('20:13')+nav('Book a creator','TikTok Shop · Target Collaboration',1)+
+        '<div class="sbody">'+
+          '<div class="card who"><span class="av" aria-hidden="true">FH</span><div style="flex:1;min-width:0"><div class="nm">Fah.Herbal <span class="pill star">Rising Star</span></div><div class="sub">Herbal skincare · 4 of 12 slots open</div></div></div>'+
+          '<div class="card"><label class="eyb" for="bud">Deal budget</label>'+
+            '<div class="stepper"><button type="button" data-act="down" aria-label="Lower budget by ฿5,000">−</button><output id="bud" aria-live="polite">'+baht(S.budget)+'</output><button type="button" data-act="up" aria-label="Raise budget by ฿5,000">+</button></div>'+
+            '<span class="sub">From your ฿48,000 unallocated · '+baht(48000-S.budget)+' left</span></div>'+
+          '<div class="card"><span class="eyb" id="slot-l">Live slot · 11 Nov</span><div class="slots" role="group" aria-labelledby="slot-l">'+
+            slots.map(function(s){ return '<button type="button" data-slot="'+s[0]+'" aria-pressed="'+(S.slot===s[0])+'"'+(s[1]?' disabled':'')+'>'+s[0]+'<small>'+(s[1]?'Sold out':(S.slot===s[0]?'Selected':'Open'))+'</small></button>'; }).join('')+
+          '</div></div>'+
+          '<div class="card"><label class="eyb" for="msg">Message to Fah</label><textarea id="msg" rows="3" placeholder="Please feature our 30 ml serum and the 11.11 bundle">'+esc(S.msg)+'</textarea></div>'+
+          '<div class="card"><span class="eyb">TikTok adds</span>'+
+            '<div class="add">'+I.bolt+'<span><b>Traffic boost</b><br><span class="sub">Unlocked when you book</span></span></div>'+
+            '<div class="add">'+I.tag+'<span><b>'+baht(co)+' co-funding</b><br><span class="sub">Matches your deal 1:1, paid after the live</span></span></div>'+
+            '<div class="add">'+I.shield+'<span><b>Standby creator</b><br><span class="sub">Takes the slot if Fah can’t go live</span></span></div></div>'+
+          '<button class="btn primary" type="button" data-act="confirm">Confirm booking · '+baht(S.budget)+'</button>'+
+          '<button class="btn text" type="button" data-act="leave">Leave without finishing</button>'+
+        '</div>'+tabs('shop');
+    },
+    booked: function(){
+      return sb('20:14')+nav('Booked','TikTok Shop',null)+
+        '<div class="sbody">'+
+          '<div class="success">'+I.check+'<h3>You’re booked with Fah</h3><span class="sub">11 Nov · '+S.slot+' · invite sent</span></div>'+
+          '<div class="card"><div class="kv"><span>Your deal budget</span><b>'+baht(S.budget)+'</b><span>TikTok co-funding</span><b>'+baht(Math.min(S.budget,10000))+'</b><span>Traffic boost</span><b>Unlocked</b><span>Standby creator</span><b>Mook.Glow</b></div></div>'+
+          '<div class="note-teal">Co-funding is paid only if the live happens. If Fah isn’t live 10 minutes after the start, Mook.Glow takes the slot.</div>'+
+          '<div class="card"><div class="rb"><span class="eyb">After 11.11</span><span class="pill">Sample</span></div>'+
+            '<div class="stat3"><div><b>฿142,000</b><span>GMV</span></div><div><b>470</b><span>Orders</span></div><div><b>On time</b><span>14:00 start</span></div></div>'+
+            '<button class="btn primary" type="button" data-act="rebook"'+(S.rebooked?' disabled':'')+'>'+(S.rebooked?'Rebooked for 12.12':'Rebook for 12.12')+'</button></div>'+
+        '</div>'+tabs('shop');
+    },
+    alert: function(){
+      return sb('20:41',true)+
+        '<div class="lock"><span class="lk">'+I.lock+'</span><div class="clock">20:41</div><div class="date">Wednesday 29 October</div>'+
+          '<div class="stack">'+
+            '<button class="push" type="button" data-act="openmail"><span class="pic">'+I.store+'</span><span class="ptx"><span class="ph"><b>Seller Center</b><span>now</span></span><b>Fah.Herbal has 4 slots left</b><span>Finish your 11.11 booking from '+baht(S.budget)+'.</span></span></button>'+
+            '<button class="push" type="button" data-act="openmail"><span class="pic">'+I.mail+'</span><span class="ptx"><span class="ph"><b>Mail</b><span>now</span></span><b>TikTok Shop Seller Center</b><span>Fah’s 11.11 slot is still open · ฿1.2M in one live</span></span></button>'+
+          '</div>'+
+          '<p class="lhint">Tap a notification to open it</p>'+
+        '</div>';
+    },
+    email: function(){
+      var top = 60000, mine = S.budget, co = Math.min(mine,10000);
+      return sb('20:42')+
+        '<div class="mbar"><button class="ib" type="button" data-go="4" aria-label="Back to notifications">'+I.back+'</button><span class="mlab">Inbox</span><span class="flex"></span><span class="ib dim" aria-hidden="true">'+I.archive+'</span><span class="ib dim" aria-hidden="true">'+I.trash+'</span></div>'+
+        '<div class="mscroll">'+
+          '<div class="mhead"><h3>Fah’s 11.11 slot is still open</h3>'+
+            '<div class="from"><span class="sav" aria-hidden="true">'+I.storeS+'</span><span class="ft"><b>TikTok Shop Seller Center</b><span>to Baan Herb Skincare · 20:41</span></span><span class="pill">Sample</span></div></div>'+
+          '<article class="nl" aria-label="Newsletter: book Fah.Herbal">'+
+            '<div class="nl-top"><span class="nl-brand">'+I.storeS+'<b>Seller Center</b></span><span>Rising Stars · 11.11</span></div>'+
+            '<div class="nl-hero">'+
+              '<span class="nl-badge">'+I.star+' Rising Star</span>'+
+              '<div class="nl-av" aria-hidden="true"><span>FH</span></div>'+
+              '<div class="nl-name">Fah.Herbal</div><div class="nl-handle">Herbal skincare · 86k followers</div>'+
+              '<div class="nl-head">฿1.2M<br>in one live.</div>'+
+              '<div class="nl-dek">Now open for your brand on 11.11.</div>'+
+            '</div>'+
+            '<div class="nl-stats"><div><b>฿1.2M</b><span>best live</span></div><div><b>4.8 ★</b><span>brand rating</span></div><div><b>19 / 20</b><span>on time</span></div></div>'+
+            '<div class="nl-brands"><span class="eyb">Brands she’s sold for</span><div class="logos">'+
+              '<span class="lg1">MALI<small>BOTANICS</small></span><span class="lg2">khao·glow</span><span class="lg3">Ban Suan</span><span class="lg4"><i></i>RATTANA LAB</span>'+
+            '</div></div>'+
+            '<div class="nl-offer"><span class="eyb">Book her from</span><div class="nl-price">'+baht(mine)+'</div>'+
+              '<span class="pill ink">'+baht(top-mine)+' less than a top slot</span>'+
+              '<span class="nl-co">'+I.tagS+'TikTok adds '+baht(co)+', paid after the live</span></div>'+
+            '<div class="nl-cta"><span class="nl-urg"><i></i>4 of 12 slots left · booking closes 7 Nov</span>'+
+              '<button class="btn primary wide" type="button" data-act="resume">Book Fah now '+I.arrow+'</button>'+
+              '<button class="btn text" type="button" data-go="1">See other matches</button></div>'+
+            '<p class="nl-foot">Sample concept. Sent once, because you started this booking and didn’t finish.</p>'+
+          '</article>'+
+        '</div>';
+    }
+  };
+
+  var rail = document.getElementById('rail'), screen = document.getElementById('screen'), panel = document.getElementById('panel'), storyEl = document.getElementById('story');
+
+  function stopTimer(){ if(S.timer){ clearInterval(S.timer); S.timer = null; } }
+  function go(i){ stopTimer(); S.step = i; if(steps[i].id==='foryou'){ S.secs = 0; } render(); }
+
+  function renderRail(){
+    rail.innerHTML = steps.map(function(s,i){
+      return '<li><button type="button" class="'+(i < S.step ? 'done' : '')+'" data-go="'+i+'"'+(i===S.step?' aria-current="step"':'')+'><span class="n">'+s.n+'</span><span class="lbl">'+s.lbl+'</span></button></li>';
+    }).join('');
+  }
+  function renderPanel(){
+    var st = steps[S.step], d = info[st.id];
+    panel.innerHTML = '<span class="eyebrow">Step '+st.n+' · '+st.lbl+'</span><h2>'+d.h+'</h2>'+
+      '<dl class="facts"><dt>Brand sees</dt><dd>'+d.sees+'</dd><dt>Runs on</dt><dd>'+d.tool+'</dd><dt>Money</dt><dd>'+d.money+'</dd><dt>KPI it moves</dt><dd>'+d.kpi+'</dd></dl>'+
+      '<div class="why">'+d.why+'</div>';
+  }
+  function renderStory(){
+    var st = steps[S.step], s = story[st.id];
+    storyEl.innerHTML = (st.prev!==null ? '<button class="sbtn icon" type="button" data-go="'+st.prev+'" aria-label="Previous step">'+I.back+'</button>' : '')+
+      '<p>'+s.t+'</p><button class="sbtn" type="button" data-go="'+s.next[1]+'">'+s.next[0]+' '+I.arrow+'</button>';
+  }
+  function render(){
+    var id = steps[S.step].id;
+    screen.className = 'screen' + (id==='alert' ? ' lockmode' : '');
+    screen.innerHTML = views[id]();
+    renderRail(); renderPanel(); renderStory();
+    if(id==='foryou'){ startTimer(); }
+    if(S.focusMsg){ S.focusMsg = false; var m = document.getElementById('msg'); if(m){ m.focus(); } }
+  }
+  function startTimer(){
+    stopTimer();
+    S.timer = setInterval(function(){
+      if(steps[S.step].id!=='foryou'){ stopTimer(); return; }
+      S.secs++;
+      var w = document.getElementById('watchT'), p = document.getElementById('prog'), c = document.getElementById('cta');
+      if(p){ p.style.width = Math.min(100,S.secs/14*100) + '%'; }
+      if(w){ w.textContent = S.secs >= 3 ? 'Booking unlocked' : clock(S.secs); }
+      if(S.secs === 3 && c){
+        c.classList.add('show'); c.removeAttribute('aria-hidden');
+        Array.prototype.forEach.call(c.querySelectorAll('[tabindex]'), function(b){ b.removeAttribute('tabindex'); });
+      }
+      if(S.secs >= 14){ S.secs = 3; }
+    }, 1000);
+  }
+
+  document.addEventListener('click', function(e){
+    var t = e.target.closest('[data-go],[data-act],[data-slot]'); if(!t || t.disabled) return;
+    var m = document.getElementById('msg'); if(m){ S.msg = m.value; }
+    if(t.dataset.go !== undefined){ go(+t.dataset.go); return; }
+    if(t.dataset.slot !== undefined){ S.slot = t.dataset.slot; render(); return; }
+    var a = t.dataset.act;
+    if(a==='pause'){ S.paused = true; render(); }
+    else if(a==='next'){ S.secs = 0; render(); }
+    else if(a==='book'){ go(2); }
+    else if(a==='message'){ S.focusMsg = true; go(2); }
+    else if(a==='down'){ S.budget = Math.max(5000, S.budget-5000); render(); }
+    else if(a==='up'){ S.budget = Math.min(45000, S.budget+5000); render(); }
+    else if(a==='confirm'){ go(3); }
+    else if(a==='leave'){ go(4); }
+    else if(a==='openmail'){ go(5); }
+    else if(a==='resume'){ go(2); }
+    else if(a==='rebook'){ S.rebooked = true; render(); }
+  });
+
+  var h = (location.hash||'').slice(1), start = -1;
+  steps.forEach(function(s,i){ if(s.id===h){ start = i; } });
+  go(start >= 0 ? start : 0);
+})();
+</script>
+
+</body></html>

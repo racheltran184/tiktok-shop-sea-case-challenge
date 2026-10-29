@@ -1,0 +1,1247 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Order Pertama Mak Journey</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=TikTok+Sans:wght@400;500;700&family=Lato:wght@400;700;900&family=Noto+Sans+SC:wght@400;700;900&family=Noto+Sans+Tamil:wght@400;700;900&display=swap">
+<style>
+/* Layout: step rail · phone prototype with a story bar under it · "what happens" panel; one column under 1020px */
+:root{
+  --bg:#F4F5F7; --surface:#FFFFFF; --ink:#161823; --muted:#5B6170; --line:#E3E6EB;
+  --red:#FE2C55; --red-ink:#D6123F; --teal:#0B7F7B; --teal-soft:#E3F4F3;
+  --mak-bg:#FFE6EC; --mak-ink:#B8123B; --aina-bg:#DDFBFA; --aina-ink:#087A75;
+  --phone:#0E0F14;
+  --font:'TikTok Sans','Helvetica Neue',Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F1016; --surface:#191B23; --ink:#F2F3F6; --muted:#A3A8B6; --line:#2C2F3A;
+  --red-ink:#FF5C7C; --teal:#4FD1C9; --teal-soft:#123533; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#0F1016; --surface:#191B23; --ink:#F2F3F6; --muted:#A3A8B6; --line:#2C2F3A;
+  --red-ink:#FF5C7C; --teal:#4FD1C9; --teal-soft:#123533; color-scheme:dark }
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:15px;line-height:1.45}
+.wrap{max-width:1200px;margin:0 auto;padding-block:28px 40px;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));display:flex;flex-direction:column;gap:22px}
+header.top{display:flex;flex-direction:column;gap:6px}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red-ink)}
+h1{margin:0;font-size:clamp(26px,4vw,38px);line-height:1.1;text-wrap:balance}
+.lede{margin:0;color:var(--muted);max-width:72ch}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;background:var(--line);color:var(--muted);vertical-align:middle}
+.grid{display:grid;grid-template-columns:240px minmax(0,380px) minmax(0,1fr);gap:24px;align-items:start}
+@media (max-width:1020px){.grid{grid-template-columns:minmax(0,1fr)}}
+
+/* step rail */
+.rail{display:flex;flex-direction:column;gap:5px;margin:0;padding:0;list-style:none}
+@media (max-width:1020px){.rail{flex-direction:row;overflow-x:auto;padding-bottom:4px}.rail .grp{display:none}}
+.rail button{all:unset;box-sizing:border-box;position:relative;cursor:pointer;display:flex;gap:10px;align-items:center;width:100%;min-height:44px;padding:7px 10px 7px 12px;border-radius:12px;background:var(--surface);border:1px solid var(--line);white-space:nowrap}
+.rail button:focus-visible{outline:2px solid var(--red-ink);outline-offset:2px}
+.rail .n{flex:0 0 26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:12.5px;font-weight:700;background:var(--line);color:var(--ink);font-variant-numeric:tabular-nums}
+.rail .lbl{flex:1;font-weight:700;font-size:14px}
+.rail button[aria-current="step"]{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.rail button[aria-current="step"] .n{background:var(--red);color:#fff}
+.rail button.done .n{background:var(--teal);color:#fff}
+.rail .grp{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:12px 4px 3px}
+.pp{flex:0 0 22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:700}
+.pp.mak{background:var(--mak-bg);color:var(--mak-ink)}
+.pp.aina{background:var(--aina-bg);color:var(--aina-ink)}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* stage: phone + story bar */
+.stage{display:flex;flex-direction:column;align-items:center;gap:12px;min-width:0}
+.phone{width:100%;max-width:380px;background:var(--phone);border-radius:40px;padding:11px;box-sizing:border-box;box-shadow:0 22px 50px rgba(14,15,20,.28)}
+.story,.langs{width:100%;max-width:380px;box-sizing:border-box;display:flex;align-items:center;gap:8px;padding:8px;border-radius:16px;background:var(--surface);border:1px solid var(--line)}
+.story p{margin:0;flex:1;min-width:0;font-size:13px;color:var(--muted);padding-left:4px}
+.sbtn{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 14px;border-radius:12px;background:var(--ink);color:var(--bg);font-size:13px;font-weight:700;white-space:nowrap}
+.sbtn.icon{width:44px;padding:0;justify-content:center;background:transparent;color:var(--ink);border:1px solid var(--line)}
+.sbtn:focus-visible,.langs button:focus-visible{outline:2px solid var(--red-ink);outline-offset:2px}
+@media (max-width:440px){.story{flex-wrap:wrap}.story p{flex-basis:100%;order:-1;padding:4px}}
+.langs{flex-wrap:wrap;gap:6px}
+.langs span{flex:1 0 auto;font-size:12px;font-weight:700;color:var(--muted);padding-left:6px}
+.langs button{all:unset;box-sizing:border-box;cursor:pointer;min-height:36px;padding:0 12px;border-radius:10px;border:1px solid var(--line);font-size:13px;font-weight:700;display:inline-flex;align-items:center}
+.langs button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.langs [data-lang="zh"]{font-family:'Noto Sans SC',var(--font)}
+.langs [data-lang="ta"]{font-family:'Noto Sans Tamil',var(--font)}
+
+/* inside the phone: the original screens, scaled from 390 × 844 */
+.screen{--surface:#FFFFFF;--ink:#161823;color-scheme:light;position:relative;border-radius:30px;overflow:hidden;background:#FFFFFF;color:var(--ink);display:flex;flex-direction:column}
+.sb{flex:0 0 auto;display:flex;justify-content:space-between;align-items:center;padding:11px 24px 5px;font-size:13px;font-weight:700;font-variant-numeric:tabular-nums;background:var(--surface);color:var(--ink)}
+.sb.dark{color:#fff}
+.sb .ic{display:flex;gap:5px;align-items:center}
+.vp{position:relative;height:calc(844px * var(--s, .918));overflow:hidden}
+.art{position:absolute;left:0;top:0;width:390px;height:844px;transform:scale(var(--s, .918));transform-origin:0 0}
+@media (prefers-reduced-motion: reduce){.art *{animation:none!important}}
+.art.s0 a{color:#087A75}.art.s0 a:hover{color:#065F5B}.art.s1 a{color:#087A75}.art.s1 a:hover{color:#065F5B}@keyframes opmPulse_1{0%{box-shadow:0 0 0 0 rgba(37,244,238,.75)}70%{box-shadow:0 0 0 14px rgba(37,244,238,0)}100%{box-shadow:0 0 0 0 rgba(37,244,238,0)}}@keyframes opmSteam_1{0%{opacity:0;transform:translateY(10px)}40%{opacity:.75}100%{opacity:0;transform:translateY(-18px)}}.art.s2 a{color:#087A75}.art.s2 a:hover{color:#065F5B}.art.s3 a{color:#087A75}.art.s3 a:hover{color:#065F5B}.art.s4 a{color:#087A75}.art.s4 a:hover{color:#065F5B}.art.s5 a{color:#087A75}.art.s5 a:hover{color:#065F5B}@keyframes opmTick_5{0%{transform:scale(0);opacity:0}60%{transform:scale(1.18);opacity:1}100%{transform:scale(1);opacity:1}}.art.s6 a{color:#087A75}.art.s6 a:hover{color:#065F5B}.art.s7 a{color:#087A75}.art.s7 a:hover{color:#065F5B}.art.s8 a{color:#087A75}.art.s8 a:hover{color:#065F5B}@keyframes opmDot_8{0%{box-shadow:0 0 0 0 rgba(224,16,63,.55)}70%{box-shadow:0 0 0 12px rgba(224,16,63,0)}100%{box-shadow:0 0 0 0 rgba(224,16,63,0)}}.art.s9 a{color:#25F4EE}.art.s9 a:hover{color:#FFFFFF}@keyframes opmFloat_9{0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}@keyframes opmPop_9{0%{transform:scale(0.6);opacity:0}70%{transform:scale(1.06);opacity:1}100%{transform:scale(1);opacity:1}}.art.s10 a{color:#087A75}.art.s10 a:hover{color:#065F5B}.art.s11 a{color:#087A75}.art.s11 a:hover{color:#065F5B}@keyframes opmPop_11{0%{transform:scale(0.6);opacity:0}70%{transform:scale(1.08);opacity:1}100%{transform:scale(1);opacity:1}}.art.s12 a{color:#087A75}.art.s12 a:hover{color:#065F5B}.art.s13 a{color:#087A75}.art.s13 a:hover{color:#065F5B}.art.s14 a{color:#087A75}.art.s14 a:hover{color:#065F5B}.art.s15 a{color:#087A75}.art.s15 a:hover{color:#065F5B}@keyframes opmPulse_15{0%{box-shadow:0 0 0 0 rgba(37,244,238,.75)}70%{box-shadow:0 0 0 14px rgba(37,244,238,0)}100%{box-shadow:0 0 0 0 rgba(37,244,238,0)}}.art.s16 a{color:#087A75}.art.s16 a:hover{color:#065F5B}@keyframes opmPulse_16{0%{box-shadow:0 0 0 0 rgba(37,244,238,.75)}70%{box-shadow:0 0 0 14px rgba(37,244,238,0)}100%{box-shadow:0 0 0 0 rgba(37,244,238,0)}}.art.s17 a{color:#087A75}.art.s17 a:hover{color:#065F5B}.art.s18 a{color:#087A75}.art.s18 a:hover{color:#065F5B}@keyframes opmTick_18{0%{transform:scale(0);opacity:0}60%{transform:scale(1.18);opacity:1}100%{transform:scale(1);opacity:1}}.art.s19 a{color:#087A75}.art.s19 a:hover{color:#065F5B}@keyframes opmTick_19{0%{transform:scale(0);opacity:0}60%{transform:scale(1.18);opacity:1}100%{transform:scale(1);opacity:1}}.art.s20 a{color:#087A75}.art.s20 a:hover{color:#065F5B}@keyframes opmTick_20{0%{transform:scale(0);opacity:0}60%{transform:scale(1.18);opacity:1}100%{transform:scale(1);opacity:1}}
+
+/* explain panel */
+.panel{display:flex;flex-direction:column;gap:12px;min-width:0}
+.panel h2{margin:0;font-size:22px;line-height:1.2;text-wrap:balance}
+.facts{display:grid;grid-template-columns:110px minmax(0,1fr);gap:9px 14px;margin:0;font-size:14px}
+.facts dt{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.facts dd{margin:0}
+.src{font-size:12px;color:var(--muted)}
+.why{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;font-size:14px}
+.key{font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px;margin:0}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <span class="eyebrow">TikTok Shop Malaysia · Jemput Mak · Order Pertama Mak</span>
+    <h1>How Aina helps Mak place her first order</h1>
+    <p class="lede">Tap through Aina’s and Mak’s phones. Step 0 is today: 42 minutes of chat and no order. Steps 1 to 11 take Mak to her first and second orders (try the switches in steps 4 and 6, and the language in step 5). Steps 12 to 17 are the other path, where Aina locks the price and waits for a LIVE deal. <span class="tag">Concept · sample data</span></p>
+  </header>
+
+  <div class="grid">
+    <ol class="rail" id="rail" aria-label="Journey steps"></ol>
+    <div class="stage">
+      <div class="phone" aria-label="Prototype phone"><div class="screen" id="screen"></div></div>
+      <div class="story" id="story"></div>
+      <div class="langs" id="langs" role="group" aria-label="Mak Mode language" hidden></div>
+    </div>
+    <section class="panel" id="panel" aria-live="polite"></section>
+  </div>
+
+  <p class="key">M our design rule or assumption. Names, products, prices, dates and times are sample data. Step 0 (Arm A) is today’s path. Mak Mode also comes in English, Chinese (Wei Ling to her Mama) and Tamil (Kavya to her Amma).</p>
+</div>
+
+<template id="tpl-0"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F3F3F6; color: #161823; font-family: 'Lato', system-ui, sans-serif; display: flex; flex-direction: column">
+<div style="height: 68px; flex-shrink: 0; background: #FFFFFF; border-bottom: 1px solid #E6E6EB; padding: 0 8px; display: flex; align-items: center; gap: 8px">
+<button aria-label="Back" style="width: 44px; height: 44px; border: 0; background: transparent; color: #161823; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></button>
+<div style="width: 40px; height: 40px; border-radius: 50%; background: #FFE6EC; color: #B8123B; font-weight: 900; font-size: 17px; display: flex; align-items: center; justify-content: center">M</div>
+<div style="flex: 1; display: flex; flex-direction: column">
+<div style="font-size: 17px; font-weight: 900">Mak</div>
+<div style="font-size: 13px; color: #5C5C66">last seen 9:12 pm</div>
+</div>
+</div>
+
+<div style="flex: 1; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; overflow: hidden">
+<div style="align-self: center; font-size: 12px; font-weight: 700; color: #5C5C66; background: #E6E6EB; border-radius: 10px; padding: 4px 10px">Today</div>
+
+<div style="align-self: flex-end; display: flex; flex-direction: column; align-items: flex-end; gap: 4px">
+<div style="display: flex; gap: 6px">
+<svg width="64" height="112" viewBox="0 0 64 112" role="img" aria-label="Screenshot of the product page"><rect x="1" y="1" width="62" height="110" rx="8" fill="#FFFFFF" stroke="#DFDFE5" stroke-width="2"></rect><rect x="8" y="10" width="48" height="44" rx="6" fill="#2B2E3B"></rect><rect x="8" y="62" width="40" height="5" rx="2" fill="#B9B9C2"></rect><rect x="8" y="72" width="28" height="5" rx="2" fill="#B9B9C2"></rect><rect x="8" y="94" width="48" height="10" rx="4" fill="#E0103F"></rect></svg>
+<svg width="64" height="112" viewBox="0 0 64 112" role="img" aria-label="Screenshot of the delivery section"><rect x="1" y="1" width="62" height="110" rx="8" fill="#FFFFFF" stroke="#DFDFE5" stroke-width="2"></rect><rect x="8" y="12" width="48" height="5" rx="2" fill="#B9B9C2"></rect><rect x="8" y="24" width="36" height="5" rx="2" fill="#B9B9C2"></rect><rect x="8" y="40" width="48" height="22" rx="4" fill="#F3F3F6"></rect><rect x="8" y="70" width="44" height="5" rx="2" fill="#B9B9C2"></rect><rect x="8" y="80" width="30" height="5" rx="2" fill="#B9B9C2"></rect></svg>
+<svg width="64" height="112" viewBox="0 0 64 112" role="img" aria-label="Screenshot of the reviews"><rect x="1" y="1" width="62" height="110" rx="8" fill="#FFFFFF" stroke="#DFDFE5" stroke-width="2"></rect><circle cx="16" cy="18" r="6" fill="#DFDFE5"></circle><rect x="26" y="15" width="28" height="5" rx="2" fill="#B9B9C2"></rect><rect x="8" y="32" width="48" height="5" rx="2" fill="#B9B9C2"></rect><rect x="8" y="42" width="40" height="5" rx="2" fill="#B9B9C2"></rect><circle cx="16" cy="64" r="6" fill="#DFDFE5"></circle><rect x="26" y="61" width="28" height="5" rx="2" fill="#B9B9C2"></rect><rect x="8" y="78" width="48" height="5" rx="2" fill="#B9B9C2"></rect></svg>
+</div>
+<div style="font-size: 11px; color: #5C5C66">8:30 pm</div>
+</div>
+
+<div style="align-self: flex-end; max-width: 280px; background: #DDFBFA; border-radius: 16px 4px 16px 16px; padding: 8px 12px; font-size: 15px; line-height: 1.35">Mak, ni air fryer yang Mak tanya. <span style="font-size: 11px; color: #5C5C66">8:31 pm</span></div>
+
+<div style="align-self: flex-start; background: #FFFFFF; border-radius: 4px 16px 16px 16px; padding: 8px 12px; font-size: 16px; font-weight: 700; box-shadow: 0 1px 2px rgba(22,24,35,0.08)">Original ke? <span style="font-size: 11px; font-weight: 400; color: #5C5C66">8:36 pm</span></div>
+<div style="align-self: flex-start; background: #FFFFFF; border-radius: 4px 16px 16px 16px; padding: 8px 12px; font-size: 16px; font-weight: 700; box-shadow: 0 1px 2px rgba(22,24,35,0.08)">Bila sampai? <span style="font-size: 11px; font-weight: 400; color: #5C5C66">8:36 pm</span></div>
+<div style="align-self: flex-start; background: #FFFFFF; border-radius: 4px 16px 16px 16px; padding: 8px 12px; font-size: 16px; font-weight: 700; box-shadow: 0 1px 2px rgba(22,24,35,0.08)">Boleh return? <span style="font-size: 11px; font-weight: 400; color: #5C5C66">8:37 pm</span></div>
+
+<div style="align-self: flex-end; max-width: 280px; background: #DDFBFA; border-radius: 16px 4px 16px 16px; padding: 8px 12px; font-size: 15px; line-height: 1.35">Kejap, Aina check. <span style="font-size: 11px; color: #5C5C66">8:44 pm</span></div>
+
+<div style="align-self: flex-end; width: 250px; background: #DDFBFA; border-radius: 16px 4px 16px 16px; padding: 8px; display: flex; flex-direction: column; gap: 6px">
+<div style="background: #FFFFFF; border-radius: 10px; padding: 8px 10px; display: flex; gap: 8px; align-items: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3F3F48" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"></path><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"></path></svg><div style="display: flex; flex-direction: column"><span style="font-size: 13px; font-weight: 900">Seri Dapur Air Fryer 5.5L</span><span style="font-size: 12px; color: #5C5C66">Product page link</span></div></div>
+<div style="font-size: 15px; padding: 0 4px">Mak tekan ni, beli kat situ. <span style="font-size: 11px; color: #5C5C66">8:52 pm</span></div>
+</div>
+
+<div style="align-self: flex-start; max-width: 280px; background: #FFFFFF; border-radius: 4px 16px 16px 16px; padding: 8px 12px; font-size: 15px; line-height: 1.35; box-shadow: 0 1px 2px rgba(22,24,35,0.08)">Mak tekan, tak jadi pun. <span style="font-size: 11px; color: #5C5C66">8:58 pm</span></div>
+
+<div style="align-self: flex-end; max-width: 280px; background: #DDFBFA; border-radius: 16px 4px 16px 16px; padding: 8px 12px; font-size: 16px; font-weight: 900">Mak, bukan macam tu! <span style="font-size: 11px; font-weight: 400; color: #5C5C66">9:03 pm</span></div>
+
+<div style="align-self: flex-start; max-width: 280px; background: #FFFFFF; border-radius: 4px 16px 16px 16px; padding: 8px 12px; font-size: 15px; line-height: 1.35; box-shadow: 0 1px 2px rgba(22,24,35,0.08)">Takpelah. Nanti Mak beli kat kedai je. <span style="font-size: 11px; color: #5C5C66">9:12 pm</span></div>
+</div>
+
+<div style="height: 72px; flex-shrink: 0; background: #FFFFFF; border-top: 1px solid #E6E6EB; padding: 0 12px; display: flex; align-items: center; gap: 10px">
+<input type="text" aria-label="Type a message" placeholder="Type a message" style="flex: 1; height: 44px; border: 1.5px solid #DFDFE5; border-radius: 22px; padding: 0 16px; font-family: inherit; font-size: 15px; color: #161823; background: #F3F3F6; box-sizing: border-box">
+<button aria-label="Record a voice message" style="width: 44px; height: 44px; border: 0; border-radius: 50%; background: #161823; color: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5 11a7 7 0 0 0 14 0M12 18v3"></path></svg></button>
+</div>
+</div></template>
+<template id="tpl-1"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #232538; color: #FFFFFF; font-family: 'Lato', system-ui, sans-serif">
+<svg width="390" height="844" viewBox="0 0 390 844" role="img" aria-label="Creator video: an air fryer on a kitchen counter with steam rising and fried chicken on a plate" style="position: absolute; left: 0; top: 0">
+<rect width="390" height="844" fill="#232538"></rect>
+<circle cx="330" cy="110" r="150" fill="#FFB84D" opacity="0.10"></circle>
+<rect x="0" y="246" width="390" height="6" fill="#30334A"></rect>
+<rect x="34" y="196" width="56" height="50" rx="8" fill="#30334A"></rect>
+<rect x="100" y="210" width="40" height="36" rx="6" fill="#363A54"></rect>
+<rect x="0" y="560" width="390" height="284" fill="#3B3346"></rect>
+<rect x="0" y="560" width="390" height="10" fill="#4A4058"></rect>
+<g transform="translate(92 302)">
+<rect x="0" y="0" width="170" height="250" rx="48" fill="#F3F3F6"></rect>
+<rect x="18" y="20" width="134" height="40" rx="20" fill="#DFDFE5"></rect>
+<circle cx="85" cy="40" r="12" fill="#161823"></circle>
+<circle cx="85" cy="40" r="5" fill="#25F4EE"></circle>
+<rect x="18" y="78" width="134" height="150" rx="30" fill="#E6E6EB"></rect>
+<rect x="36" y="98" width="98" height="52" rx="14" fill="#2B2E3B"></rect>
+<rect x="54" y="176" width="62" height="16" rx="8" fill="#8E8E99"></rect>
+<rect x="22" y="246" width="26" height="10" rx="4" fill="#8E8E99"></rect>
+<rect x="122" y="246" width="26" height="10" rx="4" fill="#8E8E99"></rect>
+</g>
+<path d="M150 290 q-12 -18 0 -36 q12 -18 0 -36" stroke="#FFFFFF" stroke-width="5" fill="none" stroke-linecap="round" style="animation: opmSteam_1 2.6s ease-in-out infinite; transform-box: fill-box"></path>
+<path d="M178 286 q-12 -18 0 -36 q12 -18 0 -36" stroke="#FFFFFF" stroke-width="5" fill="none" stroke-linecap="round" style="animation: opmSteam_1 2.6s ease-in-out 0.8s infinite; transform-box: fill-box"></path>
+<path d="M206 290 q-12 -18 0 -36 q12 -18 0 -36" stroke="#FFFFFF" stroke-width="5" fill="none" stroke-linecap="round" style="animation: opmSteam_1 2.6s ease-in-out 1.6s infinite; transform-box: fill-box"></path>
+<ellipse cx="322" cy="588" rx="58" ry="14" fill="#F3F3F6"></ellipse>
+<ellipse cx="306" cy="574" rx="22" ry="11" fill="#C9772E"></ellipse>
+<ellipse cx="336" cy="572" rx="22" ry="11" fill="#B8662A"></ellipse>
+</svg>
+
+<div style="position: absolute; left: 0; right: 0; top: 0; height: 64px; padding: 0 12px; box-sizing: border-box; display: flex; align-items: center; justify-content: space-between">
+<button aria-label="Back" style="width: 44px; height: 44px; border: 0; background: transparent; color: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></button>
+<div style="font-size: 15px; font-weight: 700; letter-spacing: 0.02em">Shop videos</div>
+<button aria-label="Search" style="width: 44px; height: 44px; border: 0; background: transparent; color: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg></button>
+</div>
+
+<div style="position: absolute; left: 24px; right: 24px; top: 108px; text-align: center; font-size: 27px; line-height: 1.2; font-weight: 900; text-shadow: 0 2px 10px rgba(0,0,0,0.55)">Ayam goreng tanpa minyak?<br>Serius rangup.</div>
+
+<div style="position: absolute; right: 8px; top: 330px; width: 60px; display: flex; flex-direction: column; align-items: center; gap: 14px">
+<div style="width: 46px; height: 46px; border-radius: 50%; background: #FFB84D; border: 2px solid #FFFFFF; color: #161823; font-weight: 900; font-size: 17px; display: flex; align-items: center; justify-content: center">KY</div>
+<button aria-label="Like, 12.4 thousand likes" style="border: 0; background: transparent; color: #FFFFFF; display: flex; flex-direction: column; align-items: center; gap: 2px; font-family: inherit; font-size: 12px; font-weight: 700; cursor: pointer; min-width: 44px"><svg width="30" height="30" viewBox="0 0 24 24" fill="#FE2C55" stroke="#FE2C55" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"></path></svg>12.4K</button>
+<button aria-label="Comments, 856" style="border: 0; background: transparent; color: #FFFFFF; display: flex; flex-direction: column; align-items: center; gap: 2px; font-family: inherit; font-size: 12px; font-weight: 700; cursor: pointer; min-width: 44px"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"></path></svg>856</button>
+<button aria-label="Save, 2,301 saves" style="border: 0; background: transparent; color: #FFFFFF; display: flex; flex-direction: column; align-items: center; gap: 2px; font-family: inherit; font-size: 12px; font-weight: 700; cursor: pointer; min-width: 44px"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4h12v16l-6-4-6 4z"></path></svg>2,301</button>
+<button aria-label="Share" style="border: 0; background: transparent; color: #FFFFFF; display: flex; flex-direction: column; align-items: center; gap: 2px; font-family: inherit; font-size: 12px; font-weight: 700; cursor: pointer; min-width: 44px"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 5l6 6-6 6"></path><path d="M20 11H9a5 5 0 0 0-5 5v3"></path></svg>Share</button>
+</div>
+
+<div style="position: absolute; left: 16px; right: 84px; bottom: 160px; display: flex; flex-direction: column; gap: 6px; text-shadow: 0 1px 6px rgba(0,0,0,0.6)">
+<div style="font-size: 16px; font-weight: 900">@masakmudah.kakyan</div>
+<div style="font-size: 14px; line-height: 1.4">Air fryer yang saya guna hari-hari. 5.5L, muat seekor ayam kecil. #resipimudah #dapur</div>
+</div>
+
+<div style="position: absolute; left: 12px; right: 12px; bottom: 18px; background: #FFFFFF; color: #161823; border-radius: 16px; padding: 12px; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 8px 24px rgba(0,0,0,0.35)">
+<div style="display: flex; gap: 12px; align-items: center">
+<div style="width: 56px; height: 56px; border-radius: 10px; background: #F3F3F6; display: flex; align-items: center; justify-content: center; flex-shrink: 0">
+<svg width="40" height="46" viewBox="0 0 170 260" role="img" aria-label="Seri Dapur Air Fryer 5.5L"><rect x="0" y="0" width="170" height="250" rx="48" fill="#2B2E3B"></rect><rect x="18" y="20" width="134" height="40" rx="20" fill="#3B3F51"></rect><circle cx="85" cy="40" r="10" fill="#25F4EE"></circle><rect x="18" y="78" width="134" height="150" rx="30" fill="#1E2030"></rect><rect x="54" y="176" width="62" height="16" rx="8" fill="#8E8E99"></rect></svg>
+</div>
+<div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px">
+<div style="display: flex; align-items: center; gap: 6px"><span style="display: inline-flex; align-items: center; gap: 3px; background: #161823; color: #25F4EE; font-size: 11px; font-weight: 900; letter-spacing: 0.06em; padding: 2px 6px; border-radius: 4px"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path></svg>MALL</span><span style="font-size: 15px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Seri Dapur Air Fryer 5.5L</span></div>
+<div style="font-size: 18px; font-weight: 900">RM159.00 <span style="font-size: 12px; font-weight: 400; color: #5C5C66">· 1.2K sold</span></div>
+</div>
+</div>
+<div style="display: flex; gap: 10px">
+<a href="#" data-go="2" style="flex: 1.25; height: 46px; border-radius: 12px; background: #25F4EE; color: #161823; font-size: 16px; font-weight: 900; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; animation: opmPulse_1 1.8s ease-out infinite"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20a6.5 6.5 0 0 1 13 0"></path><path d="M19 8v6M16 11h6"></path></svg>Jemput Mak</a>
+<button style="flex: 1; height: 46px; border-radius: 12px; border: 0; background: #E0103F; color: #FFFFFF; font-family: inherit; font-size: 16px; font-weight: 900; cursor: pointer">Buy</button>
+</div>
+</div>
+</div></template>
+<template id="tpl-2"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #0E0F17; color: #161823; font-family: 'Lato', system-ui, sans-serif">
+<svg width="390" height="200" viewBox="0 0 390 200" aria-hidden="true" style="position: absolute; left: 0; top: 0; opacity: 0.45"><rect width="390" height="200" fill="#232538"></rect><circle cx="330" cy="60" r="120" fill="#FFB84D" opacity="0.10"></circle><rect x="110" y="70" width="150" height="160" rx="42" fill="#F3F3F6"></rect></svg>
+
+<div style="position: absolute; left: 0; right: 0; top: 150px; bottom: 0; background: #FFFFFF; border-radius: 24px 24px 0 0; padding: 10px 20px 20px; box-sizing: border-box; display: flex; flex-direction: column; gap: 14px">
+<div style="width: 40px; height: 5px; border-radius: 3px; background: #DFDFE5; align-self: center"></div>
+<div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<div style="font-size: 26px; font-weight: 900; letter-spacing: -0.01em">Jemput Mak</div>
+<div style="font-size: 15px; line-height: 1.4; color: #5C5C66">Send Mak one card that answers what she’ll ask.</div>
+</div>
+<button aria-label="Close" style="width: 44px; height: 44px; border: 0; border-radius: 50%; background: #F3F3F6; color: #161823; display: flex; align-items: center; justify-content: center; flex-shrink: 0; cursor: pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+</div>
+
+<div style="border: 1.5px solid #DFDFE5; border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; gap: 12px; align-items: center">
+<div style="width: 52px; height: 52px; border-radius: 10px; background: #F3F3F6; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="36" height="42" viewBox="0 0 170 260" role="img" aria-label="Seri Dapur Air Fryer 5.5L"><rect x="0" y="0" width="170" height="250" rx="48" fill="#2B2E3B"></rect><rect x="18" y="20" width="134" height="40" rx="20" fill="#3B3F51"></rect><circle cx="85" cy="40" r="10" fill="#25F4EE"></circle><rect x="18" y="78" width="134" height="150" rx="30" fill="#1E2030"></rect><rect x="54" y="176" width="62" height="16" rx="8" fill="#8E8E99"></rect></svg></div>
+<div style="display: flex; flex-direction: column; gap: 3px; min-width: 0">
+<div style="font-size: 16px; font-weight: 900">Seri Dapur Air Fryer 5.5L</div>
+<div style="display: flex; align-items: center; gap: 6px; font-size: 13px; color: #5C5C66"><span style="display: inline-flex; align-items: center; gap: 3px; background: #161823; color: #25F4EE; font-size: 10px; font-weight: 900; letter-spacing: 0.06em; padding: 2px 6px; border-radius: 4px">MALL</span>Seri Dapur Official Store</div>
+</div>
+</div>
+<div style="height: 1px; background: #E6E6EB"></div>
+<div style="display: flex; align-items: center; gap: 10px; font-size: 15px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#087A75" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"></rect><path d="M16 12h5"></path></svg><span><strong>RM159.00 total</strong> <span style="color: #5C5C66">· incl. delivery</span></span></div>
+<div style="display: flex; align-items: center; gap: 10px; font-size: 15px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#087A75" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M4 10h16M9 3v4M15 3v4"></path></svg><span><strong>Arrives Thu, 29 Oct</strong> <span style="color: #5C5C66">· promised date</span></span></div>
+<div style="display: flex; align-items: center; gap: 10px; font-size: 15px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#087A75" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path><path d="M8.5 12l2.5 2.5 4.5-5"></path></svg><strong>100% Authenticity Guarantee</strong></div>
+<div style="display: flex; align-items: center; gap: 10px; font-size: 15px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#087A75" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14l-5-5 5-5"></path><path d="M4 9h10a6 6 0 0 1 0 12h-3"></path></svg><strong>30-day free returns</strong></div>
+<div style="font-size: 13px; line-height: 1.4; color: #5C5C66; background: #F3F3F6; border-radius: 10px; padding: 8px 10px">Mak pays her way: COD, FPX, Touch ’n Go or card.</div>
+</div>
+
+<div style="display: flex; align-items: center; gap: 12px">
+<div style="width: 44px; height: 44px; border-radius: 50%; background: #FFE6EC; color: #B8123B; font-weight: 900; font-size: 18px; display: flex; align-items: center; justify-content: center; flex-shrink: 0">M</div>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 2px">
+<div style="font-size: 16px; font-weight: 900">Mak</div>
+<div style="font-size: 13px; color: #5C5C66">Family · not linked yet</div>
+</div>
+<button style="height: 44px; padding: 0 14px; border: 1.5px solid #DFDFE5; border-radius: 10px; background: #FFFFFF; color: #161823; font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer">Change</button>
+</div>
+
+<label for="offerPay" style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 14px; background: #DDFBFA; cursor: pointer">
+<div style="flex: 1; display: flex; flex-direction: column; gap: 3px">
+<div style="font-size: 15px; font-weight: 900">Offer to pay with Troli Keluarga</div>
+<div style="font-size: 13px; line-height: 1.4; color: #3F3F48">Mak can ask you to pay. You approve every payment.</div>
+</div>
+<input id="offerPay" type="checkbox" checked style="width: 26px; height: 26px; accent-color: #087A75; flex-shrink: 0; cursor: pointer">
+</label>
+
+<div style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #5C5C66"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>Nothing is linked until Mak agrees.</div>
+
+<a href="#" data-go="3" style="margin-top: auto; height: 54px; border-radius: 14px; background: #E0103F; color: #FFFFFF; font-size: 17px; font-weight: 900; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13"></path><path d="M22 2l-7 20-4-9-9-4z"></path></svg>Send to Mak</a>
+</div>
+</div></template>
+<template id="tpl-3"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F3F3F6; color: #161823; font-family: 'Lato', system-ui, sans-serif; display: flex; flex-direction: column">
+<div style="height: 68px; flex-shrink: 0; background: #FFFFFF; border-bottom: 1px solid #E6E6EB; padding: 0 8px; display: flex; align-items: center; gap: 8px">
+<button aria-label="Kembali" style="width: 44px; height: 44px; border: 0; background: transparent; color: #161823; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></button>
+<div style="width: 40px; height: 40px; border-radius: 50%; background: #DDFBFA; color: #087A75; font-weight: 900; font-size: 17px; display: flex; align-items: center; justify-content: center">A</div>
+<div style="flex: 1; display: flex; flex-direction: column">
+<div style="font-size: 17px; font-weight: 900">Aina</div>
+<div style="font-size: 13px; color: #087A75">dalam talian</div>
+</div>
+</div>
+
+<div style="flex: 1; padding: 14px 14px 10px; display: flex; flex-direction: column; gap: 10px; overflow: hidden">
+<div style="align-self: center; font-size: 12px; font-weight: 700; color: #5C5C66; background: #E6E6EB; border-radius: 10px; padding: 4px 10px">Hari ini</div>
+
+<div style="align-self: flex-start; max-width: 290px; background: #FFFFFF; border-radius: 4px 16px 16px 16px; padding: 10px 12px; font-size: 16px; line-height: 1.4; box-shadow: 0 1px 2px rgba(22,24,35,0.08)">Mak, ni air fryer yang Mak tanya hari tu.<div style="font-size: 11px; color: #5C5C66; text-align: right; margin-top: 2px">8:41 mlm</div></div>
+
+<div style="align-self: flex-start; width: 300px; background: #FFFFFF; border-radius: 4px 18px 18px 18px; overflow: hidden; box-shadow: 0 4px 16px rgba(22,24,35,0.12)">
+<div style="background: #25F4EE; color: #161823; padding: 8px 14px; display: flex; align-items: center; justify-content: space-between"><span style="font-size: 12px; font-weight: 900; letter-spacing: 0.08em">JEMPUT MAK</span><span style="font-size: 12px; font-weight: 700">#OrderPertamaMak</span></div>
+<div style="padding: 12px 14px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; gap: 10px; align-items: center">
+<div style="width: 52px; height: 52px; border-radius: 10px; background: #F3F3F6; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="36" height="42" viewBox="0 0 170 260" role="img" aria-label="Seri Dapur Air Fryer 5.5L"><rect x="0" y="0" width="170" height="250" rx="48" fill="#2B2E3B"></rect><rect x="18" y="20" width="134" height="40" rx="20" fill="#3B3F51"></rect><circle cx="85" cy="40" r="10" fill="#25F4EE"></circle><rect x="18" y="78" width="134" height="150" rx="30" fill="#1E2030"></rect><rect x="54" y="176" width="62" height="16" rx="8" fill="#8E8E99"></rect></svg></div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<div style="font-size: 16px; font-weight: 900; line-height: 1.25">Seri Dapur Air Fryer 5.5L</div>
+<span style="align-self: flex-start; background: #161823; color: #25F4EE; font-size: 10px; font-weight: 900; letter-spacing: 0.06em; padding: 2px 6px; border-radius: 4px">MALL</span>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 1.35">
+<div style="display: flex; gap: 8px; align-items: flex-start"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#087A75" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; margin-top: 1px"><path d="M5 12l5 5 9-10"></path></svg><span><strong>Jumlah RM159.00</strong> (termasuk penghantaran)</span></div>
+<div style="display: flex; gap: 8px; align-items: flex-start"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#087A75" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; margin-top: 1px"><path d="M5 12l5 5 9-10"></path></svg><span><strong>Sampai Khamis, 29 Okt</strong></span></div>
+<div style="display: flex; gap: 8px; align-items: flex-start"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#087A75" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; margin-top: 1px"><path d="M5 12l5 5 9-10"></path></svg><span><strong>Original:</strong> Jaminan Keaslian 100%</span></div>
+<div style="display: flex; gap: 8px; align-items: flex-start"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#087A75" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; margin-top: 1px"><path d="M5 12l5 5 9-10"></path></svg><span><strong>Pemulangan percuma</strong> 30 hari</span></div>
+</div>
+<a href="#" data-go="4" style="height: 48px; border-radius: 12px; background: #E0103F; color: #FFFFFF; font-size: 17px; font-weight: 900; text-decoration: none; display: flex; align-items: center; justify-content: center">Buka kad</a>
+<div style="font-size: 11px; color: #5C5C66; text-align: right">8:41 mlm</div>
+</div>
+</div>
+
+<div style="align-self: flex-start; max-width: 290px; background: #FFFFFF; border-radius: 4px 16px 16px 16px; padding: 10px 12px; font-size: 16px; line-height: 1.4; box-shadow: 0 1px 2px rgba(22,24,35,0.08)">Mak tengok dulu. Ada apa-apa, Aina ada.<div style="font-size: 11px; color: #5C5C66; text-align: right; margin-top: 2px">8:42 mlm</div></div>
+</div>
+
+<div style="height: 72px; flex-shrink: 0; background: #FFFFFF; border-top: 1px solid #E6E6EB; padding: 0 12px; display: flex; align-items: center; gap: 10px">
+<input type="text" aria-label="Taip mesej" placeholder="Taip mesej" style="flex: 1; height: 44px; border: 1.5px solid #DFDFE5; border-radius: 22px; padding: 0 16px; font-family: inherit; font-size: 15px; color: #161823; background: #F3F3F6; box-sizing: border-box">
+<button aria-label="Rakam mesej suara" style="width: 44px; height: 44px; border: 0; border-radius: 50%; background: #161823; color: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5 11a7 7 0 0 0 14 0M12 18v3"></path></svg></button>
+</div>
+</div></template>
+<template id="tpl-4"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #FFFFFF; color: #161823; font-family: 'Lato', system-ui, sans-serif; display: flex; flex-direction: column">
+<div style="height: 64px; flex-shrink: 0; padding: 0 12px 0 8px; display: flex; align-items: center; gap: 6px">
+<button aria-label="Kembali" style="width: 44px; height: 44px; border: 0; background: transparent; color: #161823; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></button>
+<div style="flex: 1; font-size: 16px; font-weight: 700">Jemputan daripada Aina</div>
+<span style="background: #DDFBFA; color: #087A75; font-size: 12px; font-weight: 900; letter-spacing: 0.04em; padding: 6px 10px; border-radius: 999px">MAK MODE</span>
+<button aria-label="Bahasa: Bahasa Melayu" style="height: 44px; min-width: 44px; padding: 0 8px; border: 1.5px solid #DFDFE5; border-radius: 10px; background: #FFFFFF; color: #161823; font-family: inherit; font-size: 14px; font-weight: 900; cursor: pointer">BM</button>
+</div>
+
+<div style="flex: 1; padding: 6px 20px 18px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; align-items: center; gap: 8px">
+<div style="width: 46px; height: 46px; border-radius: 50%; background: #FFE6EC; color: #B8123B; font-weight: 900; font-size: 19px; display: flex; align-items: center; justify-content: center">M</div>
+<svg width="34" height="12" viewBox="0 0 34 12" aria-hidden="true"><path d="M2 6h30" stroke="#087A75" stroke-width="2.5" stroke-dasharray="4 4" stroke-linecap="round"></path></svg>
+<div style="width: 46px; height: 46px; border-radius: 50%; background: #DDFBFA; color: #087A75; font-weight: 900; font-size: 19px; display: flex; align-items: center; justify-content: center">A</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="font-size: 32px; font-weight: 900; letter-spacing: -0.01em">Mak yang tentukan.</div>
+<div style="font-size: 17px; line-height: 1.45; color: #3F3F48">Aina nak bantu Mak membeli-belah. Mak pilih apa yang nak dikongsi.</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="c1" style="display: flex; align-items: center; gap: 12px; min-height: 68px; padding: 10px 14px; box-sizing: border-box; border: 1.5px solid #DFDFE5; border-radius: 14px; cursor: pointer">
+<div style="flex: 1; display: flex; flex-direction: column; gap: 3px"><div style="font-size: 17px; font-weight: 900">Kemas kini order &amp; penghantaran</div><div style="font-size: 14px; color: #5C5C66">Aina hanya nampak order yang dia bantu.</div></div>
+<input id="c1" type="checkbox" checked style="width: 28px; height: 28px; accent-color: #087A75; flex-shrink: 0; cursor: pointer">
+</label>
+<label for="c2" style="display: flex; align-items: center; gap: 12px; min-height: 68px; padding: 10px 14px; box-sizing: border-box; border: 1.5px solid #DFDFE5; border-radius: 14px; cursor: pointer">
+<div style="flex: 1; display: flex; flex-direction: column; gap: 3px"><div style="font-size: 17px; font-weight: 900">Alamat Mak</div><div style="font-size: 14px; color: #5C5C66">Hanya untuk menghantar barang ini.</div></div>
+<input id="c2" type="checkbox" checked style="width: 28px; height: 28px; accent-color: #087A75; flex-shrink: 0; cursor: pointer">
+</label>
+<label for="c3" style="display: flex; align-items: center; gap: 12px; min-height: 68px; padding: 10px 14px; box-sizing: border-box; border: 1.5px solid #DFDFE5; border-radius: 14px; cursor: pointer">
+<div style="flex: 1; display: flex; flex-direction: column; gap: 3px"><div style="font-size: 17px; font-weight: 900">Aina boleh bayar untuk Mak</div><div style="font-size: 14px; color: #5C5C66">Mak minta dulu, setiap kali.</div></div>
+<input id="c3" type="checkbox" checked style="width: 28px; height: 28px; accent-color: #087A75; flex-shrink: 0; cursor: pointer">
+</label>
+<div style="display: flex; align-items: center; gap: 12px; min-height: 68px; padding: 10px 14px; box-sizing: border-box; border-radius: 14px; background: #F3F3F6">
+<div style="flex: 1; display: flex; flex-direction: column; gap: 3px"><div style="font-size: 17px; font-weight: 900">Maklumat bayaran Mak</div><div style="font-size: 14px; color: #5C5C66">Tidak akan dikongsi dengan sesiapa.</div></div>
+<span style="display: inline-flex; align-items: center; gap: 4px; font-size: 13px; font-weight: 900; color: #3F3F48"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>Dikunci</span>
+</div>
+</div>
+
+<div style="display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.45; color: #3F3F48; background: #DDFBFA; border-radius: 12px; padding: 10px 12px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#087A75" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; margin-top: 1px"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5M12 8h.01"></path></svg><span>Mak boleh tarik balik bila-bila masa. Kebenaran ini direkodkan dan boleh disemak.</span></div>
+
+<div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+<a href="#" data-go="5" style="height: 56px; border-radius: 14px; background: #E0103F; color: #FFFFFF; font-size: 18px; font-weight: 900; text-decoration: none; display: flex; align-items: center; justify-content: center">Setuju dan teruskan</a>
+<button style="height: 48px; border: 0; border-radius: 14px; background: transparent; color: #3F3F48; font-family: inherit; font-size: 16px; font-weight: 700; cursor: pointer">Bukan sekarang</button>
+</div>
+</div>
+</div></template>
+<template id="tpl-5"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #FFFFFF; color: #161823; font-family: 'Lato', system-ui, sans-serif; display: flex; flex-direction: column">
+<div style="height: 64px; flex-shrink: 0; padding: 0 12px 0 8px; display: flex; align-items: center; gap: 6px">
+<button aria-label="Kembali" style="width: 44px; height: 44px; border: 0; background: transparent; color: #161823; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></button>
+<div style="flex: 1; font-size: 15px; font-weight: 700; color: #3F3F48">Untuk Mak, daripada Aina</div>
+<span style="background: #DDFBFA; color: #087A75; font-size: 12px; font-weight: 900; letter-spacing: 0.04em; padding: 6px 10px; border-radius: 999px">MAK MODE</span>
+<button aria-label="Saiz teks" style="width: 44px; height: 44px; border: 1.5px solid #DFDFE5; border-radius: 10px; background: #FFFFFF; color: #161823; font-family: inherit; font-size: 16px; font-weight: 900; cursor: pointer">Aa</button>
+</div>
+
+<div style="height: 170px; flex-shrink: 0; margin: 0 16px; border-radius: 18px; background: #F3F3F6; position: relative; display: flex; align-items: center; justify-content: center">
+<span style="position: absolute; left: 12px; top: 12px; display: inline-flex; align-items: center; gap: 4px; background: #161823; color: #25F4EE; font-size: 12px; font-weight: 900; letter-spacing: 0.06em; padding: 4px 8px; border-radius: 6px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path></svg>MALL</span>
+<svg width="112" height="150" viewBox="0 0 170 260" role="img" aria-label="Seri Dapur Air Fryer 5.5L"><rect x="0" y="0" width="170" height="250" rx="48" fill="#2B2E3B"></rect><rect x="18" y="20" width="134" height="40" rx="20" fill="#3B3F51"></rect><circle cx="85" cy="40" r="12" fill="#161823"></circle><circle cx="85" cy="40" r="5" fill="#25F4EE"></circle><rect x="18" y="78" width="134" height="150" rx="30" fill="#1E2030"></rect><rect x="36" y="98" width="98" height="52" rx="14" fill="#4A4F66"></rect><rect x="54" y="176" width="62" height="16" rx="8" fill="#8E8E99"></rect><rect x="22" y="246" width="26" height="10" rx="4" fill="#1E2030"></rect><rect x="122" y="246" width="26" height="10" rx="4" fill="#1E2030"></rect></svg>
+</div>
+
+<div style="flex: 1; padding: 12px 20px 16px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
+<div style="font-size: 21px; font-weight: 900; line-height: 1.2">Seri Dapur Air Fryer 5.5L</div>
+<div style="font-size: 14px; color: #5C5C66">Kedai Rasmi Seri Dapur</div>
+</div>
+<div style="display: flex; flex-direction: column; align-items: flex-end; flex-shrink: 0">
+<div style="font-size: 26px; font-weight: 900; line-height: 1.1">RM159.00</div>
+<div style="font-size: 12px; color: #5C5C66">jumlah, termasuk penghantaran</div>
+</div>
+</div>
+
+<div style="font-size: 18px; font-weight: 900; margin-top: 2px">3 soalan Mak, semua terjawab</div>
+
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; gap: 12px; align-items: flex-start; padding: 10px 12px; border-radius: 14px; background: #F3F3F6">
+<div style="width: 30px; height: 30px; border-radius: 50%; background: #087A75; color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0; animation: opmTick_5 0.5s ease-out 0.4s both"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></div>
+<div style="display: flex; flex-direction: column; gap: 2px">
+<div style="font-size: 14px; font-weight: 700; color: #5C5C66">“Original ke?”</div>
+<div style="font-size: 18px; font-weight: 900">Ya. Barang Mall.</div>
+<div style="font-size: 14px; line-height: 1.4; color: #3F3F48">Dilindungi Jaminan Keaslian 100%.</div>
+</div>
+</div>
+<div style="display: flex; gap: 12px; align-items: flex-start; padding: 10px 12px; border-radius: 14px; background: #F3F3F6">
+<div style="width: 30px; height: 30px; border-radius: 50%; background: #087A75; color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0; animation: opmTick_5 0.5s ease-out 1s both"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></div>
+<div style="display: flex; flex-direction: column; gap: 2px">
+<div style="font-size: 14px; font-weight: 700; color: #5C5C66">“Bila sampai?”</div>
+<div style="font-size: 18px; font-weight: 900">Khamis, 29 Okt.</div>
+<div style="font-size: 14px; line-height: 1.4; color: #3F3F48">Tarikh dijanjikan. Mak dan Aina jejak tarikh yang sama.</div>
+</div>
+</div>
+<div style="display: flex; gap: 12px; align-items: flex-start; padding: 10px 12px; border-radius: 14px; background: #F3F3F6">
+<div style="width: 30px; height: 30px; border-radius: 50%; background: #087A75; color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0; animation: opmTick_5 0.5s ease-out 1.6s both"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></div>
+<div style="display: flex; flex-direction: column; gap: 2px">
+<div style="font-size: 14px; font-weight: 700; color: #5C5C66">“Boleh return?”</div>
+<div style="font-size: 18px; font-weight: 900">Boleh.</div>
+<div style="font-size: 14px; line-height: 1.4; color: #3F3F48">Pemulangan percuma dalam 30 hari.</div>
+</div>
+</div>
+</div>
+
+<button style="align-self: flex-start; min-height: 44px; border: 0; background: transparent; padding: 0; color: #087A75; font-family: inherit; font-size: 15px; font-weight: 700; display: flex; align-items: center; gap: 8px; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14v-2a8 8 0 0 1 16 0v2"></path><rect x="3" y="14" width="4" height="6" rx="1.5"></rect><rect x="17" y="14" width="4" height="6" rx="1.5"></rect></svg>Ada soalan lain? Bercakap dengan staf kami</button>
+
+<a href="#" data-go="6" style="margin-top: auto; height: 56px; border-radius: 14px; background: #E0103F; color: #FFFFFF; font-size: 18px; font-weight: 900; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2l2.4 11h11.2L21 7H6.2"></path><circle cx="9" cy="19.5" r="1.5"></circle><circle cx="17" cy="19.5" r="1.5"></circle></svg>Tambah ke Troli Keluarga</a>
+</div>
+</div></template>
+<template id="tpl-6"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #FFFFFF; color: #161823; font-family: 'Lato', system-ui, sans-serif; display: flex; flex-direction: column">
+<div style="height: 64px; flex-shrink: 0; padding: 0 16px 0 8px; display: flex; align-items: center; gap: 6px">
+<button aria-label="Kembali" style="width: 44px; height: 44px; border: 0; background: transparent; color: #161823; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></button>
+<div style="flex: 1; font-size: 20px; font-weight: 900">Troli Keluarga</div>
+<div style="display: flex">
+<div style="width: 34px; height: 34px; border-radius: 50%; background: #FFE6EC; color: #B8123B; border: 2px solid #FFFFFF; font-weight: 900; font-size: 14px; display: flex; align-items: center; justify-content: center">M</div>
+<div style="width: 34px; height: 34px; margin-left: -8px; border-radius: 50%; background: #DDFBFA; color: #087A75; border: 2px solid #FFFFFF; font-weight: 900; font-size: 14px; display: flex; align-items: center; justify-content: center">A</div>
+</div>
+</div>
+
+<div style="flex: 1; padding: 4px 20px 18px; display: flex; flex-direction: column; gap: 14px">
+<div style="font-size: 14px; color: #3F3F48; background: #DDFBFA; border-radius: 10px; padding: 8px 12px">Troli ini dikongsi oleh Mak dan Aina.</div>
+
+<div style="display: flex; gap: 12px; align-items: center; padding: 12px; border: 1.5px solid #DFDFE5; border-radius: 16px">
+<div style="width: 64px; height: 64px; border-radius: 12px; background: #F3F3F6; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="42" height="50" viewBox="0 0 170 260" role="img" aria-label="Seri Dapur Air Fryer 5.5L"><rect x="0" y="0" width="170" height="250" rx="48" fill="#2B2E3B"></rect><rect x="18" y="20" width="134" height="40" rx="20" fill="#3B3F51"></rect><circle cx="85" cy="40" r="10" fill="#25F4EE"></circle><rect x="18" y="78" width="134" height="150" rx="30" fill="#1E2030"></rect><rect x="54" y="176" width="62" height="16" rx="8" fill="#8E8E99"></rect></svg></div>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 3px">
+<div style="font-size: 17px; font-weight: 900">Seri Dapur Air Fryer 5.5L</div>
+<div style="font-size: 14px; color: #5C5C66">Kuantiti: 1 · <span style="background: #161823; color: #25F4EE; font-size: 10px; font-weight: 900; letter-spacing: 0.06em; padding: 2px 6px; border-radius: 4px">MALL</span></div>
+<div style="font-size: 18px; font-weight: 900">RM159.00</div>
+</div>
+</div>
+
+<div style="display: flex; gap: 10px; align-items: center; font-size: 15px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#087A75" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h11v10H3z"></path><path d="M14 10h4l3 3v3h-7z"></path><circle cx="7" cy="18" r="1.6"></circle><circle cx="17" cy="18" r="1.6"></circle></svg><span><strong>Sampai Khamis, 29 Okt</strong> <span style="color: #5C5C66">· Rumah Mak, Kajang</span></span></div>
+
+<div style="font-size: 21px; font-weight: 900; margin-top: 4px">Siapa bayar?</div>
+
+<label for="paySelf" data-pick="bg" style="display: flex; gap: 12px; align-items: flex-start; padding: 14px; border-radius: 16px; border: 2px solid #DFDFE5; background: #FFFFFF; cursor: pointer">
+<input id="paySelf" type="radio" name="payer"  style="width: 24px; height: 24px; margin: 2px 0 0; accent-color: #087A75; flex-shrink: 0; cursor: pointer">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="font-size: 18px; font-weight: 900">Mak bayar sendiri</div>
+<div style="font-size: 14px; line-height: 1.4; color: #3F3F48">Tunai semasa terima (COD), Touch ’n Go eWallet, FPX atau kad.</div>
+<div style="display: flex; gap: 8px; color: #3F3F48"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="10" rx="2"></rect><circle cx="12" cy="12" r="2.5"></circle></svg><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"></rect><path d="M16 12h5"></path></svg><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10l9-5 9 5"></path><path d="M5 10v8M10 10v8M14 10v8M19 10v8M3 20h18"></path></svg><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"></rect><path d="M3 10h18"></path></svg></div>
+</div>
+</label>
+
+<label for="payAina" data-pick="bg" style="display: flex; gap: 12px; align-items: flex-start; padding: 14px; border-radius: 16px; border: 2px solid #087A75; background: #F2FCFB; cursor: pointer">
+<input id="payAina" type="radio" name="payer" checked style="width: 24px; height: 24px; margin: 2px 0 0; accent-color: #087A75; flex-shrink: 0; cursor: pointer">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="font-size: 18px; font-weight: 900">Minta Aina bayar</div>
+<div style="font-size: 14px; line-height: 1.4; color: #3F3F48">Aina akan terima permintaan. Mak boleh batal bila-bila masa.</div>
+</div>
+</label>
+
+<div style="margin-top: auto; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; justify-content: space-between; align-items: baseline; padding-top: 12px; border-top: 1px solid #E6E6EB"><span style="font-size: 16px; color: #3F3F48">Jumlah</span><span style="font-size: 24px; font-weight: 900">RM159.00</span></div>
+<div data-if="payAina" style="display:contents">
+<a href="#" data-go="7" style="height: 56px; border-radius: 14px; background: #E0103F; color: #FFFFFF; font-size: 18px; font-weight: 900; text-decoration: none; display: flex; align-items: center; justify-content: center">Hantar permintaan kepada Aina</a>
+</div>
+<div data-if="paySelf" style="display:contents" hidden>
+<button style="height: 56px; border: 0; border-radius: 14px; background: #E0103F; color: #FFFFFF; font-family: inherit; font-size: 18px; font-weight: 900; cursor: pointer">Pilih cara bayar</button>
+</div>
+</div>
+</div>
+</div></template>
+<template id="tpl-7"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #FFFFFF; color: #161823; font-family: 'Lato', system-ui, sans-serif; display: flex; flex-direction: column">
+<div style="height: 64px; flex-shrink: 0; padding: 0 16px 0 8px; display: flex; align-items: center; gap: 6px">
+<button aria-label="Back" style="width: 44px; height: 44px; border: 0; background: transparent; color: #161823; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></button>
+<div style="flex: 1; font-size: 18px; font-weight: 900">Troli Keluarga</div>
+<div style="font-size: 13px; color: #5C5C66">8:47 pm</div>
+</div>
+
+<div style="flex: 1; padding: 4px 20px 18px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; gap: 12px; align-items: center">
+<div style="width: 52px; height: 52px; border-radius: 50%; background: #FFE6EC; color: #B8123B; font-weight: 900; font-size: 21px; display: flex; align-items: center; justify-content: center; flex-shrink: 0">M</div>
+<div style="display: flex; flex-direction: column; gap: 2px">
+<div style="font-size: 22px; font-weight: 900">Mak asked you to pay</div>
+<div style="font-size: 14px; color: #5C5C66">From your shared Troli Keluarga</div>
+</div>
+</div>
+
+<div style="display: flex; gap: 12px; align-items: center; padding: 12px; border: 1.5px solid #DFDFE5; border-radius: 16px">
+<div style="width: 60px; height: 60px; border-radius: 12px; background: #F3F3F6; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="40" height="48" viewBox="0 0 170 260" role="img" aria-label="Seri Dapur Air Fryer 5.5L"><rect x="0" y="0" width="170" height="250" rx="48" fill="#2B2E3B"></rect><rect x="18" y="20" width="134" height="40" rx="20" fill="#3B3F51"></rect><circle cx="85" cy="40" r="10" fill="#25F4EE"></circle><rect x="18" y="78" width="134" height="150" rx="30" fill="#1E2030"></rect><rect x="54" y="176" width="62" height="16" rx="8" fill="#8E8E99"></rect></svg></div>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 3px">
+<div style="font-size: 16px; font-weight: 900">Seri Dapur Air Fryer 5.5L</div>
+<div style="font-size: 14px; color: #5C5C66">Arrives Thu, 29 Oct · to Mak’s home</div>
+<div style="font-size: 18px; font-weight: 900">RM159.00</div>
+</div>
+</div>
+
+<div style="display: flex; gap: 8px; align-items: center; font-size: 13px; color: #3F3F48"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>Only this item is shared. Mak’s other cart items stay private.</div>
+
+<div style="font-size: 18px; font-weight: 900; margin-top: 2px">Pay with</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+
+<label data-pick="border" for="tng" style="display: flex; gap: 12px; align-items: center; min-height: 56px; padding: 8px 14px; box-sizing: border-box; border-radius: 14px; border: 2px solid #087A75; cursor: pointer">
+<input id="tng" type="radio" name="method" checked style="width: 22px; height: 22px; margin: 0; accent-color: #087A75; flex-shrink: 0; cursor: pointer">
+<div style="flex: 1; display: flex; flex-direction: column; gap: 1px"><span style="font-size: 16px; font-weight: 900">Touch ’n Go eWallet</span><span style="font-size: 13px; color: #5C5C66">Approve in your eWallet</span></div>
+</label>
+
+<label data-pick="border" for="fpx" style="display: flex; gap: 12px; align-items: center; min-height: 56px; padding: 8px 14px; box-sizing: border-box; border-radius: 14px; border: 2px solid #DFDFE5; cursor: pointer">
+<input id="fpx" type="radio" name="method"  style="width: 22px; height: 22px; margin: 0; accent-color: #087A75; flex-shrink: 0; cursor: pointer">
+<div style="flex: 1; display: flex; flex-direction: column; gap: 1px"><span style="font-size: 16px; font-weight: 900">FPX online banking</span><span style="font-size: 13px; color: #5C5C66">Pay from your bank account</span></div>
+</label>
+
+<label data-pick="border" for="card" style="display: flex; gap: 12px; align-items: center; min-height: 56px; padding: 8px 14px; box-sizing: border-box; border-radius: 14px; border: 2px solid #DFDFE5; cursor: pointer">
+<input id="card" type="radio" name="method"  style="width: 22px; height: 22px; margin: 0; accent-color: #087A75; flex-shrink: 0; cursor: pointer">
+<div style="flex: 1; display: flex; flex-direction: column; gap: 1px"><span style="font-size: 16px; font-weight: 900">Debit or credit card</span><span style="font-size: 13px; color: #5C5C66">Saved card ending 4821</span></div>
+</label>
+
+</div>
+
+<div style="display: flex; justify-content: space-between; align-items: center; font-size: 14px; color: #3F3F48; background: #F3F3F6; border-radius: 12px; padding: 10px 12px"><span>Family limit you set: RM300 a month</span><strong style="color: #161823">RM141 left</strong></div>
+
+<div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+<a href="#" data-go="8" style="height: 56px; border-radius: 14px; background: #E0103F; color: #FFFFFF; font-size: 18px; font-weight: 900; text-decoration: none; display: flex; align-items: center; justify-content: center">Pay RM159.00</a>
+<button style="height: 48px; border: 1.5px solid #DFDFE5; border-radius: 14px; background: #FFFFFF; color: #161823; font-family: inherit; font-size: 16px; font-weight: 700; cursor: pointer">Decline kindly</button>
+<div style="font-size: 12px; line-height: 1.4; color: #5C5C66; text-align: center">Mak sees who paid. Turn family payments off any time in Settings.</div>
+</div>
+</div>
+</div></template>
+<template id="tpl-8"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #FFFFFF; color: #161823; font-family: 'Lato', system-ui, sans-serif; display: flex; flex-direction: column">
+<div style="height: 64px; flex-shrink: 0; padding: 0 16px 0 8px; display: flex; align-items: center; gap: 6px">
+<button aria-label="Kembali" style="width: 44px; height: 44px; border: 0; background: transparent; color: #161823; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></button>
+<div style="flex: 1; font-size: 20px; font-weight: 900">Penghantaran</div>
+<span style="background: #DDFBFA; color: #087A75; font-size: 12px; font-weight: 900; letter-spacing: 0.04em; padding: 6px 10px; border-radius: 999px">MAK MODE</span>
+</div>
+
+<div style="flex: 1; padding: 4px 20px 18px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; gap: 10px; align-items: center; background: #FFE6EC; border-radius: 14px; padding: 12px 14px"><svg width="22" height="22" viewBox="0 0 24 24" fill="#E0103F" stroke="#E0103F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"></path></svg><div style="flex: 1; font-size: 16px; font-weight: 900">Aina dah bayar. Order disahkan.</div><span style="font-size: 12px; color: #5C5C66">Isnin</span></div>
+
+<div style="background: #161823; color: #FFFFFF; border-radius: 20px; padding: 18px 18px 16px; display: flex; flex-direction: column; gap: 6px; position: relative; overflow: hidden">
+<svg width="160" height="160" viewBox="0 0 160 160" aria-hidden="true" style="position: absolute; right: -40px; top: -40px"><circle cx="80" cy="80" r="80" fill="#FE2C55" opacity="0.18"></circle></svg>
+<div style="display: flex; align-items: center; gap: 8px"><span style="font-size: 12px; font-weight: 900; letter-spacing: 0.1em; color: #25F4EE">TARIKH DIJANJIKAN</span><span style="background: #25F4EE; color: #161823; font-size: 12px; font-weight: 900; padding: 2px 8px; border-radius: 999px">Hari ini</span></div>
+<div style="font-size: 36px; font-weight: 900; letter-spacing: -0.01em">Khamis, 29 Okt</div>
+<div style="display: flex; align-items: center; gap: 10px">
+<div style="display: flex"><div style="width: 30px; height: 30px; border-radius: 50%; background: #FFE6EC; color: #B8123B; border: 2px solid #161823; font-weight: 900; font-size: 13px; display: flex; align-items: center; justify-content: center">M</div><div style="width: 30px; height: 30px; margin-left: -8px; border-radius: 50%; background: #DDFBFA; color: #087A75; border: 2px solid #161823; font-weight: 900; font-size: 13px; display: flex; align-items: center; justify-content: center">A</div></div>
+<div style="font-size: 15px; color: #DFDFE5">Mak dan Aina jejak tarikh yang sama.</div>
+</div>
+</div>
+
+<div style="display: flex; gap: 8px; align-items: flex-start; font-size: 13px; line-height: 1.45; color: #3F3F48"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#087A75" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; margin-top: 1px"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5M12 8h.01"></path></svg>Tarikh ini dikira daripada rekod penghantaran sebenar ke kawasan Mak.</div>
+
+<div style="display: flex; flex-direction: column; padding-left: 4px">
+<div style="display: flex; gap: 14px">
+<div style="display: flex; flex-direction: column; align-items: center"><div style="width: 26px; height: 26px; border-radius: 50%; background: #087A75; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></div><div style="width: 3px; flex: 1; min-height: 24px; background: #087A75"></div></div>
+<div style="padding-bottom: 14px"><div style="font-size: 17px; font-weight: 900">Order disahkan</div><div style="font-size: 14px; color: #5C5C66">Isnin, 26 Okt · 8:48 mlm</div></div>
+</div>
+<div style="display: flex; gap: 14px">
+<div style="display: flex; flex-direction: column; align-items: center"><div style="width: 26px; height: 26px; border-radius: 50%; background: #087A75; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></div><div style="width: 3px; flex: 1; min-height: 24px; background: #087A75"></div></div>
+<div style="padding-bottom: 14px"><div style="font-size: 17px; font-weight: 900">Dibungkus oleh kedai</div><div style="font-size: 14px; color: #5C5C66">Selasa, 27 Okt</div></div>
+</div>
+<div style="display: flex; gap: 14px">
+<div style="display: flex; flex-direction: column; align-items: center"><div style="width: 26px; height: 26px; border-radius: 50%; background: #087A75; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></div><div style="width: 3px; flex: 1; min-height: 24px; background: #DFDFE5"></div></div>
+<div style="padding-bottom: 14px"><div style="font-size: 17px; font-weight: 900">Dalam perjalanan</div><div style="font-size: 14px; color: #5C5C66">Rabu, 28 Okt · tiba di hab Kajang</div></div>
+</div>
+<div style="display: flex; gap: 14px">
+<div style="display: flex; flex-direction: column; align-items: center"><div style="width: 26px; height: 26px; border-radius: 50%; background: #E0103F; border: 5px solid #FFE6EC; box-sizing: border-box; animation: opmDot_8 1.6s ease-out infinite"></div></div>
+<div><div style="font-size: 17px; font-weight: 900">Sampai hari ini</div><div style="font-size: 14px; color: #5C5C66">Penghantar dalam perjalanan ke rumah Mak</div></div>
+</div>
+</div>
+
+<div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+<a href="#" data-go="9" style="height: 56px; border-radius: 14px; background: #E0103F; color: #FFFFFF; font-size: 18px; font-weight: 900; text-decoration: none; display: flex; align-items: center; justify-content: center">Barang dah sampai? Sahkan terima</a>
+<button style="height: 48px; border: 1.5px solid #DFDFE5; border-radius: 14px; background: #FFFFFF; color: #161823; font-family: inherit; font-size: 16px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14v-2a8 8 0 0 1 16 0v2"></path><rect x="3" y="14" width="4" height="6" rx="1.5"></rect><rect x="17" y="14" width="4" height="6" rx="1.5"></rect></svg>Bercakap dengan staf kami</button>
+</div>
+</div>
+</div></template>
+<template id="tpl-9"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #161823; color: #FFFFFF; font-family: 'Lato', system-ui, sans-serif; display: flex; flex-direction: column">
+<svg width="390" height="844" viewBox="0 0 390 844" aria-hidden="true" style="position: absolute; left: 0; top: 0">
+<circle cx="370" cy="40" r="190" fill="#FE2C55" opacity="0.20"></circle>
+<circle cx="10" cy="820" r="170" fill="#25F4EE" opacity="0.10"></circle>
+<g style="animation: opmFloat_9 3s ease-in-out infinite">
+<rect x="60" y="110" width="10" height="18" rx="2" fill="#25F4EE" transform="rotate(-20 65 119)"></rect>
+<rect x="310" y="150" width="10" height="18" rx="2" fill="#FFFFFF" transform="rotate(25 315 159)"></rect>
+<rect x="96" y="210" width="8" height="14" rx="2" fill="#FE2C55" transform="rotate(40 100 217)"></rect>
+<rect x="280" y="96" width="8" height="14" rx="2" fill="#25F4EE" transform="rotate(-35 284 103)"></rect>
+<circle cx="330" cy="230" r="5" fill="#FE2C55"></circle>
+<circle cx="48" cy="170" r="4" fill="#FFFFFF"></circle>
+<rect x="200" y="74" width="8" height="14" rx="2" fill="#FFB84D" transform="rotate(15 204 81)"></rect>
+</g>
+</svg>
+
+<div style="height: 64px; flex-shrink: 0; padding: 0 16px 0 8px; display: flex; align-items: center; justify-content: space-between; position: relative">
+<button aria-label="Tutup" style="width: 44px; height: 44px; border: 0; background: transparent; color: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+<span style="background: rgba(37,244,238,0.14); color: #25F4EE; font-size: 12px; font-weight: 900; letter-spacing: 0.04em; padding: 6px 10px; border-radius: 999px">MAK MODE</span>
+</div>
+
+<div style="flex: 1; padding: 8px 24px 20px; display: flex; flex-direction: column; align-items: center; gap: 14px; position: relative; text-align: center">
+<div style="width: 132px; height: 132px; border-radius: 50%; border: 6px solid #25F4EE; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(37,244,238,0.08); margin-top: 18px; animation: opmPop_9 0.7s ease-out 0.2s both">
+<div style="font-size: 60px; font-weight: 900; line-height: 1">1</div>
+<div style="font-size: 10px; font-weight: 900; letter-spacing: 0.14em; color: #25F4EE">ORDER PERTAMA</div>
+</div>
+<div style="font-size: 36px; font-weight: 900; letter-spacing: -0.01em; line-height: 1.1">Order Pertama Mak</div>
+<div style="font-size: 17px; line-height: 1.5; color: #DFDFE5">Tahniah, Mak! Order pertama Mak dah selamat sampai, tepat pada tarikh yang dijanjikan.</div>
+<div style="display: flex; gap: 8px; align-items: center; font-size: 14px; color: #FFFFFF; background: rgba(255,255,255,0.08); border-radius: 999px; padding: 8px 14px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>Peribadi: hanya Mak dan Aina yang nampak.</div>
+
+<div style="width: 100%; background: #FFFFFF; color: #161823; border-radius: 18px; padding: 16px 18px; box-sizing: border-box; display: flex; flex-direction: column; gap: 8px; text-align: left; margin-top: 4px">
+<div style="font-size: 12px; font-weight: 900; letter-spacing: 0.1em; color: #087A75">MESEJ DARIPADA AINA</div>
+<div style="font-size: 19px; font-weight: 900; line-height: 1.35">“Dulu Mak ajar kita bertatih, sekarang kita teman Mak memilih.”</div>
+<div style="font-size: 14px; color: #5C5C66">— Aina</div>
+</div>
+
+<div style="margin-top: auto; width: 100%; display: flex; flex-direction: column; gap: 8px">
+<a href="#" data-go="10" style="height: 56px; border-radius: 14px; background: #25F4EE; color: #161823; font-size: 18px; font-weight: 900; text-decoration: none; display: flex; align-items: center; justify-content: center">Teruskan</a>
+<button style="height: 48px; border: 1.5px solid rgba(255,255,255,0.4); border-radius: 14px; background: transparent; color: #FFFFFF; font-family: inherit; font-size: 16px; font-weight: 700; cursor: pointer">Simpan kenangan</button>
+</div>
+</div>
+</div></template>
+<template id="tpl-10"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #FFFFFF; color: #161823; font-family: 'Lato', system-ui, sans-serif; display: flex; flex-direction: column">
+<div style="height: 64px; flex-shrink: 0; padding: 0 16px 0 8px; display: flex; align-items: center; gap: 6px">
+<button aria-label="Back" style="width: 44px; height: 44px; border: 0; background: transparent; color: #161823; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></button>
+<div style="flex: 1; font-size: 18px; font-weight: 900">Order Pertama Mak</div>
+</div>
+
+<div style="flex: 1; padding: 4px 20px 18px; display: flex; flex-direction: column; gap: 16px">
+<div style="background: #161823; color: #FFFFFF; border-radius: 20px; padding: 18px; display: flex; gap: 14px; align-items: center; position: relative; overflow: hidden">
+<svg width="140" height="140" viewBox="0 0 140 140" aria-hidden="true" style="position: absolute; right: -36px; bottom: -50px"><circle cx="70" cy="70" r="70" fill="#25F4EE" opacity="0.14"></circle></svg>
+<div style="width: 48px; height: 48px; border-radius: 50%; background: #25F4EE; color: #161823; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></div>
+<div style="display: flex; flex-direction: column; gap: 3px; position: relative">
+<div style="font-size: 22px; font-weight: 900">Mak’s first order arrived</div>
+<div style="font-size: 14px; color: #DFDFE5">Delivered Thu, 29 Oct · on the promised date</div>
+</div>
+</div>
+
+<div style="display: flex; gap: 10px; align-items: flex-end">
+<div style="width: 36px; height: 36px; border-radius: 50%; background: #FFE6EC; color: #B8123B; font-weight: 900; font-size: 15px; display: flex; align-items: center; justify-content: center; flex-shrink: 0">M</div>
+<div style="background: #F3F3F6; border-radius: 16px 16px 16px 4px; padding: 10px 14px; font-size: 17px; line-height: 1.4">Terima kasih Aina. Senang rupanya.<div style="font-size: 11px; color: #5C5C66; text-align: right; margin-top: 2px">2:31 pm</div></div>
+</div>
+
+<div style="background: #DDFBFA; border-radius: 20px; padding: 18px; display: flex; flex-direction: column; gap: 8px; position: relative">
+<div style="position: absolute; left: -10px; top: 50%; width: 20px; height: 20px; margin-top: -10px; border-radius: 50%; background: #FFFFFF"></div>
+<div style="position: absolute; right: -10px; top: 50%; width: 20px; height: 20px; margin-top: -10px; border-radius: 50%; background: #FFFFFF"></div>
+<div style="font-size: 12px; font-weight: 900; letter-spacing: 0.1em; color: #087A75">CREDIT EARNED</div>
+<div style="font-size: 22px; font-weight: 900; line-height: 1.2">For your own everyday orders</div>
+<div style="font-size: 14px; line-height: 1.45; color: #3F3F48">Earned for helping with a family member’s first order. Limits apply. It never discounts Mak’s order.</div>
+<div style="height: 1px; border-top: 2px dashed #9ADFDA; margin: 4px 0"></div>
+<div style="display: flex; justify-content: space-between; align-items: center; font-size: 14px"><span style="color: #3F3F48">Applies at your next checkout</span><span style="font-weight: 900; color: #087A75">Ready</span></div>
+</div>
+
+<div style="display: flex; gap: 8px; align-items: flex-start; font-size: 14px; line-height: 1.45; color: #3F3F48"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; margin-top: 1px"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>Mak’s next orders stay private unless she chooses to share them.</div>
+
+<a href="#" data-go="11" style="margin-top: auto; height: 56px; border-radius: 14px; background: #E0103F; color: #FFFFFF; font-size: 18px; font-weight: 900; text-decoration: none; display: flex; align-items: center; justify-content: center">Back to shopping</a>
+</div>
+</div></template>
+<template id="tpl-11"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #FFFFFF; color: #161823; font-family: 'Lato', system-ui, sans-serif; display: flex; flex-direction: column">
+<div style="height: 64px; flex-shrink: 0; padding: 0 16px 0 8px; display: flex; align-items: center; gap: 6px">
+<button aria-label="Kembali" style="width: 44px; height: 44px; border: 0; background: transparent; color: #161823; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></button>
+<div style="flex: 1; font-size: 20px; font-weight: 900">Order disahkan</div>
+<span style="background: #DDFBFA; color: #087A75; font-size: 12px; font-weight: 900; letter-spacing: 0.04em; padding: 6px 10px; border-radius: 999px">MAK MODE</span>
+</div>
+
+<div style="flex: 1; padding: 6px 20px 18px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 10px; padding: 18px; border-radius: 20px; background: #F2FCFB">
+<div style="width: 52px; height: 52px; border-radius: 50%; background: #087A75; color: #FFFFFF; display: flex; align-items: center; justify-content: center; animation: opmPop_11 0.6s ease-out 0.2s both"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></div>
+<div style="font-size: 26px; font-weight: 900; line-height: 1.2">Order kedua Mak.<br>Mak buat sendiri.</div>
+<div style="font-size: 14px; color: #3F3F48">Khamis, 19 Nov · 10:05 pagi</div>
+</div>
+
+<div style="display: flex; gap: 12px; align-items: center; padding: 12px; border: 1.5px solid #DFDFE5; border-radius: 16px">
+<div style="width: 64px; height: 64px; border-radius: 12px; background: #F3F3F6; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="46" height="44" viewBox="0 0 46 44" role="img" aria-label="Bekas makanan kaca, set 5"><rect x="4" y="26" width="38" height="14" rx="4" fill="#BFE9F2" stroke="#5FB3C4" stroke-width="2"></rect><rect x="8" y="14" width="30" height="12" rx="4" fill="#D6F2F7" stroke="#5FB3C4" stroke-width="2"></rect><rect x="12" y="4" width="22" height="10" rx="3" fill="#25F4EE" stroke="#087A75" stroke-width="2"></rect></svg></div>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 3px">
+<div style="font-size: 17px; font-weight: 900">Bekas Makanan Kaca, Set 5</div>
+<div style="font-size: 14px; color: #5C5C66"><span style="background: #161823; color: #25F4EE; font-size: 10px; font-weight: 900; letter-spacing: 0.06em; padding: 2px 6px; border-radius: 4px">MALL</span> Kuantiti: 1</div>
+<div style="font-size: 18px; font-weight: 900">RM39.90</div>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 10px; font-size: 16px">
+<div style="display: flex; gap: 10px; align-items: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#087A75" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="10" rx="2"></rect><circle cx="12" cy="12" r="2.5"></circle></svg><span><strong>Bayar:</strong> tunai semasa terima (COD)</span></div>
+<div style="display: flex; gap: 10px; align-items: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#087A75" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M4 10h16M9 3v4M15 3v4"></path></svg><span><strong>Sampai Isnin, 23 Nov</strong> · tarikh dijanjikan</span></div>
+<div style="display: flex; gap: 10px; align-items: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#087A75" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path><path d="M8.5 12l2.5 2.5 4.5-5"></path></svg><span><strong>Original:</strong> Jaminan Keaslian 100%</span></div>
+<div style="display: flex; gap: 10px; align-items: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#087A75" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14l-5-5 5-5"></path><path d="M4 9h10a6 6 0 0 1 0 12h-3"></path></svg><span><strong>Pemulangan percuma</strong> 30 hari</span></div>
+</div>
+
+<div style="display: flex; gap: 8px; align-items: flex-start; font-size: 14px; line-height: 1.45; color: #3F3F48; background: #F3F3F6; border-radius: 12px; padding: 10px 12px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; margin-top: 1px"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>Peribadi. Aina tidak dimaklumkan kecuali Mak kongsi.</div>
+
+<div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+<a href="#" data-go="0" style="height: 56px; border-radius: 14px; background: #E0103F; color: #FFFFFF; font-size: 18px; font-weight: 900; text-decoration: none; display: flex; align-items: center; justify-content: center">Terus membeli-belah</a>
+<button style="height: 48px; border: 1.5px solid #DFDFE5; border-radius: 14px; background: #FFFFFF; color: #161823; font-family: inherit; font-size: 16px; font-weight: 700; cursor: pointer">Kongsi dengan Aina</button>
+</div>
+</div>
+</div></template>
+<template id="tpl-12"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #0E0F17; color: #161823; font-family: 'Lato', system-ui, sans-serif">
+<svg width="390" height="200" viewBox="0 0 390 200" style="position: absolute; left: 0; top: 0; opacity: 0.45"><rect width="390" height="200" fill="#232538"></rect><circle cx="330" cy="60" r="120" fill="#FFB84D" opacity="0.10"></circle><rect x="110" y="70" width="150" height="160" rx="42" fill="#F3F3F6"></rect></svg>
+<div style="position: absolute; left: 0; right: 0; top: 150px; bottom: 0; background: #FFFFFF; border-radius: 24px 24px 0 0; padding: 10px 20px 20px; box-sizing: border-box; display: flex; flex-direction: column; gap: 14px">
+<div style="width: 40px; height: 5px; border-radius: 3px; background: #DFDFE5; align-self: center"></div>
+<div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 4px"><div style="font-size: 26px; font-weight: 900; letter-spacing: -0.01em">Lock the deal</div><div style="font-size: 15px; line-height: 1.4; color: #5C5C66">Hold today’s price so Mak has time to decide.</div></div>
+<button aria-label="Close" style="width: 44px; height: 44px; border: 0; border-radius: 50%; background: #F3F3F6; color: #161823; display: flex; align-items: center; justify-content: center; flex-shrink: 0; cursor: pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+</div>
+<div style="border: 1.5px solid #DFDFE5; border-radius: 16px; padding: 12px; display: flex; gap: 12px; align-items: center"><div style="width: 52px; height: 52px; border-radius: 10px; background: #F3F3F6; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="36" height="42" viewBox="0 0 170 260" role="img" aria-label="Seri Dapur Air Fryer 5.5L"><rect x="0" y="0" width="170" height="250" rx="48" fill="#2B2E3B"></rect><rect x="18" y="20" width="134" height="40" rx="20" fill="#3B3F51"></rect><circle cx="85" cy="40" r="10" fill="#25F4EE"></circle><rect x="18" y="78" width="134" height="150" rx="30" fill="#1E2030"></rect><rect x="54" y="176" width="62" height="16" rx="8" fill="#8E8E99"></rect></svg></div>
+<div style="display: flex; flex-direction: column; gap: 4px; min-width: 0"><div style="font-size: 16px; font-weight: 900">Seri Dapur Air Fryer 5.5L</div><div style="display: flex; align-items: center; gap: 8px"><span style="font-size: 18px; font-weight: 900">RM159.00</span><span style="display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 900; background: #DDFBFA; color: #087A75; padding: 2px 8px; border-radius: 999px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>Locked</span></div></div></div>
+<div style="font-size: 18px; font-weight: 900">Keep this price for Mak</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+
+<label data-pick="bg" for="h24" style="display: flex; gap: 12px; align-items: center; min-height: 54px; padding: 6px 14px; box-sizing: border-box; border-radius: 14px; border: 2px solid #087A75; background: #F2FCFB; cursor: pointer">
+<input id="h24" type="radio" name="lock" checked style="width: 22px; height: 22px; margin: 0; accent-color: #087A75; flex-shrink: 0; cursor: pointer">
+<div style="flex: 1; display: flex; flex-direction: column; gap: 1px"><span style="font-size: 16px; font-weight: 900">24 hours</span><span style="font-size: 13px; color: #5C5C66">Until Wed, 28 Oct, 8:41 pm</span></div>
+</label>
+
+<label data-pick="bg" for="h48" style="display: flex; gap: 12px; align-items: center; min-height: 54px; padding: 6px 14px; box-sizing: border-box; border-radius: 14px; border: 2px solid #DFDFE5; background: #FFFFFF; cursor: pointer">
+<input id="h48" type="radio" name="lock"  style="width: 22px; height: 22px; margin: 0; accent-color: #087A75; flex-shrink: 0; cursor: pointer">
+<div style="flex: 1; display: flex; flex-direction: column; gap: 1px"><span style="font-size: 16px; font-weight: 900">48 hours</span><span style="font-size: 13px; color: #5C5C66">Until Thu, 29 Oct, 8:41 pm</span></div>
+</label>
+
+<label data-pick="bg" for="d3" style="display: flex; gap: 12px; align-items: center; min-height: 54px; padding: 6px 14px; box-sizing: border-box; border-radius: 14px; border: 2px solid #DFDFE5; background: #FFFFFF; cursor: pointer">
+<input id="d3" type="radio" name="lock"  style="width: 22px; height: 22px; margin: 0; accent-color: #087A75; flex-shrink: 0; cursor: pointer">
+<div style="flex: 1; display: flex; flex-direction: column; gap: 1px"><span style="font-size: 16px; font-weight: 900">3 days</span><span style="font-size: 13px; color: #5C5C66">Until Fri, 30 Oct, 8:41 pm</span></div>
+</label>
+
+</div>
+<div style="display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.45; color: #3F3F48; background: #DDFBFA; border-radius: 12px; padding: 10px 12px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#087A75" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5M12 8h.01"></path></svg><span>Price and voucher stay the same for Mak until the lock ends. She can still say no.</span></div>
+<div style="margin-top: auto; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #5C5C66"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>Nothing is linked until Mak agrees.</div>
+<a href="#" data-go="13" style="height: 54px; border-radius: 14px; background: #E0103F; color: #FFFFFF; font-size: 17px; font-weight: 900; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"></path><path d="M22 2l-7 20-4-9-9-4z"></path></svg>Lock and send to Mak</a>
+</div></div></div></template>
+<template id="tpl-13"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F3F3F6; color: #161823; font-family: 'Lato', system-ui, sans-serif; display: flex; flex-direction: column">
+<div style="height: 68px; flex-shrink: 0; background: #FFFFFF; border-bottom: 1px solid #E6E6EB; padding: 0 8px; display: flex; align-items: center; gap: 8px"><button aria-label="Kembali" style="width: 44px; height: 44px; border: 0; background: transparent; color: #161823; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg></button><div style="width: 40px; height: 40px; border-radius: 50%; background: #DDFBFA; color: #087A75; font-weight: 900; font-size: 17px; display: flex; align-items: center; justify-content: center; flex-shrink: 0">A</div><div style="flex: 1; display: flex; flex-direction: column"><div style="font-size: 17px; font-weight: 900">Aina</div><div style="font-size: 13px; color: #087A75">dalam talian</div></div></div>
+<div style="flex: 1; padding: 14px 14px 10px; display: flex; flex-direction: column; gap: 10px; overflow: hidden">
+<div style="align-self: center; font-size: 12px; font-weight: 700; color: #5C5C66; background: #E6E6EB; border-radius: 10px; padding: 4px 10px">Hari ini</div>
+<div style="align-self: flex-start; max-width: 290px; background: #FFFFFF; border-radius: 4px 16px 16px 16px; padding: 10px 12px; font-size: 16px; line-height: 1.4; box-shadow: 0 1px 2px rgba(22,24,35,0.08)">Mak, Aina kunci harga ni untuk Mak 24 jam.<div style="font-size: 11px; color: #5C5C66; text-align: right; margin-top: 2px">8:41 mlm</div></div>
+<div style="align-self: flex-start; width: 300px; background: #FFFFFF; border-radius: 4px 18px 18px 18px; overflow: hidden; box-shadow: 0 4px 16px rgba(22,24,35,0.12)">
+<div style="background: #25F4EE; color: #161823; padding: 8px 14px; display: flex; align-items: center; justify-content: space-between"><span style="font-size: 12px; font-weight: 900; letter-spacing: 0.08em">JEMPUT MAK</span><span style="font-size: 12px; font-weight: 700">#OrderPertamaMak</span></div>
+<div style="padding: 12px 14px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; gap: 10px; align-items: center"><div style="width: 52px; height: 52px; border-radius: 10px; background: #F3F3F6; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="36" height="42" viewBox="0 0 170 260" role="img" aria-label="Seri Dapur Air Fryer 5.5L"><rect x="0" y="0" width="170" height="250" rx="48" fill="#2B2E3B"></rect><rect x="18" y="20" width="134" height="40" rx="20" fill="#3B3F51"></rect><circle cx="85" cy="40" r="10" fill="#25F4EE"></circle><rect x="18" y="78" width="134" height="150" rx="30" fill="#1E2030"></rect><rect x="54" y="176" width="62" height="16" rx="8" fill="#8E8E99"></rect></svg></div><div style="display: flex; flex-direction: column; gap: 4px"><div style="font-size: 16px; font-weight: 900; line-height: 1.25">Seri Dapur Air Fryer 5.5L</div><span style="align-self: flex-start"><span style="display: inline-flex; align-items: center; background: #161823; color: #25F4EE; font-size: 10px; font-weight: 900; letter-spacing: 0.06em; padding: 2px 6px; border-radius: 4px">MALL</span></span></div></div>
+<div style="display: flex; align-items: center; justify-content: space-between; background: #161823; border-radius: 10px; padding: 8px 10px"><span style="display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 900; color: #25F4EE"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>Harga dikunci</span><span style="font-size: 14px; font-weight: 900; color: #FFFFFF">23j 59m lagi</span></div>
+<div style="display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 1.35"><div style="display: flex; gap: 8px; align-items: flex-start"><svg style="flex-shrink: 0; margin-top: 1px" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#087A75" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg><span><strong>Jumlah RM159.00</strong> (termasuk penghantaran)</span></div><div style="display: flex; gap: 8px; align-items: flex-start"><svg style="flex-shrink: 0; margin-top: 1px" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#087A75" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg><span><strong>Sampai Khamis, 29 Okt</strong></span></div></div>
+<a href="#" data-go="4" style="height: 48px; border-radius: 14px; background: #E0103F; color: #FFFFFF; font-size: 17px; font-weight: 900; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px">Buka kad</a>
+<a href="#" data-go="14" style="height: 44px; border: 1.5px solid #DFDFE5; border-radius: 12px; color: #161823; font-size: 16px; font-weight: 700; text-decoration: none; display: flex; align-items: center; justify-content: center">Nak lagi murah?</a>
+<div style="font-size: 11px; color: #5C5C66; text-align: right">8:41 mlm</div>
+</div></div>
+<div style="align-self: flex-start; max-width: 290px; background: #FFFFFF; border-radius: 4px 16px 16px 16px; padding: 10px 12px; font-size: 16px; line-height: 1.4; box-shadow: 0 1px 2px rgba(22,24,35,0.08)">Kalau Mak nak lagi murah, Aina boleh tunggu harga LIVE untuk Mak.<div style="font-size: 11px; color: #5C5C66; text-align: right; margin-top: 2px">8:42 mlm</div></div>
+</div>
+<div style="height: 72px; flex-shrink: 0; background: #FFFFFF; border-top: 1px solid #E6E6EB; padding: 0 12px; display: flex; align-items: center; gap: 10px"><input type="text" aria-label="Taip mesej" placeholder="Taip mesej" style="flex: 1; height: 44px; border: 1.5px solid #DFDFE5; border-radius: 22px; padding: 0 16px; font-family: inherit; font-size: 15px; color: #161823; background: #F3F3F6; box-sizing: border-box"><button aria-label="Rakam mesej suara" style="width: 44px; height: 44px; border: 0; border-radius: 50%; background: #161823; color: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5 11a7 7 0 0 0 14 0M12 18v3"></path></svg></button></div>
+</div></template>
+<template id="tpl-14"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #FFFFFF; color: #161823; font-family: 'Lato', system-ui, sans-serif; display: flex; flex-direction: column">
+<div style="height: 64px; flex-shrink: 0; padding: 0 12px 0 8px; display: flex; align-items: center; gap: 6px"><button aria-label="Kembali" style="width: 44px; height: 44px; border: 0; background: transparent; color: #161823; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg></button><div style="flex: 1; font-size: 16px; font-weight: 700">Nak lagi murah?</div><span style="background: #DDFBFA; color: #087A75; font-size: 12px; font-weight: 900; letter-spacing: 0.04em; padding: 6px 10px; border-radius: 999px">MAK MODE</span><button aria-label="Bahasa: Bahasa Melayu" style="height: 44px; min-width: 44px; padding: 0 8px; border: 1.5px solid #DFDFE5; border-radius: 10px; background: #FFFFFF; color: #161823; font-family: inherit; font-size: 14px; font-weight: 900; cursor: pointer">BM</button></div>
+<div style="flex: 1; padding: 6px 20px 18px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-direction: column; gap: 6px"><div style="font-size: 32px; font-weight: 900; letter-spacing: -0.01em">Aina boleh tunggu harga LIVE.</div><div style="font-size: 17px; line-height: 1.45; color: #3F3F48">Kadang-kadang ada harga lebih murah semasa LIVE. Aina tengok dan tunggu untuk Mak.</div></div>
+<div style="display: flex; gap: 12px; align-items: center; padding: 12px; border: 1.5px solid #DFDFE5; border-radius: 16px"><div style="width: 56px; height: 56px; border-radius: 10px; background: #F3F3F6; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="38" height="44" viewBox="0 0 170 260" role="img" aria-label="Seri Dapur Air Fryer 5.5L"><rect x="0" y="0" width="170" height="250" rx="48" fill="#2B2E3B"></rect><rect x="18" y="20" width="134" height="40" rx="20" fill="#3B3F51"></rect><circle cx="85" cy="40" r="10" fill="#25F4EE"></circle><rect x="18" y="78" width="134" height="150" rx="30" fill="#1E2030"></rect><rect x="54" y="176" width="62" height="16" rx="8" fill="#8E8E99"></rect></svg></div><div style="display: flex; flex-direction: column; gap: 4px"><div style="font-size: 16px; font-weight: 900">Seri Dapur Air Fryer 5.5L</div><div style="display: flex; align-items: center; gap: 8px"><span style="font-size: 17px; font-weight: 900">RM159.00</span><span style="display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 900; background: #DDFBFA; color: #087A75; padding: 2px 8px; border-radius: 999px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>Dikunci</span></div></div></div>
+<div style="font-size: 21px; font-weight: 900">Harga sasaran Mak</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+
+<label data-pick="bg" for="t149" style="display: flex; gap: 12px; align-items: center; min-height: 54px; padding: 6px 14px; box-sizing: border-box; border-radius: 14px; border: 2px solid #DFDFE5; background: #FFFFFF; cursor: pointer">
+<input id="t149" type="radio" name="target"  style="width: 22px; height: 22px; margin: 0; accent-color: #087A75; flex-shrink: 0; cursor: pointer">
+<div style="flex: 1; display: flex; flex-direction: column; gap: 1px"><span style="font-size: 16px; font-weight: 900">Bawah RM149</span><span style="font-size: 13px; color: #5C5C66">Jimat RM10 atau lebih</span></div>
+</label>
+
+<label data-pick="bg" for="t139" style="display: flex; gap: 12px; align-items: center; min-height: 54px; padding: 6px 14px; box-sizing: border-box; border-radius: 14px; border: 2px solid #087A75; background: #F2FCFB; cursor: pointer">
+<input id="t139" type="radio" name="target" checked style="width: 22px; height: 22px; margin: 0; accent-color: #087A75; flex-shrink: 0; cursor: pointer">
+<div style="flex: 1; display: flex; flex-direction: column; gap: 1px"><span style="font-size: 16px; font-weight: 900">Bawah RM139</span><span style="font-size: 13px; color: #5C5C66">Jimat RM20 atau lebih</span></div>
+</label>
+
+<label data-pick="bg" for="t129" style="display: flex; gap: 12px; align-items: center; min-height: 54px; padding: 6px 14px; box-sizing: border-box; border-radius: 14px; border: 2px solid #DFDFE5; background: #FFFFFF; cursor: pointer">
+<input id="t129" type="radio" name="target"  style="width: 22px; height: 22px; margin: 0; accent-color: #087A75; flex-shrink: 0; cursor: pointer">
+<div style="flex: 1; display: flex; flex-direction: column; gap: 1px"><span style="font-size: 16px; font-weight: 900">Bawah RM129</span><span style="font-size: 13px; color: #5C5C66">Jimat RM30 atau lebih</span></div>
+</label>
+
+</div>
+<div style="display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.45; color: #3F3F48; background: #DDFBFA; border-radius: 12px; padding: 10px 12px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#087A75" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5M12 8h.01"></path></svg><span>Aina tak boleh beli tanpa Mak. Bila harga sampai, Mak setuju dulu. Kalau tiada harga murah, Mak masih boleh beli RM159.00 sebelum kunci tamat.</span></div>
+<div style="margin-top: auto; display: flex; flex-direction: column; gap: 6px"><a href="#" data-go="15" style="height: 56px; border-radius: 14px; background: #E0103F; color: #FFFFFF; font-size: 18px; font-weight: 900; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px">Minta Aina tunggu</a><button style="height: 48px; border: 0; border-radius: 14px; background: transparent; color: #3F3F48; font-family: inherit; font-size: 16px; font-weight: 700; cursor: pointer">Tak perlu, terima kasih</button></div>
+</div></div></template>
+<template id="tpl-15"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #232538; color: #161823; font-family: 'Lato', system-ui, sans-serif; color: #FFFFFF">
+<svg width="390" height="844" viewBox="0 0 390 844" role="img" aria-label="LIVE: a host shows an air fryer on a kitchen counter" style="position: absolute; left: 0; top: 0"><rect width="390" height="844" fill="#232538"></rect><circle cx="330" cy="110" r="150" fill="#FFB84D" opacity="0.10"></circle><rect x="0" y="246" width="390" height="6" fill="#30334A"></rect><rect x="0" y="560" width="390" height="284" fill="#3B3346"></rect><rect x="0" y="560" width="390" height="10" fill="#4A4058"></rect><g transform="translate(110 330) scale(0.9)"><rect x="0" y="0" width="170" height="250" rx="48" fill="#F3F3F6"></rect><rect x="18" y="20" width="134" height="40" rx="20" fill="#DFDFE5"></rect><circle cx="85" cy="40" r="12" fill="#161823"></circle><circle cx="85" cy="40" r="5" fill="#25F4EE"></circle><rect x="18" y="78" width="134" height="150" rx="30" fill="#E6E6EB"></rect><rect x="36" y="98" width="98" height="52" rx="14" fill="#2B2E3B"></rect></g></svg><div style="position: absolute; left: 0; right: 0; top: 0; height: 64px; padding: 0 12px; box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; color: #FFFFFF"><button aria-label="Back" style="width: 44px; height: 44px; border: 0; background: transparent; color: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg></button><div style="display: flex; align-items: center; gap: 8px"><span style="background: #FE2C55; color: #FFFFFF; font-size: 12px; font-weight: 900; letter-spacing: 0.06em; padding: 3px 8px; border-radius: 4px">LIVE</span><span style="font-size: 15px; font-weight: 700">Seri Dapur Official</span></div><div style="width: 44px; text-align: right; font-size: 12px; font-weight: 700">3.2K</div></div>
+<div style="position: absolute; left: 50px; right: 50px; top: 110px; background: rgba(22,24,35,0.72); border-radius: 18px; padding: 14px 16px; text-align: center; box-shadow: 0 4px 16px rgba(0,0,0,0.35)"><div style="font-size: 14px; font-weight: 700">Flash deal starts in</div><div style="font-size: 44px; line-height: 1.1; font-weight: 900; color: #25F4EE; letter-spacing: 0.02em">02:14</div></div>
+<div style="position: absolute; left: 16px; right: 84px; bottom: 268px; display: flex; flex-direction: column; gap: 6px; font-size: 14px; line-height: 1.4; color: #FFFFFF; text-shadow: 0 1px 6px rgba(0,0,0,0.6)"><div><strong>Hafiz</strong> harga flash bila?</div><div><strong>Seri Dapur</strong> Flash deal sekejap lagi. 18 unit sahaja!</div></div>
+<div style="position: absolute; left: 12px; right: 12px; bottom: 18px; background: #FFFFFF; color: #161823; border-radius: 16px; padding: 12px; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 8px 24px rgba(0,0,0,0.35)"><div style="display: flex; align-items: center; gap: 10px"><div style="width: 40px; height: 40px; border-radius: 50%; background: #FFE6EC; color: #B8123B; font-weight: 900; font-size: 17px; display: flex; align-items: center; justify-content: center; flex-shrink: 0">M</div><div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px"><div style="font-size: 15px; font-weight: 900">Watching for Mak</div><div style="font-size: 13px; color: #5C5C66">Target under RM139 · lock ends soon</div></div><span style="display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 900; background: #DDFBFA; color: #087A75; padding: 2px 8px; border-radius: 999px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>23j 41m</span></div><div style="display: flex; gap: 12px; align-items: center"><div style="width: 56px; height: 56px; border-radius: 10px; background: #F3F3F6; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="40" height="46" viewBox="0 0 170 260" role="img" aria-label="Seri Dapur Air Fryer 5.5L"><rect x="0" y="0" width="170" height="250" rx="48" fill="#2B2E3B"></rect><rect x="18" y="20" width="134" height="40" rx="20" fill="#3B3F51"></rect><circle cx="85" cy="40" r="10" fill="#25F4EE"></circle><rect x="18" y="78" width="134" height="150" rx="30" fill="#1E2030"></rect><rect x="54" y="176" width="62" height="16" rx="8" fill="#8E8E99"></rect></svg></div><div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px"><div style="display: flex; align-items: center; gap: 6px"><span style="display: inline-flex; align-items: center; background: #161823; color: #25F4EE; font-size: 11px; font-weight: 900; letter-spacing: 0.06em; padding: 2px 6px; border-radius: 4px">MALL</span><span style="font-size: 15px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Seri Dapur Air Fryer 5.5L</span></div><div style="font-size: 18px; font-weight: 900">RM159.00 <span style="font-size: 12px; font-weight: 400; color: #5C5C66">· Mak’s locked price</span></div></div></div><div style="display: flex; align-items: center; gap: 8px; font-size: 14px; color: #3F3F48; background: #F3F3F6; border-radius: 10px; padding: 8px 10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#087A75" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>We’ll buzz you the second the deal drops.</div><div style="display: flex; gap: 10px"><button disabled style="flex: 1.25; height: 46px; border-radius: 12px; border: 0; background: #E6E6EB; color: #8E8E99; font-family: inherit; font-size: 16px; font-weight: 900">Grab for Mak</button><button style="flex: 1; height: 46px; border-radius: 12px; border: 1.5px solid #DFDFE5; background: #FFFFFF; color: #161823; font-family: inherit; font-size: 16px; font-weight: 700; cursor: pointer">Stop watching</button></div></div>
+</div></template>
+<template id="tpl-16"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #232538; color: #161823; font-family: 'Lato', system-ui, sans-serif; color: #FFFFFF">
+<svg width="390" height="844" viewBox="0 0 390 844" role="img" aria-label="LIVE: a host shows an air fryer on a kitchen counter" style="position: absolute; left: 0; top: 0"><rect width="390" height="844" fill="#232538"></rect><circle cx="330" cy="110" r="150" fill="#FFB84D" opacity="0.10"></circle><rect x="0" y="246" width="390" height="6" fill="#30334A"></rect><rect x="0" y="560" width="390" height="284" fill="#3B3346"></rect><rect x="0" y="560" width="390" height="10" fill="#4A4058"></rect><g transform="translate(110 330) scale(0.9)"><rect x="0" y="0" width="170" height="250" rx="48" fill="#F3F3F6"></rect><rect x="18" y="20" width="134" height="40" rx="20" fill="#DFDFE5"></rect><circle cx="85" cy="40" r="12" fill="#161823"></circle><circle cx="85" cy="40" r="5" fill="#25F4EE"></circle><rect x="18" y="78" width="134" height="150" rx="30" fill="#E6E6EB"></rect><rect x="36" y="98" width="98" height="52" rx="14" fill="#2B2E3B"></rect></g></svg><div style="position: absolute; left: 0; right: 0; top: 0; height: 64px; padding: 0 12px; box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; color: #FFFFFF"><button aria-label="Back" style="width: 44px; height: 44px; border: 0; background: transparent; color: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg></button><div style="display: flex; align-items: center; gap: 8px"><span style="background: #FE2C55; color: #FFFFFF; font-size: 12px; font-weight: 900; letter-spacing: 0.06em; padding: 3px 8px; border-radius: 4px">LIVE</span><span style="font-size: 15px; font-weight: 700">Seri Dapur Official</span></div><div style="width: 44px; text-align: right; font-size: 12px; font-weight: 700">3.2K</div></div>
+<div style="position: absolute; left: 40px; right: 40px; top: 104px; background: #FFB84D; color: #161823; border-radius: 18px; padding: 12px 16px; text-align: center; box-shadow: 0 6px 20px rgba(0,0,0,0.4)"><div style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 900; letter-spacing: 0.06em"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"></path></svg>FLASH DEAL · 18 LEFT</div><div style="font-size: 42px; line-height: 1.1; font-weight: 900">RM129.00</div><div style="font-size: 14px; font-weight: 700; text-decoration: line-through; opacity: 0.7">RM159.00</div></div>
+<div style="position: absolute; left: 16px; right: 84px; bottom: 268px; display: flex; flex-direction: column; gap: 6px; font-size: 14px; line-height: 1.4; color: #FFFFFF; text-shadow: 0 1px 6px rgba(0,0,0,0.6)"><div><strong>Seri Dapur</strong> Flash deal dah bermula!</div><div><strong>Aini</strong> cepat, tinggal sikit</div></div>
+<div style="position: absolute; left: 12px; right: 12px; bottom: 18px; background: #FFFFFF; color: #161823; border-radius: 16px; padding: 12px; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 8px 24px rgba(0,0,0,0.35)"><div style="display: flex; align-items: center; gap: 10px"><div style="width: 40px; height: 40px; border-radius: 50%; background: #FFE6EC; color: #B8123B; font-weight: 900; font-size: 17px; display: flex; align-items: center; justify-content: center; flex-shrink: 0">M</div><div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px"><div style="font-size: 15px; font-weight: 900">Watching for Mak</div><div style="font-size: 13px; color: #5C5C66">Target under RM139 · deal is live</div></div><span style="display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 900; background: #DDFBFA; color: #087A75; padding: 2px 8px; border-radius: 999px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>23j 41m</span></div><div style="display: flex; gap: 12px; align-items: center"><div style="width: 56px; height: 56px; border-radius: 10px; background: #F3F3F6; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="40" height="46" viewBox="0 0 170 260" role="img" aria-label="Seri Dapur Air Fryer 5.5L"><rect x="0" y="0" width="170" height="250" rx="48" fill="#2B2E3B"></rect><rect x="18" y="20" width="134" height="40" rx="20" fill="#3B3F51"></rect><circle cx="85" cy="40" r="10" fill="#25F4EE"></circle><rect x="18" y="78" width="134" height="150" rx="30" fill="#1E2030"></rect><rect x="54" y="176" width="62" height="16" rx="8" fill="#8E8E99"></rect></svg></div><div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px"><div style="display: flex; align-items: center; gap: 6px"><span style="display: inline-flex; align-items: center; background: #161823; color: #25F4EE; font-size: 11px; font-weight: 900; letter-spacing: 0.06em; padding: 2px 6px; border-radius: 4px">MALL</span><span style="font-size: 15px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Seri Dapur Air Fryer 5.5L</span></div><div style="font-size: 18px; font-weight: 900; color: #E0103F">RM129.00 <span style="font-size: 12px; font-weight: 400; color: #5C5C66; text-decoration: line-through">RM159.00</span></div></div></div><div style="display: flex; align-items: center; gap: 8px; font-size: 14px; color: #3F3F48; background: #DDFBFA; border-radius: 10px; padding: 8px 10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#087A75" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg>RM30 under Mak’s locked price. Mak approves before you pay.</div><div style="display: flex; gap: 10px"><a href="#" data-go="17" style="flex: 1.25; height: 46px; border-radius: 12px; background: #25F4EE; color: #161823; font-size: 16px; font-weight: 900; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; animation: opmPulse_16 1.8s ease-out infinite"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"></path></svg>Grab for Mak</a><button style="flex: 1; height: 46px; border-radius: 12px; border: 1.5px solid #DFDFE5; background: #FFFFFF; color: #161823; font-family: inherit; font-size: 16px; font-weight: 700; cursor: pointer">Skip</button></div></div>
+</div></template>
+<template id="tpl-17"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #FFFFFF; color: #161823; font-family: 'Lato', system-ui, sans-serif; display: flex; flex-direction: column">
+<div style="height: 64px; flex-shrink: 0; padding: 0 12px 0 8px; display: flex; align-items: center; gap: 6px"><button aria-label="Kembali" style="width: 44px; height: 44px; border: 0; background: transparent; color: #161823; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg></button><div style="flex: 1; font-size: 16px; font-weight: 700">Harga LIVE untuk Mak</div><span style="background: #DDFBFA; color: #087A75; font-size: 12px; font-weight: 900; letter-spacing: 0.04em; padding: 6px 10px; border-radius: 999px">MAK MODE</span><button aria-label="Bahasa: Bahasa Melayu" style="height: 44px; min-width: 44px; padding: 0 8px; border: 1.5px solid #DFDFE5; border-radius: 10px; background: #FFFFFF; color: #161823; font-family: inherit; font-size: 14px; font-weight: 900; cursor: pointer">BM</button></div>
+<div style="flex: 1; padding: 6px 20px 18px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-direction: column; gap: 6px"><div style="font-size: 32px; font-weight: 900; letter-spacing: -0.01em">Aina dapat harga LIVE.</div><div style="font-size: 17px; line-height: 1.45; color: #3F3F48">Aina simpan dalam Troli Keluarga. Tiada apa dibayar sehingga Mak setuju.</div></div>
+<div style="border: 2px solid #087A75; background: #F2FCFB; border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; gap: 12px; align-items: center"><div style="width: 64px; height: 64px; border-radius: 10px; background: #F3F3F6; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="44" height="50" viewBox="0 0 170 260" role="img" aria-label="Seri Dapur Air Fryer 5.5L"><rect x="0" y="0" width="170" height="250" rx="48" fill="#2B2E3B"></rect><rect x="18" y="20" width="134" height="40" rx="20" fill="#3B3F51"></rect><circle cx="85" cy="40" r="10" fill="#25F4EE"></circle><rect x="18" y="78" width="134" height="150" rx="30" fill="#1E2030"></rect><rect x="54" y="176" width="62" height="16" rx="8" fill="#8E8E99"></rect></svg></div><div style="display: flex; flex-direction: column; gap: 4px"><div style="font-size: 17px; font-weight: 900">Seri Dapur Air Fryer 5.5L</div><span style="align-self: flex-start"><span style="display: inline-flex; align-items: center; background: #161823; color: #25F4EE; font-size: 10px; font-weight: 900; letter-spacing: 0.06em; padding: 2px 6px; border-radius: 4px">MALL</span></span></div></div>
+<div style="display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap"><span style="font-size: 34px; font-weight: 900; color: #E0103F">RM129.00</span><span style="font-size: 18px; color: #5C5C66; text-decoration: line-through">RM159.00</span><span style="font-size: 14px; font-weight: 900; background: #DDFBFA; color: #087A75; padding: 3px 10px; border-radius: 999px">Jimat RM30.00</span></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px; font-size: 15px">
+<div style="display: flex; gap: 10px; align-items: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#087A75" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg><span><strong>Harga LIVE ditahan 29:41</strong> <span style="color: #5C5C66">· selepas itu tamat</span></span></div>
+<div style="display: flex; gap: 10px; align-items: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#087A75" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg><span><strong>RM159.00 masih dikunci</strong> <span style="color: #5C5C66">· sehingga Rab, 28 Okt</span></span></div>
+</div>
+<div style="display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.45; color: #3F3F48; background: #DDFBFA; border-radius: 12px; padding: 10px 12px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#087A75" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5M12 8h.01"></path></svg><span>Mak tentukan. Mak boleh tolak dan harga kunci tetap selamat.</span></div>
+<div style="margin-top: auto; display: flex; flex-direction: column; gap: 6px"><a href="#" data-go="6" style="height: 56px; border-radius: 14px; background: #E0103F; color: #FFFFFF; font-size: 18px; font-weight: 900; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px">Ya, beli RM129.00</a><button style="height: 48px; border: 0; border-radius: 14px; background: transparent; color: #3F3F48; font-family: inherit; font-size: 16px; font-weight: 700; cursor: pointer">Tak jadi, terima kasih</button></div>
+</div></div></template>
+<template id="tpl-18"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #FFFFFF; color: #161823; font-family: 'Lato', system-ui, sans-serif; display: flex; flex-direction: column">
+<div style="height: 64px; flex-shrink: 0; padding: 0 12px 0 8px; display: flex; align-items: center; gap: 6px">
+<button aria-label="Back" style="width: 44px; height: 44px; border: 0; background: transparent; color: #161823; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></button>
+<div style="flex: 1; font-size: 15px; font-weight: 700; color: #3F3F48">For Mak, from Aina</div>
+<span style="background: #DDFBFA; color: #087A75; font-size: 12px; font-weight: 900; letter-spacing: 0.04em; padding: 6px 10px; border-radius: 999px">MAK MODE</span>
+<button aria-label="Text size" style="width: 44px; height: 44px; border: 1.5px solid #DFDFE5; border-radius: 10px; background: #FFFFFF; color: #161823; font-family: inherit; font-size: 16px; font-weight: 900; cursor: pointer">Aa</button>
+</div>
+
+<div style="height: 170px; flex-shrink: 0; margin: 0 16px; border-radius: 18px; background: #F3F3F6; position: relative; display: flex; align-items: center; justify-content: center">
+<span style="position: absolute; left: 12px; top: 12px; display: inline-flex; align-items: center; gap: 4px; background: #161823; color: #25F4EE; font-size: 12px; font-weight: 900; letter-spacing: 0.06em; padding: 4px 8px; border-radius: 6px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path></svg>MALL</span>
+<svg width="112" height="150" viewBox="0 0 170 260" role="img" aria-label="Seri Dapur Air Fryer 5.5L"><rect x="0" y="0" width="170" height="250" rx="48" fill="#2B2E3B"></rect><rect x="18" y="20" width="134" height="40" rx="20" fill="#3B3F51"></rect><circle cx="85" cy="40" r="12" fill="#161823"></circle><circle cx="85" cy="40" r="5" fill="#25F4EE"></circle><rect x="18" y="78" width="134" height="150" rx="30" fill="#1E2030"></rect><rect x="36" y="98" width="98" height="52" rx="14" fill="#4A4F66"></rect><rect x="54" y="176" width="62" height="16" rx="8" fill="#8E8E99"></rect><rect x="22" y="246" width="26" height="10" rx="4" fill="#1E2030"></rect><rect x="122" y="246" width="26" height="10" rx="4" fill="#1E2030"></rect></svg>
+</div>
+
+<div style="flex: 1; padding: 12px 20px 16px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
+<div style="font-size: 21px; font-weight: 900; line-height: 1.2">Seri Dapur Air Fryer 5.5L</div>
+<div style="font-size: 14px; color: #5C5C66">Seri Dapur Official Store</div>
+</div>
+<div style="display: flex; flex-direction: column; align-items: flex-end; flex-shrink: 0">
+<div style="font-size: 26px; font-weight: 900; line-height: 1.1">RM159.00</div>
+<div style="font-size: 12px; color: #5C5C66">total, incl. delivery</div>
+</div>
+</div>
+
+<div style="font-size: 18px; font-weight: 900; margin-top: 2px">Mak’s 3 questions, all answered</div>
+
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; gap: 12px; align-items: flex-start; padding: 10px 12px; border-radius: 14px; background: #F3F3F6">
+<div style="width: 30px; height: 30px; border-radius: 50%; background: #087A75; color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0; animation: opmTick_18 0.5s ease-out 0.4s both"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></div>
+<div style="display: flex; flex-direction: column; gap: 2px">
+<div style="font-size: 14px; font-weight: 700; color: #5C5C66">“Is it original?”</div>
+<div style="font-size: 18px; font-weight: 900">Yes. It’s a Mall item.</div>
+<div style="font-size: 14px; line-height: 1.4; color: #3F3F48">Covered by the 100% Authenticity Guarantee.</div>
+</div>
+</div>
+<div style="display: flex; gap: 12px; align-items: flex-start; padding: 10px 12px; border-radius: 14px; background: #F3F3F6">
+<div style="width: 30px; height: 30px; border-radius: 50%; background: #087A75; color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0; animation: opmTick_18 0.5s ease-out 1s both"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></div>
+<div style="display: flex; flex-direction: column; gap: 2px">
+<div style="font-size: 14px; font-weight: 700; color: #5C5C66">“When will it arrive?”</div>
+<div style="font-size: 18px; font-weight: 900">Thursday, 29 Oct.</div>
+<div style="font-size: 14px; line-height: 1.4; color: #3F3F48">A promised date. Mak and Aina track the same date.</div>
+</div>
+</div>
+<div style="display: flex; gap: 12px; align-items: flex-start; padding: 10px 12px; border-radius: 14px; background: #F3F3F6">
+<div style="width: 30px; height: 30px; border-radius: 50%; background: #087A75; color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0; animation: opmTick_18 0.5s ease-out 1.6s both"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></div>
+<div style="display: flex; flex-direction: column; gap: 2px">
+<div style="font-size: 14px; font-weight: 700; color: #5C5C66">“Can I return it?”</div>
+<div style="font-size: 18px; font-weight: 900">Yes.</div>
+<div style="font-size: 14px; line-height: 1.4; color: #3F3F48">Free returns within 30 days.</div>
+</div>
+</div>
+</div>
+
+<button style="align-self: flex-start; min-height: 44px; border: 0; background: transparent; padding: 0; color: #087A75; font-family: inherit; font-size: 15px; font-weight: 700; display: flex; align-items: center; gap: 8px; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14v-2a8 8 0 0 1 16 0v2"></path><rect x="3" y="14" width="4" height="6" rx="1.5"></rect><rect x="17" y="14" width="4" height="6" rx="1.5"></rect></svg>Other questions? Talk to our staff</button>
+
+<a href="#" data-go="6" style="margin-top: auto; height: 56px; border-radius: 14px; background: #E0103F; color: #FFFFFF; font-size: 18px; font-weight: 900; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2l2.4 11h11.2L21 7H6.2"></path><circle cx="9" cy="19.5" r="1.5"></circle><circle cx="17" cy="19.5" r="1.5"></circle></svg>Add to Troli Keluarga</a>
+</div>
+</div></template>
+<template id="tpl-19"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #FFFFFF; color: #161823; font-family: 'Lato', 'Noto Sans SC', system-ui, sans-serif; display: flex; flex-direction: column">
+<div style="height: 64px; flex-shrink: 0; padding: 0 12px 0 8px; display: flex; align-items: center; gap: 6px">
+<button aria-label="返回" style="width: 44px; height: 44px; border: 0; background: transparent; color: #161823; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></button>
+<div style="flex: 1; font-size: 15px; font-weight: 700; color: #3F3F48">给妈妈，来自伟玲</div>
+<span style="background: #DDFBFA; color: #087A75; font-size: 13px; font-weight: 900; padding: 6px 10px; border-radius: 999px">妈妈模式</span>
+<button aria-label="字体大小" style="width: 44px; height: 44px; border: 1.5px solid #DFDFE5; border-radius: 10px; background: #FFFFFF; color: #161823; font-family: inherit; font-size: 16px; font-weight: 900; cursor: pointer">Aa</button>
+</div>
+
+<div style="height: 170px; flex-shrink: 0; margin: 0 16px; border-radius: 18px; background: #F3F3F6; position: relative; display: flex; align-items: center; justify-content: center">
+<span style="position: absolute; left: 12px; top: 12px; display: inline-flex; align-items: center; gap: 4px; background: #161823; color: #25F4EE; font-size: 12px; font-weight: 900; letter-spacing: 0.06em; padding: 4px 8px; border-radius: 6px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path></svg>MALL</span>
+<svg width="112" height="150" viewBox="0 0 170 260" role="img" aria-label="Seri Dapur 空气炸锅 5.5L"><rect x="0" y="0" width="170" height="250" rx="48" fill="#2B2E3B"></rect><rect x="18" y="20" width="134" height="40" rx="20" fill="#3B3F51"></rect><circle cx="85" cy="40" r="12" fill="#161823"></circle><circle cx="85" cy="40" r="5" fill="#25F4EE"></circle><rect x="18" y="78" width="134" height="150" rx="30" fill="#1E2030"></rect><rect x="36" y="98" width="98" height="52" rx="14" fill="#4A4F66"></rect><rect x="54" y="176" width="62" height="16" rx="8" fill="#8E8E99"></rect><rect x="22" y="246" width="26" height="10" rx="4" fill="#1E2030"></rect><rect x="122" y="246" width="26" height="10" rx="4" fill="#1E2030"></rect></svg>
+</div>
+
+<div style="flex: 1; padding: 12px 20px 16px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
+<div style="font-size: 21px; font-weight: 900; line-height: 1.25">Seri Dapur 空气炸锅 5.5L</div>
+<div style="font-size: 14px; color: #5C5C66">Seri Dapur 官方旗舰店</div>
+</div>
+<div style="display: flex; flex-direction: column; align-items: flex-end; flex-shrink: 0">
+<div style="font-size: 26px; font-weight: 900; line-height: 1.1">RM159.00</div>
+<div style="font-size: 12px; color: #5C5C66">总价，含运费</div>
+</div>
+</div>
+
+<div style="font-size: 18px; font-weight: 900; margin-top: 2px">妈妈的3个问题，都有答案了</div>
+
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; gap: 12px; align-items: flex-start; padding: 10px 12px; border-radius: 14px; background: #F3F3F6">
+<div style="width: 30px; height: 30px; border-radius: 50%; background: #087A75; color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0; animation: opmTick_19 0.5s ease-out 0.4s both"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></div>
+<div style="display: flex; flex-direction: column; gap: 2px">
+<div style="font-size: 14px; font-weight: 700; color: #5C5C66">“是正品吗？”</div>
+<div style="font-size: 18px; font-weight: 900">是的，这是 Mall 商品。</div>
+<div style="font-size: 14px; line-height: 1.45; color: #3F3F48">享有 100% 正品保证。</div>
+</div>
+</div>
+<div style="display: flex; gap: 12px; align-items: flex-start; padding: 10px 12px; border-radius: 14px; background: #F3F3F6">
+<div style="width: 30px; height: 30px; border-radius: 50%; background: #087A75; color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0; animation: opmTick_19 0.5s ease-out 1s both"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></div>
+<div style="display: flex; flex-direction: column; gap: 2px">
+<div style="font-size: 14px; font-weight: 700; color: #5C5C66">“什么时候到？”</div>
+<div style="font-size: 18px; font-weight: 900">10月29日（星期四）。</div>
+<div style="font-size: 14px; line-height: 1.45; color: #3F3F48">承诺送达日期。妈妈和伟玲看到的是同一个日期。</div>
+</div>
+</div>
+<div style="display: flex; gap: 12px; align-items: flex-start; padding: 10px 12px; border-radius: 14px; background: #F3F3F6">
+<div style="width: 30px; height: 30px; border-radius: 50%; background: #087A75; color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0; animation: opmTick_19 0.5s ease-out 1.6s both"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></div>
+<div style="display: flex; flex-direction: column; gap: 2px">
+<div style="font-size: 14px; font-weight: 700; color: #5C5C66">“可以退货吗？”</div>
+<div style="font-size: 18px; font-weight: 900">可以。</div>
+<div style="font-size: 14px; line-height: 1.45; color: #3F3F48">30天内免费退货。</div>
+</div>
+</div>
+</div>
+
+<button style="align-self: flex-start; min-height: 44px; border: 0; background: transparent; padding: 0; color: #087A75; font-family: inherit; font-size: 15px; font-weight: 700; display: flex; align-items: center; gap: 8px; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14v-2a8 8 0 0 1 16 0v2"></path><rect x="3" y="14" width="4" height="6" rx="1.5"></rect><rect x="17" y="14" width="4" height="6" rx="1.5"></rect></svg>还有其他问题？和我们的客服人员聊聊</button>
+
+<a href="#" data-go="6" style="margin-top: auto; height: 56px; border-radius: 14px; background: #E0103F; color: #FFFFFF; font-size: 18px; font-weight: 900; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2l2.4 11h11.2L21 7H6.2"></path><circle cx="9" cy="19.5" r="1.5"></circle><circle cx="17" cy="19.5" r="1.5"></circle></svg>加入家庭购物车</a>
+</div>
+</div></template>
+<template id="tpl-20"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #FFFFFF; color: #161823; font-family: 'Lato', 'Noto Sans Tamil', system-ui, sans-serif; display: flex; flex-direction: column">
+<div style="height: 64px; flex-shrink: 0; padding: 0 12px 0 8px; display: flex; align-items: center; gap: 6px">
+<button aria-label="பின்செல்" style="width: 44px; height: 44px; border: 0; background: transparent; color: #161823; display: flex; align-items: center; justify-content: center; flex-shrink: 0; cursor: pointer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></button>
+<div style="flex: 1; font-size: 13px; line-height: 1.35; font-weight: 700; color: #3F3F48">அம்மாவுக்கு, காவ்யாவிடமிருந்து</div>
+<span style="background: #DDFBFA; color: #087A75; font-size: 11px; font-weight: 900; padding: 6px 9px; border-radius: 999px; flex-shrink: 0">அம்மா பயன்முறை</span>
+<button aria-label="எழுத்து அளவு" style="width: 44px; height: 44px; border: 1.5px solid #DFDFE5; border-radius: 10px; background: #FFFFFF; color: #161823; font-family: inherit; font-size: 16px; font-weight: 900; flex-shrink: 0; cursor: pointer">Aa</button>
+</div>
+
+<div style="height: 160px; flex-shrink: 0; margin: 0 16px; border-radius: 18px; background: #F3F3F6; position: relative; display: flex; align-items: center; justify-content: center">
+<span style="position: absolute; left: 12px; top: 12px; display: inline-flex; align-items: center; gap: 4px; background: #161823; color: #25F4EE; font-size: 12px; font-weight: 900; letter-spacing: 0.06em; padding: 4px 8px; border-radius: 6px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path></svg>MALL</span>
+<svg width="104" height="140" viewBox="0 0 170 260" role="img" aria-label="Seri Dapur ஏர் ஃப்ரையர் 5.5L"><rect x="0" y="0" width="170" height="250" rx="48" fill="#2B2E3B"></rect><rect x="18" y="20" width="134" height="40" rx="20" fill="#3B3F51"></rect><circle cx="85" cy="40" r="12" fill="#161823"></circle><circle cx="85" cy="40" r="5" fill="#25F4EE"></circle><rect x="18" y="78" width="134" height="150" rx="30" fill="#1E2030"></rect><rect x="36" y="98" width="98" height="52" rx="14" fill="#4A4F66"></rect><rect x="54" y="176" width="62" height="16" rx="8" fill="#8E8E99"></rect><rect x="22" y="246" width="26" height="10" rx="4" fill="#1E2030"></rect><rect x="122" y="246" width="26" height="10" rx="4" fill="#1E2030"></rect></svg>
+</div>
+
+<div style="flex: 1; padding: 12px 20px 16px; display: flex; flex-direction: column; gap: 9px">
+<div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 10px">
+<div style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
+<div style="font-size: 19px; font-weight: 900; line-height: 1.3">Seri Dapur ஏர் ஃப்ரையர் 5.5L</div>
+<div style="font-size: 13px; color: #5C5C66">Seri Dapur அதிகாரப்பூர்வ கடை</div>
+</div>
+<div style="display: flex; flex-direction: column; align-items: flex-end; flex-shrink: 0">
+<div style="font-size: 24px; font-weight: 900; line-height: 1.1">RM159.00</div>
+<div style="font-size: 11px; color: #5C5C66">மொத்தம், டெலிவரி உட்பட</div>
+</div>
+</div>
+
+<div style="font-size: 17px; font-weight: 900; margin-top: 2px">அம்மாவின் 3 கேள்விகளுக்கும் பதில்</div>
+
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; gap: 12px; align-items: flex-start; padding: 9px 12px; border-radius: 14px; background: #F3F3F6">
+<div style="width: 30px; height: 30px; border-radius: 50%; background: #087A75; color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0; animation: opmTick_20 0.5s ease-out 0.4s both"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></div>
+<div style="display: flex; flex-direction: column; gap: 2px">
+<div style="font-size: 13px; font-weight: 700; color: #5C5C66">“அசல் தானா?”</div>
+<div style="font-size: 17px; font-weight: 900">ஆம். இது Mall பொருள்.</div>
+<div style="font-size: 13px; line-height: 1.45; color: #3F3F48">100% அசல் உத்தரவாதம் உண்டு.</div>
+</div>
+</div>
+<div style="display: flex; gap: 12px; align-items: flex-start; padding: 9px 12px; border-radius: 14px; background: #F3F3F6">
+<div style="width: 30px; height: 30px; border-radius: 50%; background: #087A75; color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0; animation: opmTick_20 0.5s ease-out 1s both"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></div>
+<div style="display: flex; flex-direction: column; gap: 2px">
+<div style="font-size: 13px; font-weight: 700; color: #5C5C66">“எப்போ வரும்?”</div>
+<div style="font-size: 17px; font-weight: 900">வியாழன், 29 அக்டோபர்.</div>
+<div style="font-size: 13px; line-height: 1.45; color: #3F3F48">உறுதியளிக்கப்பட்ட தேதி. அம்மாவும் காவ்யாவும் ஒரே தேதியைப் பார்க்கலாம்.</div>
+</div>
+</div>
+<div style="display: flex; gap: 12px; align-items: flex-start; padding: 9px 12px; border-radius: 14px; background: #F3F3F6">
+<div style="width: 30px; height: 30px; border-radius: 50%; background: #087A75; color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0; animation: opmTick_20 0.5s ease-out 1.6s both"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></div>
+<div style="display: flex; flex-direction: column; gap: 2px">
+<div style="font-size: 13px; font-weight: 700; color: #5C5C66">“திருப்பி அனுப்பலாமா?”</div>
+<div style="font-size: 17px; font-weight: 900">ஆம்.</div>
+<div style="font-size: 13px; line-height: 1.45; color: #3F3F48">30 நாட்களுக்குள் இலவசமாகத் திருப்பி அனுப்பலாம்.</div>
+</div>
+</div>
+</div>
+
+<button style="align-self: flex-start; min-height: 44px; border: 0; background: transparent; padding: 0; color: #087A75; font-family: inherit; font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 8px; text-align: left; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M4 14v-2a8 8 0 0 1 16 0v2"></path><rect x="3" y="14" width="4" height="6" rx="1.5"></rect><rect x="17" y="14" width="4" height="6" rx="1.5"></rect></svg>வேறு கேள்விகள்? எங்கள் ஊழியரிடம் பேசுங்கள்</button>
+
+<a href="#" data-go="6" style="margin-top: auto; height: 56px; border-radius: 14px; background: #E0103F; color: #FFFFFF; font-size: 16px; font-weight: 900; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2l2.4 11h11.2L21 7H6.2"></path><circle cx="9" cy="19.5" r="1.5"></circle><circle cx="17" cy="19.5" r="1.5"></circle></svg>குடும்பக் கூடையில் சேர்க்கவும்</a>
+</div>
+</div></template>
+
+<script>
+(function(){
+  var S = { step:0, lang:'bm', inputs:{}, radios:{}, seen:{0:true}, from:null };
+  var steps = [
+    {id:'stuck',     n:'0',  lbl:'Stuck today',         who:'aina', prev:null, time:'9:12'},
+    {id:'video',     n:'1',  lbl:'Video + Jemput Mak',  who:'aina', prev:0,  time:'8:38'},
+    {id:'card',      n:'2',  lbl:'One card for Mak',    who:'aina', prev:1,  time:'8:40'},
+    {id:'arrives',   n:'3',  lbl:'The card arrives',    who:'mak',  prev:2,  time:'8:42'},
+    {id:'consent',   n:'4',  lbl:'Mak decides',         who:'mak',  prev:3,  alt:13, time:'8:43'},
+    {id:'makmode',   n:'5',  lbl:'Mak Mode card',       who:'mak',  prev:4,  time:'8:44'},
+    {id:'troli',     n:'6',  lbl:'Troli Keluarga',      who:'mak',  prev:5,  alt:17, time:'8:46'},
+    {id:'approve',   n:'7',  lbl:'Aina approves',       who:'aina', prev:6,  time:'8:47'},
+    {id:'promise',   n:'8',  lbl:'Dated Promise',       who:'mak',  prev:7,  time:'11:20'},
+    {id:'milestone', n:'9',  lbl:'Order Pertama Mak',   who:'mak',  prev:8,  time:'2:30'},
+    {id:'credit',    n:'10', lbl:'Thanks + credit',     who:'aina', prev:9,  time:'2:31'},
+    {id:'order2',    n:'11', lbl:'Order 2, on her own', who:'mak',  prev:10, time:'10:05'},
+    {id:'lock',      n:'12', lbl:'Lock the deal',       who:'aina', prev:1,  time:'8:40', group:'Other path · LIVE price'},
+    {id:'locked',    n:'13', lbl:'Locked card arrives', who:'mak',  prev:12, time:'8:42'},
+    {id:'target',    n:'14', lbl:'Wait for LIVE price', who:'mak',  prev:13, time:'8:43'},
+    {id:'watch',     n:'15', lbl:'Watching LIVE',       who:'aina', prev:14, time:'8:59'},
+    {id:'drop',      n:'16', lbl:'Deal drops: grab',    who:'aina', prev:15, time:'9:01'},
+    {id:'liveprice', n:'17', lbl:'Mak gets LIVE price', who:'mak',  prev:16, time:'9:02'}
+  ];
+  /* Mak Mode language versions of step 5 */
+  var LANG = { bm:5, en:18, zh:19, ta:20 };
+  var LANG_LBL = [['bm','BM'],['en','English'],['zh','中文'],['ta','தமிழ்']];
+  /* status bar colours that continue each screen's top edge */
+  var TOP = { 1:['#232538','#39343A'], 2:['#171825','#211F26'], 9:['#161823','#441C2D'], 12:['#171825','#211F26'], 15:['#232538','#39343A'], 16:['#232538','#39343A'] };
+
+  var story = {
+    stuck:     {t:'Mak gives up after 42 minutes and three questions.', next:['Now with Jemput Mak',1]},
+    video:     {t:'Aina sees the air fryer in a video and taps Jemput Mak.', next:['Make Mak’s card',2]},
+    card:      {t:'One card answers Mak’s three questions.', next:['Send to Mak',3]},
+    arrives:   {t:'The card reaches Mak’s chat, in Bahasa Melayu.', next:['Open the card',4]},
+    consent:   {t:'Mak chooses what Aina can see. Untick one to try.', next:['Mak agrees',5]},
+    makmode:   {t:'Her three questions, answered. Try another language below.', next:['Add to Troli Keluarga',6]},
+    troli:     {t:'Mak asks Aina to pay. Or pick “Mak bayar sendiri”.', next:['Send the request',7]},
+    troliSelf: {t:'Mak pays herself, so Aina isn’t asked. The demo follows the request.', next:['Follow the request',7]},
+    approve:   {t:'Aina pays for this one item, within her family limit.', next:['Pay RM159.00',8]},
+    promise:   {t:'Thursday: it arrives on the date both of them tracked.', next:['Confirm delivery',9]},
+    milestone: {t:'A private moment for Mak, with a note from Aina.', next:['Aina hears back',10]},
+    credit:    {t:'Aina gets thanks and credit for her own orders.', next:['Three weeks later',11]},
+    order2:    {t:'Three weeks on, Mak orders alone and pays at the door.', next:['Other path: LIVE price',12]},
+    lock:      {t:'Aina locks today’s price first, so Mak has time.', next:['Lock and send',13]},
+    locked:    {t:'Mak can open the card, or ask for a lower price.', next:['Ask for a lower price',14]},
+    target:    {t:'Mak sets a target. Aina watches; Mak still decides.', next:['Ask Aina to wait',15]},
+    watch:     {t:'Aina watches the LIVE. The flash deal starts in 2 minutes.', next:['The deal drops',16]},
+    drop:      {t:'RM129, which is RM30 under the locked price. Aina grabs it.', next:['Grab for Mak',17]},
+    liveprice: {t:'Mak says yes, or keeps RM159 locked. Nothing is paid yet.', next:['Pay at Troli Keluarga',6]}
+  };
+
+  var M = ' <span class="src">[M]</span>';
+  var info = {
+    stuck:{h:'Aina tries to help Mak buy, and Mak gives up',
+      sees:'Mak’s questions pile up in chat: “Original ke? Bila sampai? Boleh return?” The product link doesn’t work for her, and at 9:12 pm she says she’ll buy at a shop instead.',
+      tool:'A chat app, with screenshots and a product link',
+      money:'None. The sale goes to a shop, or doesn’t happen.',
+      kpi:'First orders from parents a child tries to help (Arm A, the control)',
+      why:'Mak’s three questions are the brief for every screen after this one: is it original, when will it arrive, can I return it?'+M},
+    video:{h:'Aina sees the air fryer in a creator video and taps Jemput Mak',
+      sees:'A shop video from @masakmudah.kakyan with the Seri Dapur Air Fryer 5.5L linked under it. Next to Buy there is a new button, Jemput Mak (invite Mak).',
+      tool:'Shop videos · product link · new Jemput Mak button',
+      money:'None yet. The order still starts from the creator’s video.',
+      kpi:'Jemput Mak taps per product view',
+      why:'Helping a parent buy sits next to Buy, at the moment Aina wants the product, instead of a screenshot sent later.'+M},
+    card:{h:'One card that answers what Mak will ask',
+      sees:'A preview of the card: RM159.00 with delivery, arriving Thu 29 Oct, the 100% Authenticity Guarantee and 30-day free returns. Mak can pay by COD, FPX, Touch ’n Go or card.',
+      tool:'Jemput Mak sheet · Mall guarantees · promised delivery date',
+      money:'Aina can offer to pay through Troli Keluarga. Nothing is linked until Mak agrees.',
+      kpi:'Cards sent per Jemput Mak tap',
+      why:'The card carries answers instead of a link. Each of Mak’s three questions from step 0 has its own line.'+M},
+    arrives:{h:'The card arrives in Mak’s chat, in Bahasa Melayu',
+      sees:'A #OrderPertamaMak card with the total, the arrival date and the guarantees, plus a note from Aina: “Ada apa-apa, Aina ada” (if anything comes up, Aina is here).',
+      tool:'Chat message with a Jemput Mak card',
+      money:'None.',
+      kpi:'Card open rate',
+      why:'Mak doesn’t search or follow a link to find the answers. Opening the card is the only step.'+M},
+    consent:{h:'Mak decides what Aina can see and do',
+      sees:'Three switches: order and delivery updates, her address for this item only, and letting Aina pay when Mak asks. Her payment details stay locked.',
+      tool:'Mak Mode consent screen · consent record',
+      money:'None. Aina can pay only when Mak asks, each time.',
+      kpi:'Consent completion · consents withdrawn later',
+      why:'Consent is per item, can be withdrawn any time, and is recorded so it can be checked. Aina only sees orders she helped with.'+M},
+    makmode:{h:'Mak Mode: her three questions, answered in her language',
+      sees:'Large type and one product. Each question, in her own words, gets a short answer: “Ya. Barang Mall.” “Khamis, 29 Okt.” “Boleh.”',
+      tool:'Mak Mode product card · Mall guarantees · promised date',
+      money:'RM159.00, the total with delivery, shown before she adds it.',
+      kpi:'Add to Troli Keluarga rate · chats with staff',
+      why:'The questions are written the way Mak asked them, so she knows they are hers. The same card comes in English, Chinese (Wei Ling to her Mama) and Tamil (Kavya to her Amma).'+M},
+    troli:{h:'Mak chooses who pays',
+      sees:'A family cart she shares with Aina: one item, delivered to her home in Kajang. She can pay herself (COD, Touch ’n Go, FPX or card) or ask Aina to pay.',
+      tool:'Troli Keluarga, a cart shared by Mak and Aina',
+      money:'Asking Aina sends a request Mak can cancel. Paying herself skips Aina.',
+      kpi:'Checkout completion from Mak Mode',
+      why:'Cash on delivery stays on the list. For a first order, paying at the door may be what gets Mak to say yes.'+M},
+    approve:{h:'Aina approves one payment, inside her own limit',
+      sees:'Mak’s request for one item, arriving Thu 29 Oct at Mak’s home, and a choice of Touch ’n Go, FPX or card.',
+      tool:'Troli Keluarga request · eWallet, FPX or card',
+      money:'RM159.00 from Aina, inside the RM300 monthly family limit she set. RM141 left.',
+      kpi:'Request approval rate · time to approve',
+      why:'Only this item is shared, and Mak’s other cart items stay private. “Decline kindly” lets Aina say no gently.'+M},
+    promise:{h:'Mak and Aina track the same promised date',
+      sees:'Order confirmed and paid by Aina. Each stage is dated, and today, Thursday 29 Oct, the courier is on the way to Mak’s home.',
+      tool:'Dated Promise · delivery tracking',
+      money:'Paid. Mak confirms when the parcel arrives.',
+      kpi:'Deliveries on the promised date · “where is my order” chats',
+      why:'The date is worked out from real delivery records for Mak’s area, so the answer to “Bila sampai?” holds.'+M},
+    milestone:{h:'A private first-order moment for Mak',
+      sees:'Congratulations on her first order, delivered on the promised date, and a note from Aina: “Dulu Mak ajar kita bertatih, sekarang kita teman Mak memilih” (you taught us to walk; now we help you choose).',
+      tool:'Order milestone in Mak Mode',
+      money:'None.',
+      kpi:'Delivery confirmations · Mak’s return visits',
+      why:'Private on purpose. Only Mak and Aina see it, and nothing is posted publicly.'+M},
+    credit:{h:'Aina gets Mak’s thanks, and credit for her own orders',
+      sees:'“Terima kasih Aina. Senang rupanya.” (Thank you, Aina. That was easy.) Plus credit that applies at her next checkout.',
+      tool:'Order Pertama Mak notification · checkout credit',
+      money:'Credit for Aina’s own everyday orders, with limits. It never discounts Mak’s order.',
+      kpi:'Children who invite again · Aina’s next order',
+      why:'The reward goes to the helper, so Mak pays the real price. From now on, Mak’s orders stay private unless she shares them.'+M},
+    order2:{h:'Three weeks later, Mak orders on her own',
+      sees:'Her second order, a set of 5 glass food containers for RM39.90, placed by herself and paid cash on delivery, arriving on a promised date.',
+      tool:'Mak Mode · cash on delivery · Dated Promise',
+      money:'RM39.90, paid by Mak at the door.',
+      kpi:'Second orders placed without help',
+      why:'Success means a second order Mak places alone. Aina isn’t told unless Mak shares it.'+M},
+    lock:{h:'Aina locks today’s price so Mak has time to decide',
+      sees:'A sheet to hold RM159.00 for 24 hours, 48 hours or 3 days, then send the locked card to Mak.',
+      tool:'Jemput Mak sheet · price and voucher lock',
+      money:'Price and voucher stay the same for Mak until the lock ends. Nothing is paid, and she can still say no.',
+      kpi:'Locked cards that become orders before the lock ends',
+      why:'A price that holds takes away the rush. Mak can think it over for a day without losing the deal.'+M},
+    locked:{h:'Mak sees a locked price, and can ask for a lower one',
+      sees:'The card with “Harga dikunci, 23j 59m lagi” (price locked, 23h 59m left) and two choices: “Buka kad” (open the card) or “Nak lagi murah?” (want it cheaper?).',
+      tool:'Chat message with a locked Jemput Mak card',
+      money:'RM159.00 is held for her. Nothing is paid.',
+      kpi:'Card open rate · “Nak lagi murah?” taps',
+      why:'“Buka kad” joins the main path at step 4. “Nak lagi murah?” starts the LIVE price path.'+M},
+    target:{h:'Mak asks Aina to wait for a cheaper LIVE price',
+      sees:'Three target prices (under RM149, RM139 or RM129) and a clear rule: Aina can’t buy without her.',
+      tool:'Mak Mode · price target on the locked item',
+      money:'If no lower price comes, Mak can still buy at RM159.00 before the lock ends.',
+      kpi:'Price targets set · targets met',
+      why:'The target is Mak’s, and so is the final yes. Aina only watches for it.'+M},
+    watch:{h:'Aina watches the seller’s LIVE for Mak’s price',
+      sees:'The Seri Dapur Official LIVE with a flash deal starting in 02:14, and a “Watching for Mak” bar with her target and the time left on the lock.',
+      tool:'TikTok Shop LIVE · watch alert for a family price target',
+      money:'None yet. Mak’s RM159.00 stays locked.',
+      kpi:'LIVE views from Jemput Mak · alerts that lead to a grab',
+      why:'Aina gets a buzz the second the deal drops, so she doesn’t have to sit through the whole LIVE.'+M},
+    drop:{h:'The flash deal drops, and Aina grabs it for Mak',
+      sees:'RM129.00, which is RM30 under Mak’s locked price, with 18 units in the flash deal.',
+      tool:'LIVE flash deal · Grab for Mak',
+      money:'Held, not paid. Mak approves before Aina pays.',
+      kpi:'Flash-deal grabs for family · grabs Mak approves',
+      why:'“Grab for Mak” holds the price for Mak instead of buying, so the decision stays hers.'+M},
+    liveprice:{h:'Aina got the LIVE price. Mak decides',
+      sees:'RM129.00, a saving of RM30, held for about 30 minutes in Troli Keluarga. If she says no, her locked RM159.00 still holds until Wed 28 Oct.',
+      tool:'Mak Mode · Troli Keluarga',
+      money:'Nothing is paid until Mak agrees. “Ya, beli RM129.00” goes on to Troli Keluarga.',
+      kpi:'LIVE prices Mak accepts · orders from locked cards',
+      why:'Saying no costs Mak nothing, because the locked price stays safe either way.'+M}
+  };
+
+  var ic = function(d, s, sw){ return '<svg width="'+(s||22)+'" height="'+(s||22)+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="'+(sw||2)+'" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+d+'</svg>'; };
+  var I = { back: ic('<path d="M15 5l-7 7 7 7"/>'), arrow: ic('<path d="M5 12h14"/><path d="M13 6l6 6-6 6"/>', 18) };
+  var SBI = '<svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor" aria-hidden="true"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg>'+
+    '<svg width="15" height="11" viewBox="0 0 15 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M1 4a9.5 9.5 0 0 1 13 0"/><path d="M3.5 6.6a6 6 0 0 1 8 0"/><circle cx="7.5" cy="9.3" r="1.1" fill="currentColor" stroke="none"/></svg>'+
+    '<svg width="25" height="12" viewBox="0 0 25 12" fill="none" aria-hidden="true"><rect x=".5" y=".5" width="21" height="11" rx="3" stroke="currentColor" opacity=".45"/><rect x="2" y="2" width="16" height="8" rx="1.8" fill="currentColor"/><rect x="22.5" y="4" width="1.8" height="4" rx=".9" fill="currentColor" opacity=".45"/></svg>';
+  function sb(i){
+    var top = TOP[i], st = '';
+    if(top){ st = ' style="background:linear-gradient(90deg,'+top[0]+' 0%,'+top[0]+' 50%,'+top[1]+' 100%)"'; }
+    return '<div class="sb'+(top?' dark':'')+'"'+st+' aria-hidden="true"><span>'+steps[S.step].time+'</span><span class="ic">'+SBI+'</span></div>';
+  }
+
+  var rail = document.getElementById('rail'), screen = document.getElementById('screen'), panel = document.getElementById('panel'),
+      storyEl = document.getElementById('story'), langsEl = document.getElementById('langs');
+
+  function screenIndex(){ return steps[S.step].id==='makmode' ? LANG[S.lang] : S.step; }
+  function backOf(st){ return (st.alt!==undefined && S.from===st.alt) ? st.alt : st.prev; }
+  function go(i){ if(i!==S.step){ S.from = S.step; } S.step = i; S.seen[i] = true; render(); }
+
+  function renderRail(){
+    rail.innerHTML = steps.map(function(s,i){
+      return (s.group ? '<li class="grp">'+s.group+'</li>' : '')+
+        '<li><button type="button" class="'+(S.seen[i] && i!==S.step ? 'done' : '')+'" data-go="'+i+'"'+(i===S.step?' aria-current="step"':'')+'>'+
+        '<span class="n">'+s.n+'</span><span class="lbl">'+s.lbl+'</span>'+
+        '<span class="pp '+s.who+'" aria-hidden="true">'+(s.who==='mak'?'M':'A')+'</span><span class="vh">, '+(s.who==='mak'?'Mak’s':'Aina’s')+' phone</span></button></li>';
+    }).join('');
+  }
+  function renderPanel(){
+    var st = steps[S.step], d = info[st.id];
+    panel.innerHTML = '<span class="eyebrow">Step '+st.n+' · '+st.lbl+'</span><h2>'+d.h+'</h2>'+
+      '<dl class="facts"><dt>'+(st.who==='mak'?'Mak':'Aina')+' sees</dt><dd>'+d.sees+'</dd><dt>Runs on</dt><dd>'+d.tool+'</dd><dt>Money</dt><dd>'+d.money+'</dd><dt>KPI it moves</dt><dd>'+d.kpi+'</dd></dl>'+
+      '<div class="why">'+d.why+'</div>';
+  }
+  function renderStory(){
+    var st = steps[S.step], key = st.id;
+    if(key==='troli' && S.radios.payer==='paySelf'){ key = 'troliSelf'; }
+    var s = story[key], back = backOf(st);
+    storyEl.innerHTML = (back!==null ? '<button class="sbtn icon" type="button" data-go="'+back+'" aria-label="Previous step">'+I.back+'</button>' : '')+
+      '<p>'+s.t+'</p><button class="sbtn" type="button" data-go="'+s.next[1]+'">'+s.next[0]+' '+I.arrow+'</button>';
+  }
+  function renderLangs(){
+    var on = steps[S.step].id==='makmode';
+    langsEl.hidden = !on;
+    if(!on){ return; }
+    langsEl.innerHTML = '<span>Language</span>'+LANG_LBL.map(function(l){
+      return '<button type="button" data-lang="'+l[0]+'" aria-pressed="'+(S.lang===l[0])+'">'+l[1]+'</button>';
+    }).join('');
+  }
+
+  /* keep the screens' own controls (switches, radios) as the viewer left them */
+  function restoreInputs(art){
+    Array.prototype.forEach.call(art.querySelectorAll('input[type=checkbox]'), function(c){ if(S.inputs[c.id]!==undefined){ c.checked = S.inputs[c.id]; } });
+    Object.keys(S.radios).forEach(function(name){
+      var r = art.querySelector('#'+S.radios[name]);
+      if(r && r.name===name){ r.checked = true; }
+    });
+  }
+  function syncPicks(art){
+    Array.prototype.forEach.call(art.querySelectorAll('label[data-pick]'), function(l){
+      var inp = l.querySelector('input'), on = !!(inp && inp.checked);
+      l.style.borderColor = on ? '#087A75' : '#DFDFE5';
+      if(l.getAttribute('data-pick')==='bg'){ l.style.background = on ? '#F2FCFB' : '#FFFFFF'; }
+    });
+    Array.prototype.forEach.call(art.querySelectorAll('[data-if]'), function(d){
+      var c = art.querySelector('#'+d.getAttribute('data-if'));
+      d.hidden = !(c && c.checked);
+    });
+  }
+
+  function render(){
+    var idx = screenIndex();
+    screen.innerHTML = sb(S.step)+'<div class="vp"><div class="art s'+idx+'" id="art"></div></div>';
+    var art = document.getElementById('art');
+    art.appendChild(document.getElementById('tpl-'+idx).content.cloneNode(true));
+    restoreInputs(art); syncPicks(art);
+    renderRail(); renderPanel(); renderStory(); renderLangs();
+    fit();
+  }
+
+  function fit(){
+    var w = screen.clientWidth;
+    if(w > 0){ document.documentElement.style.setProperty('--s', (w/390).toFixed(4)); }
+  }
+  if(window.ResizeObserver){ new ResizeObserver(fit).observe(screen); } else { window.addEventListener('resize', fit); }
+
+  screen.addEventListener('change', function(e){
+    var t = e.target, art = document.getElementById('art');
+    if(t.type==='checkbox'){ S.inputs[t.id] = t.checked; }
+    else if(t.type==='radio'){ S.radios[t.name] = t.id; }
+    if(art){ syncPicks(art); }
+    if(steps[S.step].id==='troli'){ renderStory(); }
+  });
+
+  document.addEventListener('click', function(e){
+    var t = e.target.closest('[data-go],[data-lang]'); if(!t) return;
+    if(t.getAttribute('data-go') !== null){
+      e.preventDefault();
+      var inRail = !!t.closest('.rail'), inStory = !!t.closest('.story');
+      go(+t.getAttribute('data-go'));
+      if(inRail){ var c = rail.querySelector('[aria-current]'); if(c){ c.focus(); } }
+      else if(inStory){ var nb = storyEl.querySelectorAll('button'); if(nb.length){ nb[nb.length-1].focus(); } }
+      return;
+    }
+    if(t.getAttribute('data-lang') !== null){ S.lang = t.getAttribute('data-lang'); render(); var b = langsEl.querySelector('[data-lang="'+S.lang+'"]'); if(b){ b.focus(); } }
+  });
+
+  var h = (location.hash||'').slice(1), start = -1;
+  steps.forEach(function(s,i){ if(s.id===h){ start = i; } });
+  go(start >= 0 ? start : 0);
+})();
+</script>
+
+</body></html>

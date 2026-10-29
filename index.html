@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TikTok Shop Case Challenge | Rachel Tran</title>
+<meta name="description" content="Rachel Tran's case work for the TikTok Shop Southeast Asia Regional Case Challenge 2026: GMV driver models, unit economics and working prototypes for Vietnam, Malaysia and Thailand.">
+<meta property="og:title" content="Three markets, three ways to take GMV apart">
+<meta property="og:description" content="TikTok Shop Southeast Asia Regional Case Challenge 2026: case work by Rachel Tran.">
+<meta property="og:image" content="docs/screenshots/vn-mission-control.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600&display=swap">
+<style>
+:root{
+  --paper:#ffffff; --off:#f7f7f5; --ink:#0d0d0d; --mid:#555552; --muted:#8a8a86; --rule:#e6e6e3;
+  --lever:#2a78d6; --plate:#fcfcfb;
+  --serif:'Playfair Display',Georgia,'Times New Roman',serif;
+  --sans:'Outfit','Helvetica Neue',Arial,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0e0e0d; --off:#151514; --ink:#eeecea; --mid:#a5a39d; --muted:#7c7a75; --rule:#2a2a28;
+    --lever:#5598e7; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0e0e0d; --off:#151514; --ink:#eeecea; --mid:#a5a39d; --muted:#7c7a75; --rule:#2a2a28;
+  --lever:#5598e7; color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--paper);color:var(--ink);font:300 17px/1.65 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,video{max-width:100%;display:block}
+a{color:inherit}
+a:focus-visible,summary:focus-visible,button:focus-visible{outline:2px solid var(--lever);outline-offset:3px;border-radius:3px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 max(16px,5vw)}
+
+/* top bar */
+.bar{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--rule)}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:58px}
+.home{font-family:var(--serif);font-weight:700;font-size:18px;text-decoration:none}
+.bar nav{display:flex;gap:22px;font-size:15px;font-weight:400}
+.bar nav a{text-decoration:none;color:var(--mid)}
+.bar nav a:hover{color:var(--ink)}
+@media (max-width:720px){.bar nav .opt{display:none}}
+
+/* hero */
+.hero{padding:72px 0 28px}
+.kicker{margin:0 0 18px;font-size:15px;font-weight:400;color:var(--mid)}
+h1{margin:0;font-family:var(--serif);font-weight:900;font-size:clamp(40px,6.2vw,74px);line-height:1.02;letter-spacing:-.02em;max-width:15ch;text-wrap:balance}
+.lede{margin:26px 0 0;max-width:62ch;font-size:19px;color:var(--mid)}
+.lede strong{color:var(--ink);font-weight:500}
+
+/* the equations */
+.eqs{margin:56px 0 0;padding:0;list-style:none;border-top:1px solid var(--ink)}
+.eq{display:grid;grid-template-columns:minmax(150px,210px) minmax(0,1fr);gap:8px 28px;padding:26px 0 24px;border-bottom:1px solid var(--rule)}
+.eq-where{font-size:15px;line-height:1.4;padding-top:10px}
+.eq-where a{font-weight:500;text-decoration:none}
+.eq-where a:hover{text-decoration:underline;text-underline-offset:3px}
+.eq-where span{display:block;color:var(--muted)}
+.eq-line{display:flex;flex-wrap:wrap;align-items:flex-start;column-gap:14px;row-gap:12px;font-family:var(--serif);font-weight:700;font-size:clamp(24px,3.1vw,36px);line-height:1.15}
+.op{color:var(--muted);font-weight:700;padding:0 2px}
+.pair{display:inline-flex;align-items:flex-start;gap:14px}
+.term{display:inline-flex;flex-direction:column;align-items:flex-start;gap:7px}
+.term small{font-family:var(--sans);font-size:13.5px;line-height:1.35;font-weight:400;color:var(--mid);max-width:20ch}
+.term.lever>span{background:linear-gradient(var(--lever),var(--lever)) left bottom/100% 3px no-repeat;padding-bottom:3px}
+.term.lever small{color:var(--ink);font-weight:500}
+.eq-note{grid-column:2;margin:4px 0 0;font-size:14px;color:var(--muted)}
+.legend{margin:16px 0 0;font-size:14px;color:var(--mid);display:flex;align-items:center;gap:10px}
+.legend i{display:inline-block;width:28px;height:3px;background:var(--lever)}
+@media (prefers-reduced-motion:no-preference){
+  .term.lever>span{animation:draw .9s cubic-bezier(.2,.7,.2,1) .35s both}
+  @keyframes draw{from{background-size:0 3px}to{background-size:100% 3px}}
+}
+@media (max-width:760px){
+  .eq{grid-template-columns:1fr}
+  .eq-where{padding-top:0}
+  .eq-where span{display:inline;margin-left:6px}
+  .eq-note{grid-column:1}
+  .eq-line{display:grid;grid-template-columns:1fr;row-gap:12px}
+  .pair{display:grid;grid-template-columns:1.1em minmax(0,1fr);gap:10px}
+  .term small{max-width:none}
+}
+
+/* role strip */
+.role{margin:40px 0 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;font-size:15px;color:var(--mid)}
+.role b{display:block;color:var(--ink);font-weight:500;margin-bottom:2px}
+@media (max-width:760px){.role{grid-template-columns:1fr;gap:16px}}
+
+/* case sections */
+.case{padding:96px 0 0}
+.case-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 24px;padding-bottom:22px;border-bottom:1px solid var(--ink)}
+.case-head h2{margin:0;font-family:var(--serif);font-weight:900;font-size:clamp(30px,3.8vw,46px);line-height:1.08;letter-spacing:-.015em;max-width:22ch;text-wrap:balance}
+.case-head p{margin:0;font-size:15px;color:var(--mid)}
+.case-body{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;padding-top:34px;align-items:start}
+@media (max-width:980px){.case-body{grid-template-columns:1fr;gap:34px}}
+.story{display:flex;flex-direction:column;gap:22px}
+.story h3{margin:0 0 4px;font-family:var(--sans);font-size:15px;font-weight:600;color:var(--ink)}
+.story p{margin:0;max-width:60ch}
+.story p+p{margin-top:10px}
+.num{font-weight:500;color:var(--ink);white-space:nowrap}
+.shot{margin:0;position:sticky;top:82px}
+@media (max-width:980px){.shot{position:static}}
+.shot a.frame{display:block;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--plate)}
+.shot a.frame:hover{border-color:var(--mid)}
+.shot img{width:100%;height:auto}
+.shot figcaption{margin-top:12px;font-size:14px;color:var(--muted);max-width:70ch}
+.acts{display:flex;flex-wrap:wrap;gap:10px 12px;margin-top:18px}
+.btn{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:999px;font:500 15px/1 var(--sans);text-decoration:none;border:1px solid var(--ink);cursor:pointer;background:transparent;color:var(--ink)}
+.btn.solid{background:var(--ink);color:var(--paper)}
+.btn:hover{background:var(--ink);color:var(--paper)}
+details.pitch{margin-top:16px;border-top:1px solid var(--rule);padding-top:14px}
+details.pitch summary{cursor:pointer;font-weight:500;font-size:15px;list-style:none;display:flex;align-items:center;gap:10px;min-height:44px}
+details.pitch summary::-webkit-details-marker{display:none}
+details.pitch summary::before{content:"";width:0;height:0;border-left:8px solid var(--ink);border-top:5px solid transparent;border-bottom:5px solid transparent;transition:transform .2s}
+details.pitch[open] summary::before{transform:rotate(90deg)}
+details.pitch video{margin-top:12px;border-radius:10px;width:100%;background:#000}
+
+/* notebook */
+.lab{margin-top:112px;padding:84px 0 92px;background:var(--off);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.lab h2{margin:0;font-family:var(--serif);font-weight:900;font-size:clamp(30px,3.8vw,46px);line-height:1.08;letter-spacing:-.015em}
+.lab-intro{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:40px;align-items:end}
+.lab-intro p{margin:16px 0 0;max-width:62ch;color:var(--mid)}
+.lab-intro p.tally{font-family:var(--serif);font-weight:900;font-size:clamp(48px,6vw,72px);line-height:1;margin:0;color:var(--ink)}
+.tally small{display:block;margin-top:10px;font:400 15px/1.45 var(--sans);color:var(--mid);max-width:28ch}
+@media (max-width:860px){.lab-intro{grid-template-columns:1fr;gap:24px}}
+.charts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;margin-top:44px}
+@media (max-width:860px){.charts{grid-template-columns:1fr}}
+.charts figure{margin:0}
+.charts img{border-radius:10px;border:1px solid var(--rule);background:var(--plate);width:100%;height:auto}
+.charts figcaption{margin-top:12px;font-size:15px;color:var(--mid)}
+.charts figcaption b{color:var(--ink);font-weight:500}
+
+/* carry-over */
+.carry{padding:92px 0 24px}
+.carry h2{margin:0 0 34px;font-family:var(--serif);font-weight:900;font-size:clamp(28px,3.4vw,40px);line-height:1.1;letter-spacing:-.01em;max-width:30ch}
+.carry ul{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 48px}
+.carry li{border-top:1px solid var(--ink);padding-top:16px}
+.carry li b{display:block;font-family:var(--serif);font-size:22px;line-height:1.25;margin-bottom:6px}
+.carry li p{margin:0;color:var(--mid);max-width:52ch}
+@media (max-width:760px){.carry ul{grid-template-columns:1fr}}
+
+footer{margin-top:72px;border-top:1px solid var(--rule);padding:32px 0 48px;font-size:14px;color:var(--muted)}
+footer .wrap{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:24px}
+footer p{margin:0;max-width:70ch}
+footer .links{display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:flex-end;align-content:flex-start}
+footer a{color:var(--mid)}
+@media (max-width:760px){footer .wrap{grid-template-columns:1fr}footer .links{justify-content:flex-start}}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="home" href="https://racheltran.vercel.app/">Rachel Tran</a>
+    <nav aria-label="Sections">
+      <a class="opt" href="#vietnam">Vietnam</a>
+      <a class="opt" href="#malaysia">Malaysia</a>
+      <a class="opt" href="#thailand">Thailand</a>
+      <a href="#notebook">Notebook</a>
+      <a href="https://github.com/racheltran184/tiktok-shop-sea-case-challenge">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap">
+    <p class="kicker">TikTok Shop Southeast Asia Regional Case Challenge 2026, run by TikTok APAC Early Careers</p>
+    <h1>Three markets, three ways to take GMV apart</h1>
+    <p class="lede">I took on all three country cases: a single-creator livestream in Vietnam, a wallet-share plan in Malaysia and an 11.11 creator plan in Thailand. Each time I broke the GMV target into its drivers, <strong>found the one that had to move</strong>, and built the tool or prototype that makes the plan runnable.</p>
+
+    <ol class="eqs" aria-label="How each case breaks GMV down">
+      <li class="eq">
+        <div class="eq-where"><a href="#vietnam">Vietnam</a><span>12.12, one creator, US$1M</span></div>
+        <div class="eq-line">
+          <span class="term head"><span>GMV</span></span>
+          <span class="pair"><span class="op">=</span><span class="term lever"><span>views</span><small>+74% over the creator’s best session</small></span></span>
+          <span class="pair"><span class="op">×</span><span class="term"><span>conversion</span><small>held at 1.27 orders per 1,000 views</small></span></span>
+          <span class="pair"><span class="op">×</span><span class="term"><span>AOV</span><small>held at US$10.30</small></span></span>
+        </div>
+      </li>
+      <li class="eq">
+        <div class="eq-where"><a href="#malaysia">Malaysia</a><span>12-month wallet share</span></div>
+        <div class="eq-line">
+          <span class="term head"><span>GMV</span></span>
+          <span class="pair"><span class="op">=</span><span class="term"><span>buyers</span><small>new parents, invited by their children</small></span></span>
+          <span class="pair"><span class="op">×</span><span class="term lever"><span>orders per buyer</span><small>44 to 50 a year for shoppers aged 41+</small></span></span>
+          <span class="pair"><span class="op">×</span><span class="term"><span>basket</span><small>held at RM39</small></span></span>
+        </div>
+      </li>
+      <li class="eq">
+        <div class="eq-where"><a href="#thailand">Thailand</a><span>11.11, target 150 (+50%)</span></div>
+        <div class="eq-line">
+          <span class="term head"><span>GMV</span></span>
+          <span class="pair"><span class="op">=</span><span class="term"><span>top 100</span><small>held at 50 by contract</small></span></span>
+          <span class="pair"><span class="op">+</span><span class="term lever"><span>Rising Stars</span><small>300 creators × half a top = 75</small></span></span>
+          <span class="pair"><span class="op">+</span><span class="term"><span>the rest</span><small>25 on half the budget</small></span></span>
+        </div>
+      </li>
+    </ol>
+    <p class="legend"><i aria-hidden="true"></i>The underlined term is the lever each plan pulls. The others are held at their case values.</p>
+
+    <div class="role">
+      <p><b>Vietnam</b>Operations lead in a team of three, with Nguyen Khuat Son Tra and Nguyen Do Minh Huu. I appear in that deck as Tran Ngoc Bao Han.</p>
+      <p><b>Malaysia and Thailand</b>Data and prototype lead in a team of two with Audrey Nguyen, who led strategy, story and video.</p>
+      <p><b>The data</b>All case figures are fictional, supplied by the organisers. Every number below traces to the case, to our arithmetic or to a labelled assumption.</p>
+    </div>
+  </div>
+</section>
+
+<section class="case" id="vietnam" aria-labelledby="vn-h">
+  <div class="wrap">
+    <div class="case-head">
+      <h2 id="vn-h">Vietnam, 12.12: one creator, one day, US$1M</h2>
+      <p>Project: Trust in Every Click</p>
+    </div>
+    <div class="case-body">
+      <div class="story">
+        <div><h3>The brief</h3><p>Take one emerging creator to US$1M GMV in a single 12.12 livestream, through strategy and operations rather than aggressive subsidy.</p></div>
+        <div><h3>What the numbers said</h3><p>Only Creator B can reach US$1M inside a day: <span class="num">14.8 hours</span> at B’s peak of US$67.8K an hour, against 30 to 73 hours for the other four. With conversion and order value held at B’s peak, the whole gap is views: <span class="num">+74%</span>, closed by a 15-hour live at about 98% of B’s peak views per hour.</p></div>
+        <div><h3>What we proposed</h3><p>A 63-day runway in five phases, each with its biggest risk, an early-warning signal and an owner, and a go/no-go gate on 14 November: B keeps the slot only if the 11.11 rehearsal sells at least <span class="num">US$68K an hour</span>; otherwise Creator E, on standby since day one, takes it.</p></div>
+        <div><h3>What I built</h3><p><em>Tích Tắc 12.12</em> Mission Control. Each hour the ops team enters cumulative GMV, orders and views. The tool tests the hour against one fixed bar of <span class="num">US$66,667</span> (US$1M ÷ 15 hours), shows Watch after one miss and Act now after two, names the weakest of the three drivers and shows the pre-agreed move and its owner. It imports and exports Excel and treats missing hours as unknown, never as zero.</p></div>
+      </div>
+      <figure class="shot">
+        <a class="frame" href="prototypes/vietnam-mission-control/"><img src="docs/screenshots/vn-mission-control.jpg" width="1800" height="1175" alt="Mission Control dashboard with seven demo hours: an Act now banner after two hours below US$66.7K, a KPI strip, an hour-by-hour grid in three shifts and the next pre-agreed moves."></a>
+        <figcaption>Demo data loaded: two misses in a row fire the live-day warning, and the next move appears with its owner. Illustrative numbers, not a forecast.</figcaption>
+        <div class="acts">
+          <a class="btn solid" href="prototypes/vietnam-mission-control/">Open Mission Control</a>
+          <a class="btn" href="decks/vietnam-12-12-trust-in-every-click.pdf">Read the deck (PDF)</a>
+        </div>
+        <details class="pitch">
+          <summary>Watch the 2-minute pitch</summary>
+          <video controls preload="none" poster="media/vietnam-pitch-poster.jpg" src="media/vietnam-pitch.mp4"></video>
+        </details>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="case" id="malaysia" aria-labelledby="my-h">
+  <div class="wrap">
+    <div class="case-head">
+      <h2 id="my-h">Malaysia: help a parent place a safe first order</h2>
+      <p>Project: Order Pertama Mak</p>
+    </div>
+    <div class="case-body">
+      <div class="story">
+        <div><h3>The brief</h3><p>Win a larger share of Malaysian online spending in 12 months, with headcount for only one segment pilot and no blanket discounts.</p></div>
+        <div><h3>What the numbers said</h3><p>Growth isn’t a reach problem. Only <span class="num">34%</span> of product viewers add to cart and <span class="num">42%</span> of checkouts never finish. Campaign-led buyers cost <span class="num">RM163</span> per repeat customer against RM31 for content-led, yet take <span class="num">55%</span> of acquisition spend. Shoppers aged 41+ have the biggest basket (RM39) and the fewest orders (44 a year): closing half the gap to 31–40 year olds is worth about <span class="num">RM174M a year</span>.</p></div>
+        <div><h3>What we proposed</h3><p>Reach parents through their children. An 18–25 year old sends one product card with the total price, delivery date and protections; the parent decides, and either of them can pay. A three-arm test of about 50,000 users per arm decides the rest: scale at 8 or more parent first orders per 100 young shoppers in the test, 45% repeat and RM20 cost or less; stop below 5, below 40% or above RM31.</p></div>
+        <div><h3>What I built</h3><p>The two-phone journey prototype: Aina’s phone and Mak’s side by side, eighteen steps across two paths, Mak Mode in Malay, English, Chinese and Tamil, and a 24-hour price lock in place of a new discount.</p></div>
+      </div>
+      <figure class="shot">
+        <a class="frame" href="prototypes/malaysia-order-pertama-mak/"><img src="docs/screenshots/my-order-pertama-mak.jpg" width="1800" height="1175" loading="lazy" alt="Order Pertama Mak prototype at step 5: Mak's phone shows one product card answering her three questions in Malay: is it original, when will it arrive, can it be returned."></a>
+        <figcaption>Step 5, Mak Mode: her three questions, answered in her own words. Names, products and prices are sample data.</figcaption>
+        <div class="acts">
+          <a class="btn solid" href="prototypes/malaysia-order-pertama-mak/">Open the prototype</a>
+          <a class="btn" href="decks/malaysia-order-pertama-mak.pdf">Read the deck (PDF)</a>
+        </div>
+        <details class="pitch">
+          <summary>Watch the pitch (3 minutes with introductions)</summary>
+          <video controls preload="none" poster="media/malaysia-pitch-poster.jpg" src="media/malaysia-pitch.mp4"></video>
+        </details>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="case" id="thailand" aria-labelledby="th-h">
+  <div class="wrap">
+    <div class="case-head">
+      <h2 id="th-h">Thailand, 11.11: back 300 mid-tier creators on the top’s terms</h2>
+      <p>Project: Rising Stars 300</p>
+    </div>
+    <div class="case-body">
+      <div class="story">
+        <div><h3>The brief</h3><p>Hit +50% GMV against the last mega campaign when top creators are half sold out four weeks ahead and most small sellers can’t get a slot.</p></div>
+        <div><h3>What the numbers said</h3><p>Traffic sells hardest at the top, <span class="num">1.25</span> GMV per traffic point, but mid-tier traffic still sells at <span class="num">1.00</span> against 0.60 in the long tail, and 70% of mid creators have no campaign deal. Meanwhile 80% of small sellers can’t book a top creator and hold about 30% of their budget unallocated.</p></div>
+        <div><h3>What we proposed</h3><p>Keep the top’s half of the budget, and give the best 300 mid creators, ranked by GMV per traffic point from the half who go live on time, the top’s terms: about <span class="num">17×</span> today’s budget per creator, the same feed priority and a 1:1 co-funded deal. If each sells half what a top creator does, 11.11 reaches <span class="num">150</span>.</p></div>
+        <div><h3>What I built</h3><p>The brand-journey prototype, in which a stuck seller meets a Rising Star in their own For You feed, books in one flow and gets one follow-up if they leave halfway, plus the scorecards that judge each journey step and the 300 creators like a sales team.</p></div>
+      </div>
+      <figure class="shot">
+        <a class="frame" href="prototypes/thailand-rising-stars/"><img src="docs/screenshots/th-rising-stars.jpg" width="1800" height="1175" loading="lazy" alt="Rising Stars prototype at step 1: a brand's For You feed shows a Rising Star's live replay; after three seconds, Book this creator and Message buttons appear."></a>
+        <figcaption>Step 1: after three seconds of watching, booking unlocks. Creator, brands and baht values are sample data.</figcaption>
+        <div class="acts">
+          <a class="btn solid" href="prototypes/thailand-rising-stars/">Open the prototype</a>
+          <a class="btn" href="decks/thailand-rising-stars-300.pdf">Read the deck (PDF)</a>
+        </div>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="lab" id="notebook" aria-labelledby="nb-h">
+  <div class="wrap">
+    <div class="lab-intro">
+      <div>
+        <h2 id="nb-h">Every number, rebuilt in Python</h2>
+        <p>After submitting, I rebuilt the three appendices as one notebook. Each headline figure is recomputed from the case exhibits and checked against the deck, and the assumption each plan leans on hardest gets a stress test.</p>
+        <div class="acts"><a class="btn solid" href="https://github.com/racheltran184/tiktok-shop-sea-case-challenge/blob/main/analysis/case_numbers.ipynb">Open the notebook</a></div>
+      </div>
+      <p class="tally">50 of 50<small>deck figures reproduced from the case exhibits, within rounding</small></p>
+    </div>
+    <div class="charts">
+      <figure>
+        <img src="analysis/figures/vn_fade_stress.png" width="1600" height="800" loading="lazy" alt="Line chart: GMV by 23:00 falls as hourly fade rises from 0 to 6 percent; with shift resets it reaches 888 thousand dollars at 6 percent, without resets 672 thousand; both stay below the 1 million dollar target once fade is above zero.">
+        <figcaption><b>Vietnam.</b> A 2% hourly fade costs the day about US$39K even with shift resets, and US$128K without them. The next version of Mission Control should take its pass mark from the rehearsal’s real hourly shape.</figcaption>
+      </figure>
+      <figure>
+        <img src="analysis/figures/th_rising_star_stress.png" width="1600" height="820" loading="lazy" alt="Line chart: 11.11 GMV index rises with Rising Star sales per creator; the plan reaches the 150 target only when each Rising Star sells half a top creator, and today's level of about 0.09 lands near 88, below the prior campaign.">
+        <figcaption><b>Thailand.</b> The plan needs each Rising Star to sell half a top creator, a 5.8× lift. Without it, 11.11 lands below the last campaign, so the 4 November checkpoint needs a rule to hand the budget back.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="carry" aria-labelledby="carry-h">
+  <div class="wrap">
+    <h2 id="carry-h">What carries over to an e‑commerce team</h2>
+    <ul>
+      <li><b>Break the target down before choosing a lever</b><p>Every brief here split into a few multiplied or added drivers, and in each only one had to move.</p></li>
+      <li><b>Set the bar before the event</b><p>Pass marks, gates and stop rules were fixed in advance, so on the day the data decides and nobody argues about thresholds.</p></li>
+      <li><b>Label every number</b><p>Case data, our arithmetic and our assumptions are tagged separately in every deck, tool and notebook cell.</p></li>
+      <li><b>Ship something people can use</b><p>Each plan came with a working tool or clickable journey, not only slides.</p></li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Unofficial student work for the TikTok Shop Southeast Asia Regional Case Challenge 2026, run by TikTok APAC Early Careers. Not affiliated with or endorsed by TikTok. All case figures are fictional, as supplied by the organisers; creators, brands and prices in the prototypes are sample data. © 2026 Rachel Tran.</p>
+    <div class="links">
+      <a href="https://racheltran.vercel.app/">Portfolio</a>
+      <a href="https://www.linkedin.com/in/racheltran184/">LinkedIn</a>
+      <a href="https://github.com/racheltran184">GitHub</a>
+      <a href="mailto:rachel.hantran@gmail.com">Email</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
